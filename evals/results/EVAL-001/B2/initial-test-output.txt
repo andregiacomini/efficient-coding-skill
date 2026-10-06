@@ -1,0 +1,16 @@
+/workspace/youtube_dl/extractor/pandatv.py:39: SyntaxWarning: "is not" with 'int' literal. Did you mean "!="?
+  if error_code is not 0:
+======================================================================
+FAIL: test_parse_mpd_formats (test.test_InfoExtractor.TestInfoExtractor.test_parse_mpd_formats)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/test/test_InfoExtractor.py", line 668, in test_parse_mpd_formats
+    expect_value(self, formats, expected_formats, None)
+  File "/workspace/test/helper.py", line 137, in expect_value
+    self.assertEqual(
+AssertionError: 7 != 6 : Expect a list of length 7, but got a list of length 6 for field None
+
+----------------------------------------------------------------------
+Ran 1 test in 0.022s
+
+FAILED (failures=1)

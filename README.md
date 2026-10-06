@@ -19,3 +19,13 @@ the Skill on the same tasks, using comparable conditions. We will measure:
 
 The Skill is in [SKILL.md](SKILL.md). Record the first comparison in
 [evals/EVAL-001.md](evals/EVAL-001.md).
+
+## Experiments
+
+| Eval | Task type | Skill | Runs | Result |
+| --- | --- | --- | --- | --- |
+| [EVAL-001](evals/EVAL-001.md) | Localized debugging | v0.1 | 6 | Inconclusive |
+
+EVAL-001 is frozen. All six runs passed its benchmark test, but no reliable
+resource-efficiency improvement was demonstrated. See its documentation for
+variation and contamination limitations.

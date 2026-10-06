@@ -1,0 +1,8 @@
+{
+  "method": "Skill frontmatter and instruction text observed in completed structured tool output",
+  "treatment_runs": {
+    "S1": true,
+    "S2": true,
+    "S3": true
+  }
+}

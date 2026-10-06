@@ -1,0 +1,24 @@
+diff --git a/youtube_dl/extractor/common.py b/youtube_dl/extractor/common.py
+index 3b79b8c..6d92256 100644
+--- a/youtube_dl/extractor/common.py
++++ b/youtube_dl/extractor/common.py
+@@ -2007,16 +2007,9 @@ class InfoExtractor(object):
+                                     f['url'] = initialization_url
+                                 f['fragments'].append({location_key(initialization_url): initialization_url})
+                             f['fragments'].extend(representation_ms_info['fragments'])
+-                        try:
+-                            existing_format = next(
+-                                fo for fo in formats
+-                                if fo['format_id'] == representation_id)
+-                        except StopIteration:
+-                            full_info = formats_dict.get(representation_id, {}).copy()
+-                            full_info.update(f)
+-                            formats.append(full_info)
+-                        else:
+-                            existing_format.update(f)
++                        full_info = formats_dict.get(representation_id, {}).copy()
++                        full_info.update(f)
++                        formats.append(full_info)
+                     else:
+                         self.report_warning('Unknown MIME type %s in DASH manifest' % mime_type)
+         return formats
