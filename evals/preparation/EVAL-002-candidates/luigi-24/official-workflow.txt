@@ -1,0 +1,97 @@
+dos2unix: converting file /workspace/bugsinpy_requirements.txt to Unix format...
+pytest test/contrib/spark_test.py::SparkSubmitTaskTest::test_run
+pytest test/contrib/spark_test.py::SparkSubmitTaskTest::test_defaults
+RUN EVERY COMMAND
+0
+
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.20, pytest-5.4.2, py-1.11.0, pluggy-0.13.1
+rootdir: /workspace
+plugins: mock-3.1.1
+collected 1 item
+
+test/contrib/spark_test.py .                                             [100%]
+
+=============================== warnings summary ===============================
+luigi/parameter.py:533
+  /workspace/luigi/parameter.py:533: DeprecationWarning: invalid escape sequence \d
+    return "(?P<%s>\d+)%s" % (key, key[0].upper())
+
+luigi/parameter.py:545
+  /workspace/luigi/parameter.py:545: DeprecationWarning: invalid escape sequence \d
+    regex = "".join(["((?P<%s>\d+) ?%s(%s)?(%s)? ?)?" % (k, k[0], k[1:-1], k[-1]) for k in keys])
+
+luigi/contrib/hdfs/snakebite_client.py:131
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:131: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/hdfs/snakebite_client.py:145
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:145: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/hdfs/snakebite_client.py:228
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:228: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/spark.py:479
+  /workspace/luigi/contrib/spark.py:479: DeprecationWarning: invalid escape sequence \w
+    app_id_s = re.compile('application identifier: (\w+)').search(s)
+
+luigi/contrib/spark.py:483
+  /workspace/luigi/contrib/spark.py:483: DeprecationWarning: invalid escape sequence \w
+    app_status_s = re.compile('yarnAppState: (\w+)').search(s)
+
+luigi/contrib/spark.py:489
+  /workspace/luigi/contrib/spark.py:489: DeprecationWarning: invalid escape sequence \w
+    final_state_s = re.compile('distributedFinalState: (\w+)').search(s)
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+======================== 1 passed, 8 warnings in 0.13s =========================
+RUN EVERY COMMAND
+1
+pytest test/contrib/spark_test.py::SparkSubmitTaskTest::test_run
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.20, pytest-5.4.2, py-1.11.0, pluggy-0.13.1
+rootdir: /workspace
+plugins: mock-3.1.1
+collected 1 item
+
+test/contrib/spark_test.py .                                             [100%]
+
+=============================== warnings summary ===============================
+luigi/parameter.py:533
+  /workspace/luigi/parameter.py:533: DeprecationWarning: invalid escape sequence \d
+    return "(?P<%s>\d+)%s" % (key, key[0].upper())
+
+luigi/parameter.py:545
+  /workspace/luigi/parameter.py:545: DeprecationWarning: invalid escape sequence \d
+    regex = "".join(["((?P<%s>\d+) ?%s(%s)?(%s)? ?)?" % (k, k[0], k[1:-1], k[-1]) for k in keys])
+
+luigi/contrib/hdfs/snakebite_client.py:131
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:131: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/hdfs/snakebite_client.py:145
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:145: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/hdfs/snakebite_client.py:228
+  /workspace/luigi/contrib/hdfs/snakebite_client.py:228: DeprecationWarning: invalid escape sequence \*
+    """
+
+luigi/contrib/spark.py:479
+  /workspace/luigi/contrib/spark.py:479: DeprecationWarning: invalid escape sequence \w
+    app_id_s = re.compile('application identifier: (\w+)').search(s)
+
+luigi/contrib/spark.py:483
+  /workspace/luigi/contrib/spark.py:483: DeprecationWarning: invalid escape sequence \w
+    app_status_s = re.compile('yarnAppState: (\w+)').search(s)
+
+luigi/contrib/spark.py:489
+  /workspace/luigi/contrib/spark.py:489: DeprecationWarning: invalid escape sequence \w
+    final_state_s = re.compile('distributedFinalState: (\w+)').search(s)
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+======================== 1 passed, 8 warnings in 0.07s =========================

@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+    "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+    "tracked_file_count": 337,
+    "support_files": {
+      "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+    },
+    "git_status_porcelain": "",
+    "unexpected_ignored_files": []
+  },
+  "skill": {
+    "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+    "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+    "tracked_file_count": 337,
+    "support_files": {
+      "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+    },
+    "git_status_porcelain": "",
+    "unexpected_ignored_files": []
+  }
+}

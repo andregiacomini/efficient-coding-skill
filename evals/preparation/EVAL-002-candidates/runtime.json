@@ -1,0 +1,11 @@
+{
+  "role": "preliminary candidate validation only; not selected solving runtime",
+  "image_id": "sha256:0c0ce9ec3695d19b925cbd8c06c402a5162f010fe31aaf12d3694a200b600be2",
+  "architecture": "arm64",
+  "python_version": "3.8.20",
+  "base_image": "sha256:9c4211b7d47308c04df8a441127ef77894efc3ff71a1e2bf692d1796864ac1a9",
+  "official_bugsinpy_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+  "environment_deviation": "Preinstalled pinned minimal test dependencies; official compile/test helpers with sanitized buggy-only support; no stock fixed-version test transplantation",
+  "requirements_sha256": "c0520a6a91826658dcd195ee813983cffa37d2512629c1a294b1128d24c101ba",
+  "model_calls": 0
+}

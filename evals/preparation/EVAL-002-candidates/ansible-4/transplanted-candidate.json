@@ -1,0 +1,44 @@
+{
+  "project": "ansible",
+  "bug_id": 4,
+  "buggy_commit_id": "d91658ec0c8434c82c3ef98bfe9eb4e1027a43a3",
+  "python_version": "3.6.9",
+  "test_file": "test/units/playbook/test_collectionsearch.py",
+  "test_commands": [
+    "pytest test/units/playbook/test_collectionsearch.py::test_collection_static_warning"
+  ],
+  "transplanted_test_sha256": {
+    "test/units/playbook/test_collectionsearch.py": "fc2d2f3019bae67f7df6753ad13c38c21e1ee15e9abdcce63efc7702ed0d6b80"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "ansible.playbook.collectionsearch"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 2.342,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 0.996,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 450,
+  "source_loc": 102526,
+  "source_directories": 71,
+  "score_components": {
+    "source_files": 2,
+    "source_loc": 2,
+    "directory_breadth": 2,
+    "direct_import_breadth": 0,
+    "test_outside_source": 1
+  },
+  "location_penalty": 1,
+  "final_exploration_score": 6,
+  "regression_reproduced": true,
+  "selected": false
+}

@@ -1,0 +1,45 @@
+{
+  "project": "luigi",
+  "bug_id": 7,
+  "buggy_commit_id": "dd1f2ce0061e7787166522a3c75339ba4755dd2c",
+  "python_version": "3.8.3",
+  "test_file": "test/scheduler_api_test.py",
+  "test_commands": [
+    "pytest test/scheduler_api_test.py::SchedulerApiTest::test_status_wont_override"
+  ],
+  "transplanted_test_sha256": {
+    "test/scheduler_api_test.py": "d825e777f1b9592e1ad9785b84545a52713112e5a87a79589bcee2386c3e69e6"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.notifications",
+    "luigi.scheduler"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 2.439,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 1.186,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 85,
+  "source_loc": 24420,
+  "source_directories": 4,
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 2,
+    "directory_breadth": 1,
+    "direct_import_breadth": 1,
+    "test_outside_source": 1
+  },
+  "location_penalty": 1,
+  "final_exploration_score": 5,
+  "regression_reproduced": true,
+  "selected": false
+}

@@ -1,0 +1,48 @@
+{
+  "python_version": "3.8.3",
+  "buggy_commit_id": "572fce617a3b8133983cdee2b2cc336a65af5abe",
+  "test_file": "test/contrib/spark_test.py",
+  "project": "luigi",
+  "bug_id": 24,
+  "test_commands": [
+    "pytest test/contrib/spark_test.py::SparkSubmitTaskTest::test_run",
+    "pytest test/contrib/spark_test.py::SparkSubmitTaskTest::test_defaults"
+  ],
+  "transplanted_test_sha256": {
+    "test/contrib/spark_test.py": "be0b385da3d6ce01c94624b3de7688c216a23f8ade8b82c074f2d0b02b3eae3c"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.contrib.hdfs",
+    "luigi.contrib.pyspark_runner",
+    "luigi.contrib.spark",
+    "luigi.mock"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 2.058,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 1.804,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 69,
+  "source_loc": 16504,
+  "source_directories": 4,
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 1,
+    "directory_breadth": 1,
+    "direct_import_breadth": 2,
+    "test_outside_source": 1
+  },
+  "location_penalty": 1,
+  "final_exploration_score": 5,
+  "regression_reproduced": true,
+  "selected": false
+}

@@ -3,13 +3,18 @@
 Reanalyze existing artifacts without Docker, agent execution or benchmark writes:
 
 ```sh
-python3 evals/run-eval.py --reanalyze
+python3 evals/run-eval.py --eval EVAL-002 --reanalyze
 ```
 
 This updates derived `summary.json`, creates `trajectory.json`, and regenerates
 `report.md`. Raw JSONL, stderr, metadata, patches, statuses, archives, and test
 outputs are read-only. Existing duration, success, final modified-file inventory,
 configuration and benchmark commit are preserved.
+
+EVAL-001 is permanently frozen. Its historical instrumentation and runner are
+preserved by the annotated `eval-001` tag. The current CLI refuses to rerun or
+rewrite that experiment; `--eval EVAL-001 --report` prints its saved report.
+New interpretations of EVAL-001 must be separate derived documents.
 
 ## Event and command rules
 
@@ -81,3 +86,35 @@ Duration remains process elapsed time; raw historical values are never reconstru
 from file mtimes or total setup timestamps. New `trajectory.json` contains only
 observable action categories, commands, read targets/ranges, tool IDs, output-size
 counts and reported test counts, not reasoning or agent-message content.
+
+## Starting workspace integrity
+
+New evaluations load an evaluator-owned `EVAL-NNN-config.json`. The configuration,
+selection notes and results are never mounted inside either solving container.
+Each arm is an independent clone with no remote or shared Git object storage.
+Before replacing an existing checkout, the runner rejects unexpected untracked
+and ignored files, retaining them for review. A successful artifact capture is
+required before discarding files created by an agent run.
+
+The reset recreates the checkout from its frozen seed, runs `reset --hard` and
+`clean -fdx` in the new staging checkout, then verifies the result. Required
+benchmark support files must be tracked in the seed and have explicitly listed
+hashes; they are restored, not discarded as contamination. Validation runtimes
+must keep Python/test caches outside the repository.
+
+New snapshots also verify the entire Git object inventory, including unreachable
+objects. Exactly the frozen synthetic history is allowed; clean `git status`
+alone cannot detect hidden fixed/future commit objects. Transplanted benchmark
+test hashes are checked against evaluator-only provenance before execution.
+
+Starting fingerprints hash a sorted inventory of tracked paths, modes and actual
+bytes (symlink targets for symlinks), HEAD, expected support-file hashes, shared
+agent configuration, test command, image ID and evaluator configuration hash.
+Workspace location and treatment-only Skill availability are excluded. Both arms
+must agree in infrastructure checks, and each agent run records its fingerprint
+in metadata before any model request. Runtime mounts remain limited to that
+arm's workspace, with frozen benchmark-provided tests mounted read-only in a
+separate grader. For EVAL-002 these include the official test-only transplant;
+they are not characterized as original tests from the buggy commit. Pytest grading
+uses its final test counts, so expected application ERROR logs are not confused
+with collection/setup errors.

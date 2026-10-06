@@ -1,0 +1,45 @@
+{
+  "project": "luigi",
+  "bug_id": 14,
+  "buggy_commit_id": "f7219c38121098d464011a094156d99b5b320362",
+  "python_version": "3.8.3",
+  "test_file": "test/central_planner_test.py",
+  "test_commands": [
+    "pytest test/central_planner_test.py::CentralPlannerTest::test_no_crash_on_only_disable_hard_timeout"
+  ],
+  "transplanted_test_sha256": {
+    "test/central_planner_test.py": "18907aaaf562360f170b90851794683cba8e52d033292263acdfb3451452934d"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.notifications",
+    "luigi.scheduler"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 0.752,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 0.752,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 82,
+  "source_loc": 21739,
+  "source_directories": 4,
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 2,
+    "directory_breadth": 1,
+    "direct_import_breadth": 1,
+    "test_outside_source": 1
+  },
+  "location_penalty": 2,
+  "final_exploration_score": 4,
+  "regression_reproduced": true,
+  "selected": false
+}

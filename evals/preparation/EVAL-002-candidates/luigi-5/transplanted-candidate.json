@@ -1,0 +1,46 @@
+{
+  "python_version": "3.8.3",
+  "buggy_commit_id": "45b5711d1900184ccd66c65216d28c0d69d10d4a",
+  "test_file": "test/util_test.py",
+  "project": "luigi",
+  "bug_id": 5,
+  "test_commands": [
+    "pytest test/util_test.py::BasicsTest::test_inherits_has_effect_MRO",
+    "pytest test/util_test.py::BasicsTest::test_requires_has_effect_MRO"
+  ],
+  "source_files": 84,
+  "source_loc": 24893,
+  "source_directories": 4,
+  "transplanted_test_sha256": {
+    "test/util_test.py": "721a499c0f862e9064e92fae01f68c6cdb2a17ac0b94881739c8d3c062b4e8d7"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.task",
+    "luigi.util"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 2.556,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 1.877,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 2,
+    "directory_breadth": 1,
+    "direct_import_breadth": 1,
+    "test_outside_source": 1
+  },
+  "location_penalty": 1,
+  "final_exploration_score": 5,
+  "regression_reproduced": true,
+  "selected": false
+}

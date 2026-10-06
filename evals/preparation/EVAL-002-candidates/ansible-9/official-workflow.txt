@@ -1,0 +1,16 @@
+dos2unix: converting file /workspace/bugsinpy_requirements.txt to Unix format...
+pytest test/units/modules/packaging/os/test_redhat_subscription.py::test_redhat_subscribtion
+RUN EVERY COMMAND
+0
+
+
+============================= test session starts ==============================
+platform linux -- Python 3.8.20, pytest-5.4.2, py-1.11.0, pluggy-0.13.1
+rootdir: /workspace
+plugins: mock-3.1.1
+collected 13 items
+
+test/units/modules/packaging/os/test_redhat_subscription.py ............ [ 92%]
+.                                                                        [100%]
+
+============================== 13 passed in 0.08s ==============================

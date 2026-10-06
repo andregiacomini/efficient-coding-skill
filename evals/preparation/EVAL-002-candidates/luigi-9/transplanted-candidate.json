@@ -1,0 +1,45 @@
+{
+  "project": "luigi",
+  "bug_id": 9,
+  "buggy_commit_id": "f7e0b7710fd8b12f27625b1efb62a8fde6e206c4",
+  "python_version": "3.8.3",
+  "test_file": "test/execution_summary_test.py",
+  "test_commands": [
+    "pytest test/execution_summary_test.py::ExecutionSummaryTest::test_status_with_task_retry"
+  ],
+  "transplanted_test_sha256": {
+    "test/execution_summary_test.py": "f9ec5b603919e5a61f54169db6eff3cb6c75087266602d09c3e49a014b0c6234"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.execution_summary",
+    "luigi.worker"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 0.71,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 0.668,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 86,
+  "source_loc": 23651,
+  "source_directories": 4,
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 2,
+    "directory_breadth": 1,
+    "direct_import_breadth": 1,
+    "test_outside_source": 1
+  },
+  "location_penalty": 1,
+  "final_exploration_score": 5,
+  "regression_reproduced": true,
+  "selected": true
+}

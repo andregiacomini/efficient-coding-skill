@@ -1,0 +1,46 @@
+{
+  "python_version": "3.8.3",
+  "buggy_commit_id": "97fa4afea3748f0d714482d2c97990bb467bc9d1",
+  "test_file": "test/test_event_callbacks.py",
+  "project": "luigi",
+  "bug_id": 30,
+  "test_commands": [
+    "pytest test/test_event_callbacks.py::TestEventCallbacks::test_failure",
+    "pytest test/test_event_callbacks.py::TestEventCallbacks::test_processing_time_handler_failure"
+  ],
+  "transplanted_test_sha256": {
+    "test/test_event_callbacks.py": "084ea78055b45684ec7c38c87f632098b922b8aee2b408cdc8b0400bfb6ab595"
+  },
+  "checkout_version": 0,
+  "transport": "local two-revision shallow mirror; official checkout script unmodified",
+  "direct_project_imports": [
+    "luigi.mock",
+    "luigi.task"
+  ],
+  "reproductions": [
+    {
+      "exit_code": 1,
+      "seconds": 2.255,
+      "output_file": "reproduction-1.txt"
+    },
+    {
+      "exit_code": 1,
+      "seconds": 2.022,
+      "output_file": "reproduction-2.txt"
+    }
+  ],
+  "source_files": 56,
+  "source_loc": 15157,
+  "source_directories": 3,
+  "score_components": {
+    "source_files": 1,
+    "source_loc": 1,
+    "directory_breadth": 1,
+    "direct_import_breadth": 1,
+    "test_outside_source": 1
+  },
+  "location_penalty": 2,
+  "final_exploration_score": 3,
+  "regression_reproduced": true,
+  "selected": false
+}

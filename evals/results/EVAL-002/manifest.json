@@ -1,0 +1,96 @@
+{
+  "eval_id": "EVAL-002",
+  "status": "PREPARED",
+  "prepared_date": "2026-10-06",
+  "benchmark": "BugsInPy",
+  "benchmark_revision": "11c5f1eea954a42132cfd06bf257766a7963e0fd",
+  "project": "luigi",
+  "bug_id": 9,
+  "upstream_buggy_commit": "f7e0b7710fd8b12f27625b1efb62a8fde6e206c4",
+  "workspace_commit": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+  "snapshot_strategy": "Synthetic Git repository with one neutral root commit; no upstream history, remotes or shared objects",
+  "configuration": {
+    "codex_version": "codex-cli 0.160.0",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "web_search": "disabled",
+    "skill_version": "0.1",
+    "prompt_sha256": "eec4581e99be56d7558163ab021d674e38c3ffab3efa223870d5569b86fec5f0",
+    "skill_sha256": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+    "agent_timeout_seconds": 1800
+  },
+  "runner_image": "sha256:d061c543ffcc6143cc93fda23d66f6d86780673486008dd9a6720deb45f97a46",
+  "python_version": "3.8.20",
+  "dataset_python_version": "3.8.3",
+  "test_command": [
+    "/opt/eval-venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "test/execution_summary_test.py::ExecutionSummaryTest::test_status_with_task_retry"
+  ],
+  "test_provenance": "Exact test file transplanted by the unmodified official bugsinpy-checkout -v 0 process. All application source remains the buggy upstream state.",
+  "transplanted_test_sha256": {
+    "test/execution_summary_test.py": "f9ec5b603919e5a61f54169db6eff3cb6c75087266602d09c3e49a014b0c6234"
+  },
+  "support_files": {
+    "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+  },
+  "git_object_inventory_sha256": "1f2c7ad3ec807ec8076e909ab8fb63d8f96391b1262f2133902d4716679cab36",
+  "official_helper_sha256": {
+    "bugsinpy-checkout": "36d1f5b8fbef2fbd2b6d4dc0c9d95089c5e82d9fe222dfa96392ab175ee1b1e1",
+    "bugsinpy-compile": "faf0fd1c427721c00884872c3effe78ede5eff0c0c19ee169cafcad720eeccab",
+    "bugsinpy-test": "439edaa83ee1f518d70d7c5f195568e0217860e7be38a062188b5cf991078696"
+  },
+  "workspace_fingerprints": {
+    "baseline": {
+      "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+      "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+      "tracked_file_count": 337,
+      "support_files": {
+        "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "skill": {
+      "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+      "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+      "tracked_file_count": 337,
+      "support_files": {
+        "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    }
+  },
+  "application_source_matches_buggy_upstream": true,
+  "known_fixed_commit_locally_resolvable": false,
+  "fixed_commit_hash_or_patch_files_present": false,
+  "independent_reconstruction_verified": true,
+  "baseline_skill_absent": true,
+  "treatment_skill_external_only": true,
+  "agent_runs": [],
+  "model_requests_during_preparation": 0,
+  "result": null,
+  "input_sha256": {
+    "SKILL.md": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+    "evals/EVAL-002-task.md": "eec4581e99be56d7558163ab021d674e38c3ffab3efa223870d5569b86fec5f0",
+    "evals/EVAL-002-config.json": "2f7b6860c37a7c64b308cf624992338a13d20c9c60f2310c8180eb4c46f1b88d",
+    "evals/run-eval.py": "9d498c041ae5c2d160b7d7f81ec46e7250ed695ab3cc3b45f063e4966696f0e8",
+    "evals/trace_analysis.py": "e1f9a47b5fb08caab7e6155e00ba2bdb7a4f1f37192f11e7ed9299127e4c05e0",
+    "evals/INSTRUMENTATION.md": "046dfba81b792afd60617612b2f11ffec9d43b740df539ef90956f2b192b82c0",
+    "evals/setup-EVAL-002.py": "21359baa418a6d108082214c935b13cd55300160db6663877529edde1861745b",
+    "evals/EVAL-002-runtime/Dockerfile": "2457e91401b02b8d19c5ee50c2b756169628130592c9ac28abf96ba335293c22",
+    "evals/EVAL-002-runtime/requirements.txt": "c0520a6a91826658dcd195ee813983cffa37d2512629c1a294b1128d24c101ba",
+    "evals/EVAL-002-runtime/AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+  },
+  "limitations": [
+    "Exploration demand is a structural hypothesis, not measured agent activity.",
+    "Python 3.8.20 replaces dataset 3.8.3; pinned minimal dependency setup replaces platform-specific dump.",
+    "Success is the frozen regression test proxy, not proof of complete correctness.",
+    "Isolation excludes local fixed/future source and history; external known-solution access is forbidden by instructions, not an air-gapped network."
+  ]
+}

@@ -25,6 +25,7 @@ The Skill is in [SKILL.md](SKILL.md). Record the first comparison in
 | Eval | Task type | Skill | Runs | Result |
 | --- | --- | --- | --- | --- |
 | [EVAL-001](evals/EVAL-001.md) | Localized debugging | v0.1 | 6 | Inconclusive |
+| [EVAL-002](evals/EVAL-002.md) | Task execution/history reporting | v0.1 | 0 | Prepared; not run |
 
 EVAL-001 is frozen. All six runs passed its benchmark test, but no reliable
 resource-efficiency improvement was demonstrated. See its documentation for

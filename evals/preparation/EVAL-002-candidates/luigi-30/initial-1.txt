@@ -1,0 +1,15 @@
+
+=============================== warnings summary ===============================
+luigi/parameter.py:536
+  /workspace/luigi/parameter.py:536: DeprecationWarning: invalid escape sequence \d
+    return "(?P<%s>\d+)%s" % (key, key[0].upper())
+
+luigi/parameter.py:548
+  /workspace/luigi/parameter.py:548: DeprecationWarning: invalid escape sequence \d
+    regex = "".join(["((?P<%s>\d+) ?%s(%s)?(%s)? ?)?" % (k, k[0], k[1:-1], k[-1]) for k in keys])
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+2 warnings in 0.05s
+ERROR: not found: /workspace/test/test_event_callbacks.py::TestEventCallbacks::test_processing_time_handler_failure
+(no name '/workspace/test/test_event_callbacks.py::TestEventCallbacks::test_processing_time_handler_failure' in any of [<UnitTestCase TestEventCallbacks>])
+

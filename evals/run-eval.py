@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""EVAL-001 harness. --check never starts a coding agent. Standard library only."""
+"""Shared evaluation harness. --check never starts a coding agent. Standard library only."""
 import argparse
 import hashlib
 import io
@@ -35,6 +35,45 @@ CONFIG = {
     'skill_sha256': 'f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2',
     'agent_timeout_seconds': 1800,
 }
+EVAL_ID = 'EVAL-001'
+BENCHMARK_CONFIG = None
+TEST_ROOTS = ['test']
+EXPECTED_HISTORY = 2
+EXPECTED_FAILURE = 'Expect a list of length 7, but got a list of length 6'
+RESULT_MODE = 'unittest'
+EXPECTED_TEST_COUNT = 1
+SUPPORT_FILES = {}
+TEST_HASHES = {}
+OBJECT_INVENTORY_HASH = None
+
+
+def configure(eval_id):
+    """Load only evaluator-owned configuration; never mount this in the agent."""
+    global EVAL_ID, RESULTS, SEED, FIXTURES, COMMIT, IMAGE, PROMPT, TEST_COMMAND
+    global CONFIG, BENCHMARK_CONFIG, TEST_ROOTS, EXPECTED_HISTORY, EXPECTED_FAILURE
+    global RESULT_MODE, EXPECTED_TEST_COUNT, SUPPORT_FILES, TEST_HASHES, OBJECT_INVENTORY_HASH
+    if eval_id == 'EVAL-001':
+        return
+    path = REPO / f'evals/{eval_id}-config.json'
+    data = json.loads(path.read_text())
+    if data['status'] != 'PREPARED':
+        raise InfrastructureError(f'{eval_id} is not prepared for agent runs')
+    EVAL_ID = eval_id
+    BENCHMARK_CONFIG = path
+    RESULTS = REPO / f'evals/results/{eval_id}'
+    SEED = REPO / f'experiments/.{eval_id}-seed.git'
+    FIXTURES = REPO / f'experiments/.{eval_id}-fixtures'
+    COMMIT, IMAGE = data['workspace_commit'], data['runner_image']
+    PROMPT = REPO / f'evals/{eval_id}-task.md'
+    CONFIG = data['agent_configuration']
+    TEST_COMMAND, TEST_ROOTS = data['test_command'], data['test_roots']
+    EXPECTED_HISTORY = data['seed_commit_count']
+    EXPECTED_FAILURE = data['expected_failure']
+    RESULT_MODE = data['result_mode']
+    EXPECTED_TEST_COUNT = data['expected_test_count']
+    SUPPORT_FILES = data['support_files']
+    TEST_HASHES = data['transplanted_test_sha256']
+    OBJECT_INVENTORY_HASH = data['git_object_inventory_sha256']
 
 
 class InfrastructureError(RuntimeError):
@@ -74,7 +113,14 @@ def digest(path):
 
 
 def workspace_for(condition):
-    return REPO / f'experiments/EVAL-001-{condition}'
+    return REPO / f'experiments/{EVAL_ID}-{condition}'
+
+
+def object_inventory_hash(repository, bare=False):
+    prefix = ['git', '--git-dir', repository] if bare else ['git', '-C', repository]
+    output = command(prefix + ['cat-file', '--batch-all-objects',
+                               '--batch-check=%(objectname) %(objecttype)']).stdout
+    return hashlib.sha256(b'\n'.join(sorted(output.splitlines())) + b'\n').hexdigest()
 
 
 def verify_clean(workspace):
@@ -84,12 +130,54 @@ def verify_clean(workspace):
         raise InfrastructureError('Workspace is not clean')
     if git(workspace, 'remote') or (workspace / '.git/objects/info/alternates').exists():
         raise InfrastructureError('Workspace must have independent storage and no remotes')
+    if EVAL_ID != 'EVAL-001':
+        if git(workspace, 'ls-files', '--others', '--ignored', '--exclude-standard'):
+            raise InfrastructureError('Unexpected ignored files in workspace')
+        for name, expected in SUPPORT_FILES.items():
+            if digest(workspace / name) != expected:
+                raise InfrastructureError(f'Unexpected benchmark support file: {name}')
+        for name, expected in TEST_HASHES.items():
+            if digest(workspace / name) != expected:
+                raise InfrastructureError(f'Transplanted benchmark test changed: {name}')
+        if OBJECT_INVENTORY_HASH:
+            if git(workspace, 'rev-list', '--all').decode().splitlines() != [COMMIT]:
+                raise InfrastructureError('Workspace contains unexpected Git history')
+            if object_inventory_hash(workspace) != OBJECT_INVENTORY_HASH:
+                raise InfrastructureError('Workspace contains unexpected Git objects')
 
 
-def reset_workspace(workspace):
+def workspace_fingerprint(workspace):
+    verify_clean(workspace)
+    files = []
+    for entry in git(workspace, 'ls-files', '--stage', '-z').split(b'\0'):
+        if not entry:
+            continue
+        mode_blob, name = entry.split(b'\t', 1)
+        path = workspace / name.decode()
+        mode = mode_blob.decode().split()[0]
+        data = os.readlink(path).encode() if path.is_symlink() else path.read_bytes()
+        files.append([name.decode(), mode, hashlib.sha256(data).hexdigest()])
+    payload = {'head': COMMIT, 'tracked_files': files, 'support_files': SUPPORT_FILES,
+               'configuration': CONFIG, 'runner_image': IMAGE,
+               'test_command': TEST_COMMAND,
+               'benchmark_config_sha256': digest(BENCHMARK_CONFIG) if BENCHMARK_CONFIG else None}
+    return {'sha256': hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
+            'head': COMMIT, 'tracked_file_count': len(files), 'support_files': SUPPORT_FILES,
+            'git_status_porcelain': '', 'unexpected_ignored_files': []}
+
+
+def reset_workspace(workspace, captured=False):
     """Reclone to remove previous objects, refs, reflogs, hooks and ignored files."""
     if workspace not in [workspace_for('baseline'), workspace_for('skill')] or workspace.is_symlink():
         raise InfrastructureError('Unsafe reset target')
+    # Reject unexplained contamination BEFORE replacing a checkout. A completed
+    # agent's artifacts may be discarded only after capture has succeeded.
+    if EVAL_ID != 'EVAL-001' and workspace.exists() and not captured:
+        unexpected = git(workspace, 'ls-files', '--others', '--exclude-standard', '-z')
+        unexpected += git(workspace, 'ls-files', '--others', '--ignored', '--exclude-standard', '-z')
+        if unexpected:
+            raise InfrastructureError('Unexpected contamination; workspace retained: ' +
+                                      unexpected.decode(errors='replace').replace('\0', ', '))
     staging = workspace.with_name(workspace.name + '.reset')
     if staging.exists():
         raise InfrastructureError(f'Remove interrupted reset directory first: {staging}')
@@ -114,21 +202,34 @@ def preflight():
     for path, key in [(PROMPT, 'prompt_sha256'), (SKILL, 'skill_sha256')]:
         if digest(path) != CONFIG[key]:
             raise InfrastructureError(f'Frozen input changed: {path}')
+    if BENCHMARK_CONFIG:
+        data = json.loads(BENCHMARK_CONFIG.read_text())
+        for name, expected in data.get('harness_input_sha256', {}).items():
+            if digest(REPO / name) != expected:
+                raise InfrastructureError(f'Frozen harness input changed: {name}')
     command(['docker', 'image', 'inspect', IMAGE])
     head = command(['git', '--git-dir', SEED, 'rev-parse', 'HEAD']).stdout.decode().strip()
     count = command(['git', '--git-dir', SEED, 'rev-list', '--count', 'HEAD']).stdout.decode().strip()
-    if head != COMMIT or count != '2':
+    if head != COMMIT or count != str(EXPECTED_HISTORY):
         raise InfrastructureError('Frozen seed is missing or has unexpected history')
-    # Recreate original benchmark tests from the frozen buggy snapshot, never from a fix.
+    if OBJECT_INVENTORY_HASH and object_inventory_hash(SEED, bare=True) != OBJECT_INVENTORY_HASH:
+        raise InfrastructureError('Seed contains unexpected Git objects')
+    for name, expected in TEST_HASHES.items():
+        data = command(['git', '--git-dir', SEED, 'show', f'{COMMIT}:{name}']).stdout
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise InfrastructureError(f'Seed benchmark test changed: {name}')
+    # Restore benchmark-provided tests from the sanitized frozen snapshot. Their
+    # preparation-time transplantation never grants the solver fixed-source access.
     if FIXTURES.exists():
         shutil.rmtree(FIXTURES)
     FIXTURES.mkdir()
-    data = command(['git', '--git-dir', SEED, 'archive', '--format=tar', COMMIT, 'test']).stdout
+    data = command(['git', '--git-dir', SEED, 'archive', '--format=tar', COMMIT, *TEST_ROOTS]).stdout
     with tarfile.open(fileobj=io.BytesIO(data)) as archive:
         members = archive.getmembers()
         for member in members:
             path = Path(member.name)
-            if path.is_absolute() or '..' in path.parts or path.parts[0] != 'test' or not (member.isfile() or member.isdir()):
+            allowed = any(path == Path(root) or Path(root) in path.parents or path in Path(root).parents for root in TEST_ROOTS)
+            if path.is_absolute() or '..' in path.parts or not allowed or not (member.isfile() or member.isdir()):
                 raise InfrastructureError('Unexpected benchmark fixture archive entry')
         archive.extractall(FIXTURES, members=members)
 
@@ -137,8 +238,13 @@ def make_container(name, workspace, condition, grader=False):
     remove_container(name)
     args = ['docker', 'run', '-dt', '--name', name, '-v', f'{workspace}:/workspace',
             '-w', '/workspace']
+    if EVAL_ID != 'EVAL-001':
+        data = json.loads(BENCHMARK_CONFIG.read_text())
+        for key, value in data['environment'].items():
+            args += ['-e', f'{key}={value}']
     if grader:
-        args += ['-v', f'{FIXTURES / "test"}:/workspace/test:ro']
+        for root in TEST_ROOTS:
+            args += ['-v', f'{FIXTURES / root}:/workspace/{root}:ro']
     command(args + [IMAGE])
     command(['docker', 'exec', name, 'git', 'config', '--global', '--add',
              'safe.directory', '/workspace'])
@@ -166,15 +272,25 @@ def make_container(name, workspace, condition, grader=False):
 
 
 def benchmark(workspace, name):
-    """Evaluate against immutable original tests in a fresh grader runtime."""
+    """Evaluate against immutable benchmark-provided tests in a fresh grader."""
     try:
         make_container(name, workspace, 'baseline', grader=True)
         result = command(['docker', 'exec', name, *TEST_COMMAND], check=False, timeout=120)
         output = (result.stdout + result.stderr).decode(errors='replace')
         passed = result.returncode == 0 and 'Ran 1 test' in output and '\nOK' in output
         failed = result.returncode == 1 and 'Ran 1 test' in output and 'FAILED (' in output
+        if RESULT_MODE == 'pytest':
+            import re
+            # Application ERROR logs are normal in negative-path tests. Only
+            # pytest's final counts distinguish failures from collection/setup errors.
+            final_summary = next((line for line in reversed(output.splitlines())
+                                  if re.search(r'\b\d+ (?:passed|failed|errors?)\b', line)), '')
+            errors = re.search(r'\b[1-9]\d* errors?\b', final_summary) is not None
+            failures = re.search(r'\b[1-9]\d* failed\b', final_summary) is not None
+            passed = result.returncode == 0 and not errors and not failures and re.search(rf'\b{EXPECTED_TEST_COUNT} passed\b', final_summary) is not None
+            failed = result.returncode == 1 and failures and not errors
         if not (passed or failed):
-            raise InfrastructureError('Benchmark did not produce a recognized unittest result: ' + output)
+            raise InfrastructureError('Benchmark did not produce a recognized test result: ' + output)
         return passed, output, result.returncode
     finally:
         remove_container(name)
@@ -344,7 +460,7 @@ def report():
     signatures = {json.dumps(r.get('configuration'), sort_keys=True) for r in rows}
     if len(signatures) > 1:
         raise InfrastructureError('Refusing to aggregate different configurations')
-    lines = ['# EVAL-001 report', '', 'Explicit Skill invocation experiment; no statistical significance is claimed.', '',
+    lines = [f'# {EVAL_ID} report', '', 'Explicit Skill invocation experiment; no statistical significance is claimed.', '',
              '| Run | Condition | Success | Tokens | Seconds | Tool items | Infrastructure failure |',
              '| --- | --- | --- | ---: | ---: | ---: | --- |']
     def shown(value):
@@ -399,7 +515,7 @@ def run_one(run_id):
     directory.mkdir(parents=True, exist_ok=True)
     if any(p.name != '.gitkeep' for p in directory.iterdir()):
         raise InfrastructureError(f'{run_id} already has artifacts; explicitly clear them before rerunning')
-    name = f'efficient-coding-eval-001-{run_id.lower()}'
+    name = f'efficient-coding-{EVAL_ID.lower()}-{run_id.lower()}'
     metadata = {'run_id': run_id, 'condition': condition, 'configuration': CONFIG,
                 'commit': COMMIT, 'runner_image': IMAGE, 'workspace': str(workspace),
                 'prompt_path': str(PROMPT), 'skill_invocation': condition == 'skill',
@@ -416,15 +532,16 @@ def run_one(run_id):
     try:
         preflight()
         # Remove legacy manual containers before touching their bind mounts.
-        remove_container(f'EVAL-001-{condition}')
+        remove_container(f'{EVAL_ID}-{condition}')
         reset_workspace(workspace)
         prepared = True
         make_container(name, workspace, condition)
         passed, output, code = benchmark(workspace, name + '-before')
         save(directory / 'initial-test-output.txt', output)
-        if passed or 'Expect a list of length 7, but got a list of length 6' not in output:
-            raise InfrastructureError('Original failure is not reproduced')
+        if passed or EXPECTED_FAILURE not in output:
+            raise InfrastructureError('Frozen benchmark failure is not reproduced')
         verify_clean(workspace)
+        metadata['workspace_fingerprint'] = workspace_fingerprint(workspace)
         instructions = ('Use the $efficient-coding Skill v0.1 for this task.'
                         if condition == 'skill' else '')
         args = ['docker', 'exec', '-i', name, 'codex', '--no-daemon', '-a', CONFIG['approval_policy'],
@@ -493,7 +610,7 @@ def run_one(run_id):
         saved = True
         if prepared and saved and captured and quiesced:
             try:
-                reset_workspace(workspace)
+                reset_workspace(workspace, captured=True)
             except Exception as error:
                 summary['infrastructure_failure'] = f'Post-save reset failed: {error}'
                 save_json(directory / 'summary.json', summary)
@@ -504,28 +621,39 @@ def run_one(run_id):
 
 def check_only():
     preflight()
+    fingerprints = {}
     for condition in ('baseline', 'skill'):
         workspace = workspace_for(condition)
-        name = f'efficient-coding-eval-001-check-{condition}'
-        remove_container(f'EVAL-001-{condition}')
+        name = f'efficient-coding-{EVAL_ID.lower()}-check-{condition}'
+        remove_container(f'{EVAL_ID}-{condition}')
         reset_workspace(workspace)
         try:
             make_container(name, workspace, condition)
             command(['docker', 'exec', name, 'codex', '--no-daemon', '-a', 'never',
                      'exec', '--ignore-user-config', '--json', '--help'])
             passed, output, code = benchmark(workspace, name + '-test')
-            if passed or 'Expect a list of length 7, but got a list of length 6' not in output:
+            if passed or EXPECTED_FAILURE not in output:
                 raise InfrastructureError('Expected assertion failure not reproduced')
             verify_clean(workspace)
-            print(f'{condition}: HEAD={COMMIT}; git status --short empty; original test fails; isolation verified')
+            fingerprints[condition] = workspace_fingerprint(workspace)
+            if EVAL_ID != 'EVAL-001':
+                directory = REPO / f'evals/preparation/{EVAL_ID}'
+                save(directory / f'{condition}-failure.txt', output)
+            print(f'{condition}: HEAD={COMMIT}; git status --short empty; benchmark-provided test fails; isolation verified')
         finally:
             remove_container(name)
             reset_workspace(workspace)
+    if fingerprints['baseline']['sha256'] != fingerprints['skill']['sha256']:
+        raise InfrastructureError('Baseline/treatment starting fingerprints differ')
+    if EVAL_ID != 'EVAL-001':
+        save_json(REPO / f'evals/preparation/{EVAL_ID}/workspace-fingerprints.json', fingerprints)
+    print('Equivalent starting fingerprint: ' + fingerprints['baseline']['sha256'])
     print('Infrastructure check complete. No Codex task or model request was made.')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--eval', default='EVAL-001', choices=['EVAL-001', 'EVAL-002'])
     parser.add_argument('run_id', nargs='?', choices=ORDER)
     parser.add_argument('--all', action='store_true')
     parser.add_argument('--check', action='store_true', help='Reset/verify both arms without starting an agent')
@@ -534,6 +662,16 @@ def main():
     args = parser.parse_args()
     if sum([bool(args.run_id), args.all, args.check, args.report, args.reanalyze]) != 1:
         parser.error('Choose one run ID, --all, --check, --report, or --reanalyze')
+    if args.eval == 'EVAL-001':
+        if args.report:
+            print((RESULTS / 'report.md').read_text(), end='')
+            return 0
+        if not args.check:
+            parser.error('EVAL-001 is frozen. Historical results cannot be rerun or rewritten. Use tag eval-001 in a separate checkout for reproduction.')
+    try:
+        configure(args.eval)
+    except (OSError, KeyError, ValueError, InfrastructureError) as error:
+        parser.error(str(error))
     RESULTS.mkdir(parents=True, exist_ok=True)
     lock = RESULTS / '.runner.lock'
     try:

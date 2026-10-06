@@ -178,6 +178,78 @@ class ClassificationTests(unittest.TestCase):
             self.assertEqual(metrics['total_file_reads'],0)
             self.assertEqual(metrics['test_commands'],0)
 
+
+class WorkspaceIntegrityTests(unittest.TestCase):
+    def test_fingerprints_match_and_unexpected_files_are_preserved(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            seed_source = root / 'source'
+            seed_source.mkdir()
+            subprocess.run(['git', 'init', '-q', seed_source], check=True)
+            (seed_source/'sample.py').write_text('original\n')
+            (seed_source/'.gitignore').write_text('*.ignored\n')
+            (seed_source/'AGENTS.md').write_text('runtime information only\n')
+            subprocess.run(['git', '-C', seed_source, 'add', '.'], check=True)
+            subprocess.run(['git', '-C', seed_source, '-c', 'user.name=test',
+                            '-c', 'user.email=test@example.invalid', 'commit', '-qm', 'buggy fixture'], check=True)
+            commit = subprocess.check_output(['git', '-C', seed_source, 'rev-parse', 'HEAD']).decode().strip()
+            seed = root/'seed.git'
+            subprocess.run(['git', 'clone', '--bare', '--no-local', seed_source, seed], check=True, capture_output=True)
+            (root/'experiments').mkdir()
+            with patch.multiple(harness, REPO=root, EVAL_ID='EVAL-002', SEED=seed, COMMIT=commit,
+                                SUPPORT_FILES={'AGENTS.md':harness.digest(seed_source/'AGENTS.md')}):
+                baseline, skill = harness.workspace_for('baseline'), harness.workspace_for('skill')
+                harness.reset_workspace(baseline)
+                harness.reset_workspace(skill)
+                self.assertEqual(harness.workspace_fingerprint(baseline), harness.workspace_fingerprint(skill))
+                for name in ['duplicate 2.py', 'artifact.ignored']:
+                    (baseline/name).write_text('preserve evidence\n')
+                    with self.assertRaises(harness.InfrastructureError):
+                        harness.reset_workspace(baseline)
+                    self.assertTrue((baseline/name).exists())
+                    with self.assertRaises(harness.InfrastructureError):
+                        harness.verify_clean(baseline)
+                    (baseline/name).unlink()
+                (baseline/'AGENTS.md').write_text('contaminated\n')
+                with self.assertRaises(harness.InfrastructureError):
+                    harness.workspace_fingerprint(baseline)
+                harness.reset_workspace(baseline)
+                self.assertEqual(harness.workspace_fingerprint(baseline), harness.workspace_fingerprint(skill))
+                with patch.object(harness, 'OBJECT_INVENTORY_HASH', harness.object_inventory_hash(baseline)):
+                    harness.verify_clean(baseline)
+                    subprocess.run(['git', '-C', baseline, 'hash-object', '-w', '--stdin'],
+                                   input=b'synthetic unexpected Git object', capture_output=True, check=True)
+                    self.assertEqual(harness.git(baseline, 'status', '--short'), b'')
+                    with self.assertRaises(harness.InfrastructureError):
+                        harness.verify_clean(baseline)
+
+    def test_frozen_eval_rejects_agent_runs_and_reanalysis(self):
+        for arguments in [['B1'], ['--all'], ['--reanalyze']]:
+            result = subprocess.run([sys.executable, str(Path(__file__).with_name('run-eval.py')),
+                                     '--eval', 'EVAL-001', *arguments], capture_output=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertIn(b'EVAL-001 is frozen', result.stderr)
+
+
+class PytestGradingTests(unittest.TestCase):
+    def grade(self, output, code):
+        with patch.multiple(harness, RESULT_MODE='pytest', EXPECTED_TEST_COUNT=1), \
+             patch.object(harness, 'make_container'), patch.object(harness, 'remove_container'), \
+             patch.object(harness, 'command', return_value=subprocess.CompletedProcess([], code, output.encode(), b'')):
+            return harness.benchmark(Path('/synthetic'), 'synthetic-only')
+
+    def test_application_error_log_is_a_real_test_failure(self):
+        self.assertFalse(self.grade('ERROR    app: expected negative path\n1 failed, 23 warnings in 0.20s\n', 1)[0])
+
+    def test_setup_errors_are_not_bug_reproduction(self):
+        with self.assertRaises(harness.InfrastructureError):
+            self.grade('1 failed, 1 error in 0.20s\n', 1)
+
+    def test_success_requires_frozen_test_count(self):
+        self.assertTrue(self.grade('1 passed in 0.20s\n', 0)[0])
+        with self.assertRaises(harness.InfrastructureError):
+            self.grade('11 passed in 0.20s\n', 0)
+
     def test_timing_capture_preserves_raw_stream(self):
         import sys, time
         with tempfile.TemporaryDirectory() as temp:

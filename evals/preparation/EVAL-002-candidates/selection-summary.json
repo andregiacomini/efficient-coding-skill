@@ -1,0 +1,186 @@
+[
+  {
+    "candidate": "luigi-24",
+    "project": "luigi",
+    "bug_id": 24,
+    "buggy_commit": "572fce617a3b8133983cdee2b2cc336a65af5abe",
+    "source_files": 69,
+    "source_loc": 16504,
+    "source_directories": 4,
+    "score": 5,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/contrib/spark_test.py::SparkSubmitTaskTest::test_run",
+      "test/contrib/spark_test.py::SparkSubmitTaskTest::test_defaults"
+    ],
+    "pytest_summary": "2 failed, 8 warnings in 0.45s",
+    "stable_twice": true,
+    "max_container_seconds": 2.058,
+    "selected": false
+  },
+  {
+    "candidate": "luigi-30",
+    "project": "luigi",
+    "bug_id": 30,
+    "buggy_commit": "97fa4afea3748f0d714482d2c97990bb467bc9d1",
+    "source_files": 56,
+    "source_loc": 15157,
+    "source_directories": 3,
+    "score": 3,
+    "location_penalty": 2,
+    "failed_nodes": [
+      "test/test_event_callbacks.py::TestEventCallbacks::test_failure",
+      "test/test_event_callbacks.py::TestEventCallbacks::test_processing_time_handler_failure"
+    ],
+    "pytest_summary": "2 failed, 4 warnings in 0.38s",
+    "stable_twice": true,
+    "max_container_seconds": 2.255,
+    "selected": false
+  },
+  {
+    "candidate": "luigi-5",
+    "project": "luigi",
+    "bug_id": 5,
+    "buggy_commit": "45b5711d1900184ccd66c65216d28c0d69d10d4a",
+    "source_files": 84,
+    "source_loc": 24893,
+    "source_directories": 4,
+    "score": 5,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/util_test.py::BasicsTest::test_inherits_has_effect_MRO",
+      "test/util_test.py::BasicsTest::test_requires_has_effect_MRO"
+    ],
+    "pytest_summary": "2 failed, 31 warnings in 0.35s",
+    "stable_twice": true,
+    "max_container_seconds": 2.556,
+    "selected": false
+  },
+  {
+    "candidate": "ansible-3",
+    "project": "ansible",
+    "bug_id": 3,
+    "buggy_commit": "70219df9056ffb1e2766f572fbe71f7a1800c9f5",
+    "source_files": 450,
+    "source_loc": 102658,
+    "source_directories": 71,
+    "score": 7,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/units/module_utils/test_distribution_version.py::test_distribution_version[stdin29-Kali 2020.2]"
+    ],
+    "pytest_summary": "1 failed, 53 passed in 0.24s",
+    "stable_twice": true,
+    "max_container_seconds": 0.947,
+    "selected": false
+  },
+  {
+    "candidate": "ansible-9",
+    "project": "ansible",
+    "bug_id": 9,
+    "buggy_commit": "9276dd2007a73172ed99ab5a56cded4298d3cd2b",
+    "source_files": 5484,
+    "source_loc": 1688098,
+    "source_directories": 557,
+    "score": 7,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/units/modules/packaging/os/test_redhat_subscription.py::test_redhat_subscribtion[test_registeration_username_password_pool_ids]",
+      "test/units/modules/packaging/os/test_redhat_subscription.py::test_redhat_subscribtion[test_registeration_username_password_one_pool_id]"
+    ],
+    "pytest_summary": "2 failed, 11 passed in 0.19s",
+    "stable_twice": true,
+    "max_container_seconds": 0.826,
+    "selected": false
+  },
+  {
+    "candidate": "luigi-7",
+    "project": "luigi",
+    "bug_id": 7,
+    "buggy_commit": "dd1f2ce0061e7787166522a3c75339ba4755dd2c",
+    "source_files": 85,
+    "source_loc": 24420,
+    "source_directories": 4,
+    "score": 5,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/scheduler_api_test.py::SchedulerApiTest::test_status_wont_override"
+    ],
+    "pytest_summary": "1 failed, 31 warnings in 0.79s",
+    "stable_twice": true,
+    "max_container_seconds": 2.439,
+    "selected": false
+  },
+  {
+    "candidate": "luigi-21",
+    "project": "luigi",
+    "bug_id": 21,
+    "buggy_commit": "b7768da963570bd2223d97c1035f811c2eaf30b4",
+    "source_files": 70,
+    "source_loc": 16848,
+    "source_directories": 4,
+    "score": 4,
+    "location_penalty": 2,
+    "failed_nodes": [
+      "test/interface_test.py::InterfaceTest::test_just_run_main_task_cls"
+    ],
+    "pytest_summary": "1 failed, 2 warnings in 0.26s",
+    "stable_twice": true,
+    "max_container_seconds": 1.702,
+    "selected": false
+  },
+  {
+    "candidate": "ansible-4",
+    "project": "ansible",
+    "bug_id": 4,
+    "buggy_commit": "d91658ec0c8434c82c3ef98bfe9eb4e1027a43a3",
+    "source_files": 450,
+    "source_loc": 102526,
+    "source_directories": 71,
+    "score": 6,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/units/playbook/test_collectionsearch.py::test_collection_static_warning"
+    ],
+    "pytest_summary": "1 failed, 1 warning in 1.10s",
+    "stable_twice": true,
+    "max_container_seconds": 2.342,
+    "selected": false
+  },
+  {
+    "candidate": "luigi-9",
+    "project": "luigi",
+    "bug_id": 9,
+    "buggy_commit": "f7e0b7710fd8b12f27625b1efb62a8fde6e206c4",
+    "source_files": 86,
+    "source_loc": 23651,
+    "source_directories": 4,
+    "score": 5,
+    "location_penalty": 1,
+    "failed_nodes": [
+      "test/execution_summary_test.py::ExecutionSummaryTest::test_status_with_task_retry"
+    ],
+    "pytest_summary": "1 failed, 23 warnings in 0.17s",
+    "stable_twice": true,
+    "max_container_seconds": 0.71,
+    "selected": true
+  },
+  {
+    "candidate": "luigi-14",
+    "project": "luigi",
+    "bug_id": 14,
+    "buggy_commit": "f7219c38121098d464011a094156d99b5b320362",
+    "source_files": 82,
+    "source_loc": 21739,
+    "source_directories": 4,
+    "score": 4,
+    "location_penalty": 2,
+    "failed_nodes": [
+      "test/central_planner_test.py::CentralPlannerTest::test_no_crash_on_only_disable_hard_timeout"
+    ],
+    "pytest_summary": "1 failed, 3 warnings in 0.23s",
+    "stable_twice": true,
+    "max_container_seconds": 0.752,
+    "selected": false
+  }
+]
