@@ -1,0 +1,840 @@
+{
+  "scope": "Read-only evaluator checks; not a change to model-facing instrumentation.",
+  "protected_sha256": {
+    ".gitignore": "9b8e0936a93363cddb3f9215815349ceb9d966621aa61199c37a6b23028b0761",
+    "README.md": "3bd3d21b124e2f88d8e298ecb31cfed86381c83378794e3fcc1d52bb3d7dc515",
+    "SKILL.md": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+    "evals/EVAL-001-initial-failure.txt": "24c10eed4ed181c03c40570735756f1e311202bdaebb60cd4f6d6f7359ff55ac",
+    "evals/EVAL-001-setup.sh": "1f2003ec91128dffa0bfc6b41bfe9048a56aee06240eb4e043298120b1e82d4c",
+    "evals/EVAL-001-task.md": "de96b2e6a7b5fe6ad572c966276f49d26711f05b44527e9de8547e45bbe8c2d1",
+    "evals/EVAL-001.md": "848deea536c041ab635570ad551bfae75d25f2226cba667f67a1085916aadd11",
+    "evals/EVAL-002-candidates.md": "a71b5382b68dd5afe24a1acab118ecfb6adb318eb6ce7734a170f5d249f02f2e",
+    "evals/EVAL-002-config.json": "2f7b6860c37a7c64b308cf624992338a13d20c9c60f2310c8180eb4c46f1b88d",
+    "evals/EVAL-002-runtime/AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2",
+    "evals/EVAL-002-runtime/Dockerfile": "2457e91401b02b8d19c5ee50c2b756169628130592c9ac28abf96ba335293c22",
+    "evals/EVAL-002-runtime/requirements.txt": "c0520a6a91826658dcd195ee813983cffa37d2512629c1a294b1128d24c101ba",
+    "evals/EVAL-002-task.md": "eec4581e99be56d7558163ab021d674e38c3ffab3efa223870d5569b86fec5f0",
+    "evals/EVAL-002.md": "2037c389ac6e40447b7fc41e1a87f7c726faae9d82962bc3cd876e3aa1704775",
+    "evals/INSTRUMENTATION.md": "046dfba81b792afd60617612b2f11ffec9d43b740df539ef90956f2b192b82c0",
+    "evals/preparation/EVAL-002/baseline-failure.txt": "6bb2d4c73988a98655433a4b95cb24133fbedf4f80d4c568cab545f66f6a6532",
+    "evals/preparation/EVAL-002/skill-failure.txt": "85c10c65ac27714716065d4b4a95cb222b97fd6038af52d3c2a12866dbe9d344",
+    "evals/preparation/EVAL-002/workspace-fingerprints.json": "60ef55906868f4a139d858bdb9073493bb66aec4adcc71d524d3eac30a415cc8",
+    "evals/preparation/EVAL-002-candidates/ansible-3/candidate.json": "6ebfb11c3de85c59b9d23677b71ad306a374880525e110f7893e08eaf73cb05e",
+    "evals/preparation/EVAL-002-candidates/ansible-3/initial-0.txt": "3c9e76e2484212a2907e181846441fd78daed0fe48ccfec0bc548b0780028df2",
+    "evals/preparation/EVAL-002-candidates/ansible-3/official-test-output.txt": "79380cefaf454977d07c3d1916c495e6942df9bf5b4e4e1714461b333132ea74",
+    "evals/preparation/EVAL-002-candidates/ansible-3/official-workflow.txt": "e0c5858044c806d8aef4f7a3dc379a900f59f3046e5b7d15ef146a7f05729b00",
+    "evals/preparation/EVAL-002-candidates/ansible-3/reproduction-1.txt": "149cabd0cc1e2b31330e58ec18b47a650e35b4039566a160f9f5eb6fd44d0267",
+    "evals/preparation/EVAL-002-candidates/ansible-3/reproduction-2.txt": "577b1ffdf20b290039f97895a45b685767b609902119be9fbf98baab403b0a76",
+    "evals/preparation/EVAL-002-candidates/ansible-3/transplanted-candidate.json": "56b7a2116e2894b505abfa84857f074e77176322c2f31a53fd6eacb68604b354",
+    "evals/preparation/EVAL-002-candidates/ansible-4/official-test-output.txt": "be19c4da4537ed3de82e9201edcc718d5f424dbc347b8ae4a857b768fe8cdcd6",
+    "evals/preparation/EVAL-002-candidates/ansible-4/reproduction-1.txt": "f43e990c25954b6aa1fb458f903503d9a1a556746750c17d4da684da46c8d575",
+    "evals/preparation/EVAL-002-candidates/ansible-4/reproduction-2.txt": "c2901bd839ad9f5958657152d13b17d837d5ac2165a673780d0090cb8aea2338",
+    "evals/preparation/EVAL-002-candidates/ansible-4/transplanted-candidate.json": "95fed09cefb2ed25b34c9642ddf0592e2dced256ddaf3cfc9f7f3b8ed629a3fc",
+    "evals/preparation/EVAL-002-candidates/ansible-9/candidate.json": "0528bef9176b1177bfc84bd4b447577ffd27204b078f3c03bba4ab877d79662b",
+    "evals/preparation/EVAL-002-candidates/ansible-9/initial-0.txt": "be135ec6b2d4fa6b99038fbed587fdbbc2a28cdadb64870aa57ce7cea4ccc48c",
+    "evals/preparation/EVAL-002-candidates/ansible-9/official-test-output.txt": "2c0919a87c6a1661ce03eda883cc455b2e223fd1d5fb101e9447a7ad4d99c0b6",
+    "evals/preparation/EVAL-002-candidates/ansible-9/official-workflow.txt": "532c2ed096345a36e761ff27cf2f99badf993c12b9e677133053d6ace08cd5f2",
+    "evals/preparation/EVAL-002-candidates/ansible-9/reproduction-1.txt": "d264661609ef283d61e50c01e1ec564e67b6cc5ba17b469b2cc05431f4bcfa48",
+    "evals/preparation/EVAL-002-candidates/ansible-9/reproduction-2.txt": "6d6184f66a94d475db875837ed1ab6e3a820302acf32d96aa70e7429bed45317",
+    "evals/preparation/EVAL-002-candidates/ansible-9/transplanted-candidate.json": "c7a28c52ff13fe88015ebbbd06d77c0a2173af388d75473afda702e9dda04756",
+    "evals/preparation/EVAL-002-candidates/luigi-14/official-test-output.txt": "67c16c02f7e49311c425f181af46d2d91f6ed45c73b4db87b2d26d613d315f9b",
+    "evals/preparation/EVAL-002-candidates/luigi-14/reproduction-1.txt": "5f40d4e7f3b66d72931b0dccd9d049fb3aabfcd0eefd4fcb3015c8050d689a18",
+    "evals/preparation/EVAL-002-candidates/luigi-14/reproduction-2.txt": "f653306373364a72fa1012d697339ee5cf8d74c90055a8dea10ce59d0906c766",
+    "evals/preparation/EVAL-002-candidates/luigi-14/transplanted-candidate.json": "021df98fbf22ddc08a89f17ed5b51ace2359e97c084fc771306e6f851bc8b3c9",
+    "evals/preparation/EVAL-002-candidates/luigi-21/official-test-output.txt": "7202a3519f69b9e57b672749a14344cf1be61e96d9907297dbaca13a369f4c17",
+    "evals/preparation/EVAL-002-candidates/luigi-21/reproduction-1.txt": "cd9b5c857807f97f390dc1927f26c5f4085bba00d881500763b772b32bfe1501",
+    "evals/preparation/EVAL-002-candidates/luigi-21/reproduction-2.txt": "d98c09eca0888918276c7943bdd1578f12dad7ad4c0b50af89a0d7a6d48ae732",
+    "evals/preparation/EVAL-002-candidates/luigi-21/transplanted-candidate.json": "7327eda8dcbe97a78051abbee8492ebd741b4e181f2addd9ca0ba9f4b24659e0",
+    "evals/preparation/EVAL-002-candidates/luigi-24/candidate.json": "fc0ad9c73b48dcf3e101e2a51ab1b8f0b2d88016d8fc578ddece6431abca2029",
+    "evals/preparation/EVAL-002-candidates/luigi-24/initial-0.txt": "b8421ecc30e0949fd81bdbdf139059e8cec2ad0c82ce282d4bb8569b3c0c9842",
+    "evals/preparation/EVAL-002-candidates/luigi-24/initial-1.txt": "b07e6da110e68da0851d2d7af7f8f9fcfbace90b7d397d776ff8fd3b26f90b08",
+    "evals/preparation/EVAL-002-candidates/luigi-24/official-test-output.txt": "ad57a0adb43f58c902b624538fdb5332fe59941879b54cc3936d0579692d7cee",
+    "evals/preparation/EVAL-002-candidates/luigi-24/official-workflow.txt": "9894bac5012f478832fee1dfef62ff8c2a4248f8a211f5d07614b0b1f750aa90",
+    "evals/preparation/EVAL-002-candidates/luigi-24/reproduction-1.txt": "cbcd51cec9e689906c428c222d926c036b8bf3a0a295661e6a4052bda809934e",
+    "evals/preparation/EVAL-002-candidates/luigi-24/reproduction-2.txt": "164215c0bdb78c7824925ba680113491e056fb32e929a3418710dce7c23b5087",
+    "evals/preparation/EVAL-002-candidates/luigi-24/transplanted-candidate.json": "92b1356d3370d63ceed3111bfb6775335305d7e5d903554962396bda628fd7a3",
+    "evals/preparation/EVAL-002-candidates/luigi-30/candidate.json": "c0b48fe698c7fde16cc9d5daac4ebce89982312bb2cca8f039a381ba40f0c610",
+    "evals/preparation/EVAL-002-candidates/luigi-30/initial-0.txt": "ad4b3123d1dff629a999959b327749886d80921d70c4f9a455025fa6db8fb2e2",
+    "evals/preparation/EVAL-002-candidates/luigi-30/initial-1.txt": "8218707ecc0b1e8957079c3b369ad5d95f99e09c1acb0d64a5dce5219fb44829",
+    "evals/preparation/EVAL-002-candidates/luigi-30/official-test-output.txt": "a01df4128d5ae8921a588b9e2be77b54777708ed836d891b68a2323832de338e",
+    "evals/preparation/EVAL-002-candidates/luigi-30/official-workflow.txt": "8f59ab5dc581d3085c14548ddf1fee124ebfafc68246d4a87f51c2fd27ca8962",
+    "evals/preparation/EVAL-002-candidates/luigi-30/reproduction-1.txt": "17283b5feedc179a85e42d41c5ffe3e50fa129c022441d5dceaf593a3f4bf711",
+    "evals/preparation/EVAL-002-candidates/luigi-30/reproduction-2.txt": "ce7dc4481d974f4167c3da46e3fece8c3919d5b40ead5d1aa4eee19e3bfd7ff3",
+    "evals/preparation/EVAL-002-candidates/luigi-30/transplanted-candidate.json": "40fd4cea0e66e92bda9738adb214a334f6a313ae67f2310d3b9a1c6e3ae3dd28",
+    "evals/preparation/EVAL-002-candidates/luigi-5/candidate.json": "1c21a20c4a08422bf1d02ce996c7ac6bade02d74b61d56a391cebde6d5c19de5",
+    "evals/preparation/EVAL-002-candidates/luigi-5/initial-0.txt": "644cb80e62f2af4eb1553592dbcdea79e21b2e8eb13773d1ec86c96bf5e61868",
+    "evals/preparation/EVAL-002-candidates/luigi-5/initial-1.txt": "46e2f4ab12ecdbf1414a0a94ec1d544bf6877351724b232ba6ab4ab39fa05974",
+    "evals/preparation/EVAL-002-candidates/luigi-5/official-test-output.txt": "afa4be4d19b2fec19086b7201d18a679576cfc862b568cd59203b45cdbe92911",
+    "evals/preparation/EVAL-002-candidates/luigi-5/official-workflow.txt": "e7445abaa245bf036b97769a184b3b422867b8a2d8c7b41117d0bdfbc4ff9787",
+    "evals/preparation/EVAL-002-candidates/luigi-5/reproduction-1.txt": "0e759c5c883909e7206bd9f37e9bdc024b63cb74377607e7352d31421f3c0a9a",
+    "evals/preparation/EVAL-002-candidates/luigi-5/reproduction-2.txt": "f01b718512d9c98eff6c7cf5e4ea9a657a761edcedfed6ea834503e9fbbeaa3e",
+    "evals/preparation/EVAL-002-candidates/luigi-5/transplanted-candidate.json": "14e5ffb995b66b1320c4c5d62a510f9c1738123eb86fefb5acb49efcbaa3094e",
+    "evals/preparation/EVAL-002-candidates/luigi-7/official-test-output.txt": "8fa0eabb7208c6dd485d4e7cfe25df7646430429ecc195ffec11ffbddff48981",
+    "evals/preparation/EVAL-002-candidates/luigi-7/reproduction-1.txt": "3d1b4c983a8f613925cd5ddd5b91eb9ea5ef07a7174c178c8b28c0274a624b6b",
+    "evals/preparation/EVAL-002-candidates/luigi-7/reproduction-2.txt": "1ddd3477fcdbb8b29377c659c67d93453a00cda584182100266c8150d79270b0",
+    "evals/preparation/EVAL-002-candidates/luigi-7/transplanted-candidate.json": "16b64bb6d80deea8c8435b03e898d8c0c50197fda42d1e945731aa7d58168e9f",
+    "evals/preparation/EVAL-002-candidates/luigi-9/official-test-output.txt": "d89e948fd84f5106d81ff65856775346af097fc835f4a423ced45427e6976bdd",
+    "evals/preparation/EVAL-002-candidates/luigi-9/reproduction-1.txt": "e18b0f1991c7a648928b1ac88a8c4ed5d3b3638a3879f9210afc24eabf3e9260",
+    "evals/preparation/EVAL-002-candidates/luigi-9/reproduction-2.txt": "4eff3a53ce6135191499679498a6e4b5374b941a22e0ce811466ec4fce86422e",
+    "evals/preparation/EVAL-002-candidates/luigi-9/transplanted-candidate.json": "8eb289477d11c9b7fc1e3cbf9102a4d736a6f362a0ffdb47049662da7ed13fd7",
+    "evals/preparation/EVAL-002-candidates/runtime.json": "b3d44b6f90fe2b4daeac8175c7cd23a18c17ad80ca3e75f4f004a4282a6130c7",
+    "evals/preparation/EVAL-002-candidates/selection-summary.json": "c95b2f8ec71b60cca0d017f614f5b017499d8985e89d11d5f3128c204c71b939",
+    "evals/reset-EVAL-001.sh": "2a7d9664b8ea68ddd52ca92d3395a4a1358d530f87d4b37767f404f8cafbbfbf",
+    "evals/results/EVAL-001/B1/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B1/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B1/codex.jsonl": "7fd2efe452ae872659fb2ea71de58680263d1c80daeed47234dfa6e923017ac2",
+    "evals/results/EVAL-001/B1/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/B1/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/B1/initial-test-output.txt": "ac5218e185b13e0f1f374152a3719ea7cb4213bf1370f5148690e2de5b02bda6",
+    "evals/results/EVAL-001/B1/metadata.json": "83748cefe18110175783b49efcad3a0a10e467b05fbd0b4fe60dc7f322732a3f",
+    "evals/results/EVAL-001/B1/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/B1/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/B1/summary.json": "42ae8f5605ae8c9e74ff6be054a9a0507549adc50d6ada4a27cf3bb894621412",
+    "evals/results/EVAL-001/B1/test-output.txt": "a9dd298fa84f42bed9c2c3fc5aa9aad6abc634e358072309fc296c8b3e3cc31a",
+    "evals/results/EVAL-001/B1/trajectory.json": "8324643a23cf8866009a7b913fe25725d94df45314a6d6d18695366efc964288",
+    "evals/results/EVAL-001/B1/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/B2/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B2/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B2/codex.jsonl": "1c197f299a7d882f8ac46118c2e89f3e4bea985dbdde40e620fb44ba68cd1cee",
+    "evals/results/EVAL-001/B2/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/B2/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/B2/initial-test-output.txt": "428461d4f1ef864510acef8e008a6f686823037cd2a7239afbc6fa7a5dec1ac7",
+    "evals/results/EVAL-001/B2/metadata.json": "9ab330123c2ef9c788eefe89b31796cf065b660fae7973e1a31aa62ff17baa88",
+    "evals/results/EVAL-001/B2/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/B2/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/B2/summary.json": "3b2d5287f47a1361e78a1a1849a1e7baf1a3a9690113ea904ed62b389f1822e7",
+    "evals/results/EVAL-001/B2/test-output.txt": "a9dd298fa84f42bed9c2c3fc5aa9aad6abc634e358072309fc296c8b3e3cc31a",
+    "evals/results/EVAL-001/B2/trajectory.json": "c9e9dcf5fe5e2f66402c3d45b0dda591ac43e1cf5a01384694418d8bb9bf93dc",
+    "evals/results/EVAL-001/B2/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/B3/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B3/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/B3/codex.jsonl": "4294cee5e48b67a6be34e6c3037f3c83a6564c0677b39b6c334da896fba0e965",
+    "evals/results/EVAL-001/B3/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/B3/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/B3/initial-test-output.txt": "ac5218e185b13e0f1f374152a3719ea7cb4213bf1370f5148690e2de5b02bda6",
+    "evals/results/EVAL-001/B3/metadata.json": "f003f9e634bbb0cdd122732604d827f2b40302bdd03d8ab3205cd159a19f38b2",
+    "evals/results/EVAL-001/B3/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/B3/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/B3/summary.json": "d2bbd0f3ad9394707a768488e650f4d0e2139c89dd0c60cdae1b753f190f6c51",
+    "evals/results/EVAL-001/B3/test-output.txt": "208430b573e6c56d48b924af48d236b76771bf0ec5d0cbc7e72c4fcd1388d2da",
+    "evals/results/EVAL-001/B3/trajectory.json": "65b1d1e0ded967aa48a22cc1906e594dfcb995502187f2d06dcb18743d8b093f",
+    "evals/results/EVAL-001/B3/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/S1/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S1/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S1/codex.jsonl": "e647d17425218f8fdcc142123d98544d7ed2c24913d6913865da66b00ef8a2f8",
+    "evals/results/EVAL-001/S1/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/S1/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/S1/initial-test-output.txt": "24c10eed4ed181c03c40570735756f1e311202bdaebb60cd4f6d6f7359ff55ac",
+    "evals/results/EVAL-001/S1/metadata.json": "fd0a370025e8492693e4b1b6b15a8f8682e1b0ac8cb39af34c9499be05b9152e",
+    "evals/results/EVAL-001/S1/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/S1/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/S1/summary.json": "71d78021c0a121afae8643fcb9e5389ad710935929eb9be68f210c657d6acbbe",
+    "evals/results/EVAL-001/S1/test-output.txt": "cbef37264deaace6bbadeb0b8f7fdfe92eb25bf7b7c3291573b380e0924bc1b7",
+    "evals/results/EVAL-001/S1/trajectory.json": "073d5f4a087fd42409d1a2f9df3ea0ed32c767909bbffc945728c8aa50628d34",
+    "evals/results/EVAL-001/S1/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/S2/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S2/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S2/codex.jsonl": "51f010728ebcad5c2a6e2d6d0f61ef6dcc4fe441543febe47a39e57b3f8fdc75",
+    "evals/results/EVAL-001/S2/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/S2/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/S2/initial-test-output.txt": "dd3776e792e07d8c7aa348054d5b924c29bfc1bec9d2e56e9424b0b001d291ab",
+    "evals/results/EVAL-001/S2/metadata.json": "d9ac2dcdd16b81d87d86f3f092edb0fda17dcdd4b96fa0c2b47940a1318ca6e5",
+    "evals/results/EVAL-001/S2/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/S2/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/S2/summary.json": "b038b4aefc3a92d987a2aea54686a75d3eb33fb187424802385aded06a1ec842",
+    "evals/results/EVAL-001/S2/test-output.txt": "af8b35fc8c25c475cc6f6b124306e81f02cbde263418a306174ce42b2d4a6636",
+    "evals/results/EVAL-001/S2/trajectory.json": "ac78b57765e638b58a7c33c406df4c5d0dcaa896877ee0085cb326ee5a20cd14",
+    "evals/results/EVAL-001/S2/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/S3/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S3/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-001/S3/codex.jsonl": "f904d995ea69d1b420f3f96ffdad11232d35f230a1706b451a169383e36bf6e1",
+    "evals/results/EVAL-001/S3/diff-stat.txt": "d22a7d4f2445964518bbd6e072a8996710538b12f993156b9ff199957cd5c5fc",
+    "evals/results/EVAL-001/S3/git-status.txt": "dbb4d35ad6f5bf3ba57de3e4296cd11d2be761ecb03366ed254d2b346de985d1",
+    "evals/results/EVAL-001/S3/initial-test-output.txt": "a974f3fe4c00e50aad6109a3fd333e7cc74bfe18ab0f5872ecdeb8420734802c",
+    "evals/results/EVAL-001/S3/metadata.json": "11b0bc7adb4f40c4412631101478982d8218466b6cd32d5c9c3aaabfc6187a99",
+    "evals/results/EVAL-001/S3/modified-paths.json": "8de92160d8609effe1aee581ced9053e6c33bbd8a7e0e1c428fe5c23ad4aacc5",
+    "evals/results/EVAL-001/S3/patch.diff": "7daf00ebf9785ef6fa6122bb722b9fb0ef5b035ff4727710ac86a574ae4e897c",
+    "evals/results/EVAL-001/S3/summary.json": "2c0d79593d0b12deed13ad07a2a4f269fcb19ccc7670a4ce0f77a1315a78edae",
+    "evals/results/EVAL-001/S3/test-output.txt": "8955e8153630f7c3ea984eb5b08a559ce5980b2d143de565210c7a067b165a34",
+    "evals/results/EVAL-001/S3/trajectory.json": "67dacd5016efa0ded47588f1cdcdc0eebcd3c41ee3370ccebc239b2133ea52a2",
+    "evals/results/EVAL-001/S3/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-001/analysis.md": "1b24711798d5c6d28642a6fcfe51d6d3154bf5f6c1f77777d27efb89384d93b0",
+    "evals/results/EVAL-001/manifest.json": "9e19a3aae73516fda0e3b05852a8242eaf09522016e50142b1c38690b5b34b95",
+    "evals/results/EVAL-001/raw-artifact-integrity.json": "151cb61e34f60c49fd56547b8a68b6904ed1d7fe08f383c95118c7427555ee00",
+    "evals/results/EVAL-001/report.md": "6848d28d20d438d63db4b9f267bea4489ea69223fc7de085a0857d6d853f7e8b",
+    "evals/results/EVAL-001/skill-loading-check.json": "56143dab66a4568b13660a3c1ae6c697a3e972880dcfcbe78d6c92cc0eb736b9",
+    "evals/results/EVAL-002/B1/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-002/B1/codex.jsonl": "3217e30f3c38e2ed33125052c6be6831929bc9a400c93b4afe90e5109582c0c3",
+    "evals/results/EVAL-002/B1/diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+    "evals/results/EVAL-002/B1/event-timing.jsonl": "8c2474c779f24968af2296f5d2396abe9f6341d6aeb370f4d5fecfec03b7e7bf",
+    "evals/results/EVAL-002/B1/git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+    "evals/results/EVAL-002/B1/initial-test-output.txt": "7ed5a79461867c091f254c86031704622548b6a523f41a5600ff5d8d67e45286",
+    "evals/results/EVAL-002/B1/metadata.json": "c37465db148e903b5129b0cdd8b621567c349f2a3ab9ce53c29414eeac8f4c56",
+    "evals/results/EVAL-002/B1/modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+    "evals/results/EVAL-002/B1/patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+    "evals/results/EVAL-002/B1/summary.json": "47b5dfde7086c5c58dc8db3724a3a2a5923240ed0d25353f0c2dc83948db86c5",
+    "evals/results/EVAL-002/B1/test-output.txt": "9852b6c05ab9ab9fa5f990e523e48c5a6bc021f87603f980378b14a0442b5a0f",
+    "evals/results/EVAL-002/B1/trajectory.json": "d3cbbfa55de09c958422afcc869692f93e75469fe75cb4522150a7be6c823ddd",
+    "evals/results/EVAL-002/B1/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-002/S1/codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evals/results/EVAL-002/S1/codex.jsonl": "6778495ef2666e90ce2acab1710cfc56305040b3387664c11ae7c8d885b32c06",
+    "evals/results/EVAL-002/S1/diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+    "evals/results/EVAL-002/S1/event-timing.jsonl": "b26a7915635ce1ae08b05118b3b7f9a4b116ab349d0f2789a3f0112bde4a82e4",
+    "evals/results/EVAL-002/S1/git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+    "evals/results/EVAL-002/S1/initial-test-output.txt": "fbfeada5098bcbe44b221cb5ad5cfeb0373d8f3c42e0089f910da9a0e4746ecc",
+    "evals/results/EVAL-002/S1/metadata.json": "bb24bc3408b9573c0f36d44e6a6f5e0c31210fde026e45ce8fa7b7b46138a708",
+    "evals/results/EVAL-002/S1/modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+    "evals/results/EVAL-002/S1/patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+    "evals/results/EVAL-002/S1/summary.json": "c45ffb803e53d002678e3c12a11f42bc1865c55076b13c5f4d2057a6c892312d",
+    "evals/results/EVAL-002/S1/test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+    "evals/results/EVAL-002/S1/trajectory.json": "fe2856e8f417a3fcb84c303c10a339a44dc96689a909a1cfd92d6fecb80ab52b",
+    "evals/results/EVAL-002/S1/untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652",
+    "evals/results/EVAL-002/manifest.json": "64aee19c2069f7bfc59cfa5b3f87bc1c5080415ef6247f8a82f58da4fa033562",
+    "evals/results/EVAL-002/smoke-verification.json": "d7d1b4d3d10f9b60b254f3aa2809ba29b4665eeab6c6010d434aa4cdef364d94",
+    "evals/run-eval.py": "9d498c041ae5c2d160b7d7f81ec46e7250ed695ab3cc3b45f063e4966696f0e8",
+    "evals/setup-EVAL-002.py": "21359baa418a6d108082214c935b13cd55300160db6663877529edde1861745b",
+    "evals/test_run_eval.py": "5354d584c2c938e8c8f2f553a6e8194342ee3a89d3e4cd30d7e561cbca5cbed9",
+    "evals/trace_analysis.py": "e1f9a47b5fb08caab7e6155e00ba2bdb7a4f1f37192f11e7ed9299127e4c05e0"
+  },
+  "checkpoints": [
+    {
+      "at": "2026-10-06T23:24:44.610705+00:00",
+      "stage": "init",
+      "run": null,
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:24:44.855481+00:00",
+      "stage": "before",
+      "run": "B2",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:25:35.245400+00:00",
+      "stage": "after",
+      "run": "B2",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      },
+      "completed_run_checks": {
+        "B2": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 22,
+          "timing_event_count": 22,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 0,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "5\t1\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "ee5c92d9f479a774bda51cd9711800e63c14498e5b1ccf09cc110d5f21d5b78f",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "1f619203d78bb465ac1db1e597b4153ec9d185631afd327618396bbc54c2ee7b",
+            "metadata.json": "5d56f0b8d95e1ddd67db8b0613827fddaa5619711ccb1bf3044650c930d7372f",
+            "summary.json": "e089058042ab226e33ee8688257b0d5af55c2b23e07ed034ce02ced01ac1ce7e",
+            "trajectory.json": "11462bdc84110709cfc9f6f28cd1834d4a5676714a24168e196d700acce3d859",
+            "initial-test-output.txt": "cb4a0a27593f39aab5d37923c585c35bd13e7026c165461b11d257c75065e4b7",
+            "test-output.txt": "d7d0b0dd4b3baaa33cb2a584763389ffe173ff9397e50293a5b7c1de8d6f1939",
+            "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+            "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:25:35.570961+00:00",
+      "stage": "before",
+      "run": "S2",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:26:15.437680+00:00",
+      "stage": "after",
+      "run": "S2",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      },
+      "completed_run_checks": {
+        "S2": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 1,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "6\t2\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "797ca0d01f240f04303aaebe4746733c73f4569cf695c4c73e627ea28bbda231",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "a5fe8c2e0d536afb676e03c4f9501ff04dc3a144f3110eba32a52c1a075d96f2",
+            "metadata.json": "67bc6a63e2ae286865a6b1f468dfbe2e9eb8ec73e9c887ee23158c8e5b447ca4",
+            "summary.json": "5de7a1455196f26d0e98599d3f794f4fc56d9c81e888b780cca66204ce7047e8",
+            "trajectory.json": "e30d06e6a589aeda3897a782cd6ea9b56ddbdcc40ac835cb951b69affdfc6d14",
+            "initial-test-output.txt": "497f7edfddd50d3bbe7eb8f0cca485a98fceddb442a9baa6167deb4e6608b196",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+            "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:26:15.701708+00:00",
+      "stage": "before",
+      "run": "B3",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:26:57.731032+00:00",
+      "stage": "after",
+      "run": "B3",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      },
+      "completed_run_checks": {
+        "B3": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 0,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "5\t1\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "e564f237e522266959ed4775c913e9cfd2b98ccd4b6cef22027eddef93f2fbfb",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "2819c2d3f290999dbfac5319112b9a6767d3a644821e072a1d024e91325fb9ee",
+            "metadata.json": "9002927fbd83db375eaf9a31de7e8747c77bc9aabd915612f811930c223aca91",
+            "summary.json": "1cedfa7222f9a6caf8a717c29354d18ad553ecb5e3e8926c3ea27332990ef084",
+            "trajectory.json": "64cf0b4d201193bce74dad327e7220fd8142f1d3a8c43b427446a967e4b38e24",
+            "initial-test-output.txt": "6e0c5516593286708c4140e16e663a529ef3faf409b60852bd411a0d67c84427",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+            "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:26:58.004495+00:00",
+      "stage": "before",
+      "run": "S3",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:27:38.455409+00:00",
+      "stage": "after",
+      "run": "S3",
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      },
+      "completed_run_checks": {
+        "S3": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 1,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "6\t2\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "fdd5e6af21de2fd1290c612ea90bb26944b00c9ee4a7384e3ecce79773f54535",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "71cd7d8e35e8f703d1cb044bf9014b9b6d7f26c5136f5ad6b90ebacf55721f97",
+            "metadata.json": "e3f753e3ee68290244f7c66eb9abc52015d2551acc90e4ea27800f790bb088d4",
+            "summary.json": "ebd64e9c59524716a6895ea217f967d51c48a44556093c786d03d16652b501c0",
+            "trajectory.json": "c303fbfaba08e96095819fd84792aa6008dc1b18c3615503c23651c76eb64666",
+            "initial-test-output.txt": "f0f7c58239cc4f45aa1c5d9717b21d71d7fb7b3e0feaa2d9008273b3b82a26ac",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+            "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:27:38.798107+00:00",
+      "stage": "final",
+      "run": null,
+      "protected_files_unchanged": 194,
+      "workspaces": {
+        "baseline": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        },
+        "skill": {
+          "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+          "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+          "tracked_file_count": 337,
+          "support_files": {
+            "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+          },
+          "git_status_porcelain": "",
+          "unexpected_ignored_files": []
+        }
+      },
+      "completed_run_checks": {
+        "B1": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 22,
+          "timing_event_count": 22,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 0,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "6\t2\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "3217e30f3c38e2ed33125052c6be6831929bc9a400c93b4afe90e5109582c0c3",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "8c2474c779f24968af2296f5d2396abe9f6341d6aeb370f4d5fecfec03b7e7bf",
+            "metadata.json": "c37465db148e903b5129b0cdd8b621567c349f2a3ab9ce53c29414eeac8f4c56",
+            "summary.json": "47b5dfde7086c5c58dc8db3724a3a2a5923240ed0d25353f0c2dc83948db86c5",
+            "trajectory.json": "d3cbbfa55de09c958422afcc869692f93e75469fe75cb4522150a7be6c823ddd",
+            "initial-test-output.txt": "7ed5a79461867c091f254c86031704622548b6a523f41a5600ff5d8d67e45286",
+            "test-output.txt": "9852b6c05ab9ab9fa5f990e523e48c5a6bc021f87603f980378b14a0442b5a0f",
+            "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+            "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        },
+        "S1": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 1,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "5\t1\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "6778495ef2666e90ce2acab1710cfc56305040b3387664c11ae7c8d885b32c06",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "b26a7915635ce1ae08b05118b3b7f9a4b116ab349d0f2789a3f0112bde4a82e4",
+            "metadata.json": "bb24bc3408b9573c0f36d44e6a6f5e0c31210fde026e45ce8fa7b7b46138a708",
+            "summary.json": "c45ffb803e53d002678e3c12a11f42bc1865c55076b13c5f4d2057a6c892312d",
+            "trajectory.json": "fe2856e8f417a3fcb84c303c10a339a44dc96689a909a1cfd92d6fecb80ab52b",
+            "initial-test-output.txt": "fbfeada5098bcbe44b221cb5ad5cfeb0373d8f3c42e0089f910da9a0e4746ecc",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+            "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        },
+        "B2": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 22,
+          "timing_event_count": 22,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 0,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "5\t1\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "ee5c92d9f479a774bda51cd9711800e63c14498e5b1ccf09cc110d5f21d5b78f",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "1f619203d78bb465ac1db1e597b4153ec9d185631afd327618396bbc54c2ee7b",
+            "metadata.json": "5d56f0b8d95e1ddd67db8b0613827fddaa5619711ccb1bf3044650c930d7372f",
+            "summary.json": "e089058042ab226e33ee8688257b0d5af55c2b23e07ed034ce02ced01ac1ce7e",
+            "trajectory.json": "11462bdc84110709cfc9f6f28cd1834d4a5676714a24168e196d700acce3d859",
+            "initial-test-output.txt": "cb4a0a27593f39aab5d37923c585c35bd13e7026c165461b11d257c75065e4b7",
+            "test-output.txt": "d7d0b0dd4b3baaa33cb2a584763389ffe173ff9397e50293a5b7c1de8d6f1939",
+            "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+            "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        },
+        "S2": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 1,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "6\t2\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "797ca0d01f240f04303aaebe4746733c73f4569cf695c4c73e627ea28bbda231",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "a5fe8c2e0d536afb676e03c4f9501ff04dc3a144f3110eba32a52c1a075d96f2",
+            "metadata.json": "67bc6a63e2ae286865a6b1f468dfbe2e9eb8ec73e9c887ee23158c8e5b447ca4",
+            "summary.json": "5de7a1455196f26d0e98599d3f794f4fc56d9c81e888b780cca66204ce7047e8",
+            "trajectory.json": "e30d06e6a589aeda3897a782cd6ea9b56ddbdcc40ac835cb951b69affdfc6d14",
+            "initial-test-output.txt": "497f7edfddd50d3bbe7eb8f0cca485a98fceddb442a9baa6167deb4e6608b196",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+            "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        },
+        "B3": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 0,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "5\t1\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "e564f237e522266959ed4775c913e9cfd2b98ccd4b6cef22027eddef93f2fbfb",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "2819c2d3f290999dbfac5319112b9a6767d3a644821e072a1d024e91325fb9ee",
+            "metadata.json": "9002927fbd83db375eaf9a31de7e8747c77bc9aabd915612f811930c223aca91",
+            "summary.json": "1cedfa7222f9a6caf8a717c29354d18ad553ecb5e3e8926c3ea27332990ef084",
+            "trajectory.json": "64cf0b4d201193bce74dad327e7220fd8142f1d3a8c43b427446a967e4b38e24",
+            "initial-test-output.txt": "6e0c5516593286708c4140e16e663a529ef3faf409b60852bd411a0d67c84427",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+            "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        },
+        "S3": {
+          "success": true,
+          "benchmark_test_passed": true,
+          "infrastructure_failure": null,
+          "artifact_count": 13,
+          "trace_event_count": 24,
+          "timing_event_count": 24,
+          "metrics_reparsed_identically": true,
+          "command_classification_complete": true,
+          "skill_content_observed_events": 1,
+          "modified_paths": [
+            "luigi/execution_summary.py"
+          ],
+          "patch_numstat": "6\t2\tluigi/execution_summary.py",
+          "untracked_archive_members": [],
+          "artifact_sha256": {
+            "codex.jsonl": "fdd5e6af21de2fd1290c612ea90bb26944b00c9ee4a7384e3ecce79773f54535",
+            "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "event-timing.jsonl": "71cd7d8e35e8f703d1cb044bf9014b9b6d7f26c5136f5ad6b90ebacf55721f97",
+            "metadata.json": "e3f753e3ee68290244f7c66eb9abc52015d2551acc90e4ea27800f790bb088d4",
+            "summary.json": "ebd64e9c59524716a6895ea217f967d51c48a44556093c786d03d16652b501c0",
+            "trajectory.json": "c303fbfaba08e96095819fd84792aa6008dc1b18c3615503c23651c76eb64666",
+            "initial-test-output.txt": "f0f7c58239cc4f45aa1c5d9717b21d71d7fb7b3e0feaa2d9008273b3b82a26ac",
+            "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+            "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+            "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+            "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+            "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+            "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+          }
+        }
+      }
+    },
+    {
+      "at": "2026-10-06T23:31:14.526909+00:00",
+      "stage": "post-report-integrity-failure",
+      "workspaces": {
+        "baseline": {
+          "exists": false,
+          "is_symlink": false
+        },
+        "skill": {
+          "exists": true,
+          "is_symlink": false,
+          "rev-parse HEAD": {
+            "exit_code": 0,
+            "stdout": "a5704160099a5301fd68941d1c05a6f3d0c16fa2\n",
+            "stderr": ""
+          },
+          "status --short": {
+            "exit_code": 0,
+            "stdout": "",
+            "stderr": ""
+          },
+          "fingerprint": {
+            "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+            "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+            "tracked_file_count": 337,
+            "support_files": {
+              "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+            },
+            "git_status_porcelain": "",
+            "unexpected_ignored_files": []
+          }
+        }
+      },
+      "protected_changes": [],
+      "run_artifact_changes": [],
+      "action": "Stopped; no workspace restoration or additional agent run attempted."
+    }
+  ],
+  "leftover_eval_002_containers": [],
+  "latest_workspace_integrity": "FAILED: baseline workspace missing"
+}

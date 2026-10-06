@@ -1,0 +1,24 @@
+diff --git a/luigi/execution_summary.py b/luigi/execution_summary.py
+index 27efbcb..83610ae 100644
+--- a/luigi/execution_summary.py
++++ b/luigi/execution_summary.py
+@@ -43,7 +43,8 @@ def _partition_tasks(worker):
+     set_tasks["completed"] = {task for (task, status, ext) in task_history if status == 'DONE' and task in pending_tasks}
+     set_tasks["already_done"] = {task for (task, status, ext) in task_history
+                                  if status == 'DONE' and task not in pending_tasks and task not in set_tasks["completed"]}
+-    set_tasks["failed"] = {task for (task, status, ext) in task_history if status == 'FAILED'}
++    set_tasks["ever_failed"] = {task for (task, status, ext) in task_history if status == 'FAILED'}
++    set_tasks["failed"] = set_tasks["ever_failed"] - set_tasks["completed"]
+     set_tasks["scheduling_error"] = {task for(task, status, ext) in task_history if status == 'UNKNOWN'}
+     set_tasks["still_pending_ext"] = {task for (task, status, ext) in task_history
+                                       if status == 'PENDING' and task not in set_tasks["failed"] and task not in set_tasks["completed"] and not ext}
+@@ -391,6 +392,9 @@ def _summary_format(set_tasks, worker):
+     elif set_tasks["still_pending_ext"]:
+         smiley = ":|"
+         reason = "there were missing external dependencies"
++    elif set_tasks["ever_failed"]:
++        smiley = ":)"
++        reason = "there were failed tasks but they all suceeded in a retry"
+     else:
+         smiley = ":)"
+         reason = "there were no failed tasks or missing external dependencies"

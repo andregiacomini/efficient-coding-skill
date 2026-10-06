@@ -25,8 +25,16 @@ The Skill is in [SKILL.md](SKILL.md). Record the first comparison in
 | Eval | Task type | Skill | Runs | Result |
 | --- | --- | --- | --- | --- |
 | [EVAL-001](evals/EVAL-001.md) | Localized debugging | v0.1 | 6 | Inconclusive |
-| [EVAL-002](evals/EVAL-002.md) | Task execution/history reporting | v0.1 | 0 | Prepared; not run |
+| [EVAL-002](evals/EVAL-002.md) | Broader debugging / retry-history behavior | v0.1 | 6 | Positive signal, inconclusive |
 
 EVAL-001 is frozen. All six runs passed its benchmark test, but no reliable
 resource-efficiency improvement was demonstrated. See its documentation for
 variation and contamination limitations.
+
+EVAL-002 is complete and frozen at `eval-002`. All six runs passed. Repository
+searches were lower in every Skill pair; mean and median tokens were lower by
+7.27% and 2.96%, with mixed paired differences. Three runs per condition, a
+localized observed trajectory, narrower treatment validation and an environment
+persistence issue prevent causal or general efficiency claims. See the
+[report](evals/results/EVAL-002/report.md) and
+[frozen manifest](evals/results/EVAL-002/manifest.json). The Skill remains v0.1.

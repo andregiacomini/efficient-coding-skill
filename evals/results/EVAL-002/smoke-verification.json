@@ -1,0 +1,128 @@
+{
+  "verified_at": "2026-10-06T23:18:21.920823+00:00",
+  "runs": {
+    "B1": {
+      "artifact_count": 13,
+      "artifact_sha256": {
+        "codex.jsonl": "3217e30f3c38e2ed33125052c6be6831929bc9a400c93b4afe90e5109582c0c3",
+        "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event-timing.jsonl": "8c2474c779f24968af2296f5d2396abe9f6341d6aeb370f4d5fecfec03b7e7bf",
+        "metadata.json": "c37465db148e903b5129b0cdd8b621567c349f2a3ab9ce53c29414eeac8f4c56",
+        "summary.json": "47b5dfde7086c5c58dc8db3724a3a2a5923240ed0d25353f0c2dc83948db86c5",
+        "trajectory.json": "d3cbbfa55de09c958422afcc869692f93e75469fe75cb4522150a7be6c823ddd",
+        "initial-test-output.txt": "7ed5a79461867c091f254c86031704622548b6a523f41a5600ff5d8d67e45286",
+        "test-output.txt": "9852b6c05ab9ab9fa5f990e523e48c5a6bc021f87603f980378b14a0442b5a0f",
+        "patch.diff": "24adfade142630c4da5ba6a69bd48ec6801e4e1f0ef9ccbdd8de6d826f5899cf",
+        "diff-stat.txt": "dd13501b37538a4a1c33844e377c91ec9f7a79971fe0c931dda6235dbbe8f621",
+        "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+        "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+        "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+      },
+      "codex_exit_code": 0,
+      "benchmark_exit_code": 0,
+      "trace_completed": true,
+      "trace_event_count": 22,
+      "timing_event_count": 22,
+      "metrics_reparsed_identically": true,
+      "trajectory_reparsed_identically": true,
+      "command_classification_complete": true,
+      "skill_content_observed_events": 0,
+      "workspace_fingerprint": {
+        "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+        "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+        "tracked_file_count": 337,
+        "support_files": {
+          "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    },
+    "S1": {
+      "artifact_count": 13,
+      "artifact_sha256": {
+        "codex.jsonl": "6778495ef2666e90ce2acab1710cfc56305040b3387664c11ae7c8d885b32c06",
+        "codex-stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "event-timing.jsonl": "b26a7915635ce1ae08b05118b3b7f9a4b116ab349d0f2789a3f0112bde4a82e4",
+        "metadata.json": "bb24bc3408b9573c0f36d44e6a6f5e0c31210fde026e45ce8fa7b7b46138a708",
+        "summary.json": "c45ffb803e53d002678e3c12a11f42bc1865c55076b13c5f4d2057a6c892312d",
+        "trajectory.json": "fe2856e8f417a3fcb84c303c10a339a44dc96689a909a1cfd92d6fecb80ab52b",
+        "initial-test-output.txt": "fbfeada5098bcbe44b221cb5ad5cfeb0373d8f3c42e0089f910da9a0e4746ecc",
+        "test-output.txt": "6534fb92b03d0481fa117da56d49e8186c3810ba1786ec6d120ea28b52cd1710",
+        "patch.diff": "ce8080c4085fd20c7e5753e24667ae05691a94490024439801986892eb193a23",
+        "diff-stat.txt": "e89ee8700f5f62a1d0e87c2f2de3db8c885931310347a61256e8d66c53c47ed0",
+        "git-status.txt": "a9414984962234a5c8f73067ea2bf05728097b6851efb42b68d087904f6cf78b",
+        "modified-paths.json": "554a0e26b443b3d8934d09258b9ea48052f205c369120d43726d0844e9a75076",
+        "untracked.tar": "84ff92691f909a05b224e1c56abb4864f01b4f8e3c854e4bb4c7baf1d3f6d652"
+      },
+      "codex_exit_code": 0,
+      "benchmark_exit_code": 0,
+      "trace_completed": true,
+      "trace_event_count": 24,
+      "timing_event_count": 24,
+      "metrics_reparsed_identically": true,
+      "trajectory_reparsed_identically": true,
+      "command_classification_complete": true,
+      "skill_content_observed_events": 1,
+      "workspace_fingerprint": {
+        "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+        "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+        "tracked_file_count": 337,
+        "support_files": {
+          "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    }
+  },
+  "current_workspaces": {
+    "baseline": {
+      "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+      "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+      "tracked_file_count": 337,
+      "support_files": {
+        "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "skill": {
+      "sha256": "b197225d2a08b9a18fa4420a45cd3068f2d8c3e4ca2790e330cf216623d0e8c4",
+      "head": "a5704160099a5301fd68941d1c05a6f3d0c16fa2",
+      "tracked_file_count": 337,
+      "support_files": {
+        "AGENTS.md": "7d773926ac04fb793068aff0e80b41f11b8f28f66d15f405530615171f7aa0b2"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    }
+  },
+  "protected_file_count": 153,
+  "protected_changes": [],
+  "B1_artifacts_unchanged_during_S1": true,
+  "unexecuted_runs_absent": {
+    "B2": true,
+    "S2": true,
+    "B3": true,
+    "S3": true
+  },
+  "post_B1_reset_anomaly": {
+    "description": "Untracked duplicate-looking paths appeared after B1 artifact capture/reset. Origin is unconfirmed. They were moved outside agent workspaces and both frozen fingerprints verified before S1.",
+    "untracked_file_count": 104,
+    "quarantine_directories": [
+      "integrity-quarantine/post-B1",
+      "integrity-quarantine/post-B1-wave2"
+    ],
+    "first_wave_files": 21,
+    "first_wave_matches_frozen_originals": true,
+    "second_wave_files": 83,
+    "second_wave_content_not_inspected": true
+  },
+  "metric_scope_notes": [
+    "All requested comparison metrics captured. Explicit file reads include the Skill; unique/repeated counts cover repository paths only.",
+    "Test executions count agent commands only, excluding initial/final harness grading.",
+    "Comprehensive physical file reads and tokens before first edit are unavailable by design.",
+    "Cached input tokens are included in input tokens. Duration measures the agent process, excluding setup/grading."
+  ]
+}

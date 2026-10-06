@@ -1,7 +1,24 @@
 # EVAL-002 — task execution and history reporting
 
-Status: PREPARED. Date: 2026-10-06. Skill: v0.1. Agent runs: **0**.
-No B1/S1 or solving-agent experiment has been executed.
+Status: COMPLETE / FROZEN. Skill: v0.1. Agent runs: **6**: B1, S1, B2, S2, B3, S3.
+Baseline success: **3/3**. Skill success: **3/3**.
+Result: **POSITIVE SIGNAL, NOT CONCLUSIVE**. Frozen tag: `eval-002`.
+
+EVAL-002 provides a positive behavioral signal: Efficient Coding v0.1 consistently reduced repository search activity while preserving benchmark success, and aggregate token usage was lower. However, three runs per condition, substantial run-to-run variance, localized task scope, and an environment-persistence issue prevent a causal or general efficiency claim.
+
+After all run-level pre-run and post-run integrity checks passed, a later audit after report generation found the baseline workspace missing. Cause unknown. All six raw run artifacts remain intact; no run reported an infrastructure failure. This is an experiment-environment persistence limitation, not a retroactive run failure.
+
+Mean token difference: **−7.27%**; median: **−2.96%**. Paired differences
+(Skill relative to baseline): **+13.05%, −9.63%, −21.50%**. Unique files were
+mostly unchanged, repeated work was not reliably reduced, and treatments
+performed narrower validation. No statistical significance is claimed.
+See the [final report](results/EVAL-002/report.md),
+[analysis](results/EVAL-002/analysis.md), and
+[frozen manifest](results/EVAL-002/manifest.json).
+
+The remainder records preparation and reproduction as they existed before the
+runs. Workspace availability statements below describe preparation-time checks,
+not the latest host state. Historical inputs and raw run artifacts are preserved.
 
 Efficient Coding v0.1 may provide more measurable benefit on tasks requiring
 broader repository exploration than on the localized debugging task used in
