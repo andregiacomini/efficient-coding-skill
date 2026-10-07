@@ -1,0 +1,1114 @@
+{
+  "schema_version": 4,
+  "actions": [
+    {
+      "ordinal": 1,
+      "line_number": 4,
+      "item_id": "item_1",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "cat",
+            "/root/.agents/skills/efficient-coding/SKILL.md"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "/root/.agents/skills/efficient-coding/SKILL.md",
+              "range": null,
+              "scope": "skill"
+            }
+          ],
+          "coverage": "supported",
+          "separator": null
+        }
+      ],
+      "categories": [
+        "file inspection"
+      ],
+      "received_seconds": 7.771428,
+      "completed_line_number": 5,
+      "completed_seconds": 7.771823,
+      "command": "/bin/bash -lc 'cat /root/.agents/skills/efficient-coding/SKILL.md'",
+      "exit_code": 0,
+      "skill_content_observed": true,
+      "output_characters": 1776,
+      "skill_only": true
+    },
+    {
+      "ordinal": 2,
+      "line_number": 6,
+      "item_id": "item_2",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "category": "git/status/diff",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        },
+        {
+          "argv": [
+            "rg",
+            "--files",
+            "-g",
+            "AGENTS.md",
+            "-g",
+            "*related_descriptors*",
+            "-g",
+            "*prefetch*",
+            "-g",
+            "*test_sqlite*"
+          ],
+          "category": "repository discovery",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "--files",
+            "-g",
+            "AGENTS.md",
+            "-g",
+            "*related_descriptors*",
+            "-g",
+            "*prefetch*",
+            "-g",
+            "*test_sqlite*"
+          ]
+        }
+      ],
+      "categories": [
+        "git/status/diff",
+        "repository discovery"
+      ],
+      "received_seconds": 7.929482,
+      "completed_line_number": 7,
+      "completed_seconds": 9.497587,
+      "command": "/bin/bash -lc \"git status --short; rg --files -g AGENTS.md -g '*related_descriptors*' -g '*prefetch*' -g '*test_sqlite*'\"",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 163,
+      "skill_only": false
+    },
+    {
+      "ordinal": 3,
+      "line_number": 8,
+      "item_id": "item_3",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "get_prefetch_queryset|Window|RowNumber",
+            "django/db/models/fields/related_descriptors.py"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null,
+          "search_scope": [
+            "-n",
+            "get_prefetch_queryset|Window|RowNumber",
+            "django/db/models/fields/related_descriptors.py"
+          ]
+        },
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "PrefetchLimit|class .*Tests|slice|sliced",
+            "tests/prefetch_related/tests.py"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "-n",
+            "PrefetchLimit|class .*Tests|slice|sliced",
+            "tests/prefetch_related/tests.py"
+          ]
+        },
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "window|qualify|contains_over_clause",
+            "django/db/models/sql/query.py",
+            "django/db/models/sql/compiler.py"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "-n",
+            "window|qualify|contains_over_clause",
+            "django/db/models/sql/query.py",
+            "django/db/models/sql/compiler.py"
+          ]
+        },
+        {
+          "argv": [
+            "cat",
+            "AGENTS.md"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "AGENTS.md",
+              "range": null,
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        }
+      ],
+      "categories": [
+        "file inspection",
+        "search"
+      ],
+      "received_seconds": 14.751214,
+      "completed_line_number": 9,
+      "completed_seconds": 14.752166,
+      "command": "/bin/bash -lc \"rg -n 'get_prefetch_queryset|Window|RowNumber' django/db/models/fields/related_descriptors.py; rg -n 'PrefetchLimit|class .*Tests|slice|sliced' tests/prefetch_related/tests.py; rg -n 'window|qualify|contains_over_clause' django/db/models/sql/query.py django/db/models/sql/compiler.py; cat AGENTS.md\"",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 3322,
+      "skill_only": false
+    },
+    {
+      "ordinal": 4,
+      "line_number": 10,
+      "item_id": "item_4",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "55,90p",
+            "django/db/models/fields/related_descriptors.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "django/db/models/fields/related_descriptors.py",
+              "range": [
+                55,
+                90
+              ],
+              "ranges": [
+                [
+                  55,
+                  90
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": null
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "680,770p",
+            "django/db/models/fields/related_descriptors.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "django/db/models/fields/related_descriptors.py",
+              "range": [
+                680,
+                770
+              ],
+              "ranges": [
+                [
+                  680,
+                  770
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "1010,1135p",
+            "django/db/models/fields/related_descriptors.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "django/db/models/fields/related_descriptors.py",
+              "range": [
+                1010,
+                1135
+              ],
+              "ranges": [
+                [
+                  1010,
+                  1135
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "1910,2005p",
+            "tests/prefetch_related/tests.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "tests/prefetch_related/tests.py",
+              "range": [
+                1910,
+                2005
+              ],
+              "ranges": [
+                [
+                  1910,
+                  2005
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "slic|Prefetch\\(",
+            "docs/ref/models/querysets.txt"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "-n",
+            "slic|Prefetch\\(",
+            "docs/ref/models/querysets.txt"
+          ]
+        },
+        {
+          "argv": [
+            "tail",
+            "-20"
+          ],
+          "category": "other",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": "|"
+        }
+      ],
+      "categories": [
+        "file inspection",
+        "other",
+        "search"
+      ],
+      "received_seconds": 19.315235,
+      "completed_line_number": 11,
+      "completed_seconds": 19.318594,
+      "command": "/bin/bash -lc \"sed -n '55,90p' django/db/models/fields/related_descriptors.py; sed -n '680,770p' django/db/models/fields/related_descriptors.py; sed -n '1010,1135p' django/db/models/fields/related_descriptors.py; sed -n '1910,2005p' tests/prefetch_related/tests.py; rg -n 'slic|Prefetch\\\\(' docs/ref/models/querysets.txt | tail -20\"",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 14272,
+      "skill_only": false
+    },
+    {
+      "ordinal": 5,
+      "line_number": 12,
+      "item_id": "item_5",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "2480,2555p",
+            "django/db/models/query.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "django/db/models/query.py",
+              "range": [
+                2480,
+                2555
+              ],
+              "ranges": [
+                [
+                  2480,
+                  2555
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": null
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "1,65p",
+            "tests/prefetch_related/tests.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "tests/prefetch_related/tests.py",
+              "range": [
+                1,
+                65
+              ],
+              "ranges": [
+                [
+                  1,
+                  65
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "class GreaterThan|class LessThanOrEqual",
+            "django/db/models/lookups.py"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "-n",
+            "class GreaterThan|class LessThanOrEqual",
+            "django/db/models/lookups.py"
+          ]
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "590,655p",
+            "django/db/models/sql/compiler.py"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "django/db/models/sql/compiler.py",
+              "range": [
+                590,
+                655
+              ],
+              "ranges": [
+                [
+                  590,
+                  655
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "sed",
+            "-n",
+            "3978,4025p",
+            "docs/ref/models/querysets.txt"
+          ],
+          "category": "file inspection",
+          "repository_search": false,
+          "read_requests": [
+            {
+              "path": "docs/ref/models/querysets.txt",
+              "range": [
+                3978,
+                4025
+              ],
+              "ranges": [
+                [
+                  3978,
+                  4025
+                ]
+              ],
+              "scope": "repository"
+            }
+          ],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "ls",
+            "docs/releases"
+          ],
+          "category": "repository discovery",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "tail",
+            "-5"
+          ],
+          "category": "other",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": "|"
+        }
+      ],
+      "categories": [
+        "file inspection",
+        "other",
+        "repository discovery",
+        "search"
+      ],
+      "received_seconds": 26.275353,
+      "completed_line_number": 13,
+      "completed_seconds": 26.27699,
+      "command": "/bin/bash -lc \"sed -n '2480,2555p' django/db/models/query.py; sed -n '1,65p' tests/prefetch_related/tests.py; rg -n 'class GreaterThan|class LessThanOrEqual' django/db/models/lookups.py; sed -n '590,655p' django/db/models/sql/compiler.py; sed -n '3978,4025p' docs/ref/models/querysets.txt; ls docs/releases | tail -5\"",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 10448,
+      "skill_only": false
+    },
+    {
+      "ordinal": 6,
+      "line_number": 15,
+      "item_id": "item_7",
+      "type": "file_change",
+      "operations": [],
+      "categories": [
+        "editing"
+      ],
+      "received_seconds": 47.762376,
+      "completed_line_number": 16,
+      "completed_seconds": 47.76993,
+      "changed_paths": [
+        "django/db/models/fields/related_descriptors.py",
+        "django/db/models/query.py"
+      ],
+      "skill_only": false
+    },
+    {
+      "ordinal": 7,
+      "line_number": 17,
+      "item_id": "item_8",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "/opt/eval-003-venv/bin/python",
+            "tests/runtests.py",
+            "prefetch_related.tests.PrefetchLimitTests",
+            "--settings=test_sqlite",
+            "--parallel=1",
+            "--verbosity=2"
+          ],
+          "category": "test execution",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        }
+      ],
+      "categories": [
+        "test execution"
+      ],
+      "received_seconds": 47.930304,
+      "completed_line_number": 18,
+      "completed_seconds": 48.804237,
+      "command": "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related.tests.PrefetchLimitTests --settings=test_sqlite --parallel=1 --verbosity=2'",
+      "exit_code": 0,
+      "unittest_reported_counts": [
+        4
+      ],
+      "targeted_regression_results": [
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_foreignkey_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_forward",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_reverse_ordering",
+          "ok"
+        ]
+      ],
+      "skill_content_observed": false,
+      "output_characters": 2579,
+      "skill_only": false
+    },
+    {
+      "ordinal": 8,
+      "line_number": 19,
+      "item_id": "item_9",
+      "type": "file_change",
+      "operations": [],
+      "categories": [
+        "editing"
+      ],
+      "received_seconds": 84.549688,
+      "completed_line_number": 20,
+      "completed_seconds": 84.556019,
+      "changed_paths": [
+        "docs/ref/models/querysets.txt",
+        "tests/prefetch_related/tests.py"
+      ],
+      "skill_only": false
+    },
+    {
+      "ordinal": 9,
+      "line_number": 21,
+      "item_id": "item_10",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "/opt/eval-003-venv/bin/python",
+            "tests/runtests.py",
+            "prefetch_related.tests.PrefetchLimitTests",
+            "--settings=test_sqlite",
+            "--parallel=1",
+            "--verbosity=2"
+          ],
+          "category": "test execution",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        }
+      ],
+      "categories": [
+        "test execution"
+      ],
+      "received_seconds": 84.718918,
+      "completed_line_number": 22,
+      "completed_seconds": 85.727926,
+      "command": "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related.tests.PrefetchLimitTests --settings=test_sqlite --parallel=1 --verbosity=2'",
+      "exit_code": 0,
+      "unittest_reported_counts": [
+        7
+      ],
+      "targeted_regression_results": [
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_foreignkey_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_forward",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_reverse_ordering",
+          "ok"
+        ]
+      ],
+      "skill_content_observed": false,
+      "output_characters": 2796,
+      "skill_only": false
+    },
+    {
+      "ordinal": 10,
+      "line_number": 24,
+      "item_id": "item_12",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "/opt/eval-003-venv/bin/python",
+            "tests/runtests.py",
+            "prefetch_related",
+            "--settings=test_sqlite",
+            "--parallel=1",
+            "--verbosity=2"
+          ],
+          "category": "test execution",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        }
+      ],
+      "categories": [
+        "test execution"
+      ],
+      "received_seconds": 92.702746,
+      "completed_line_number": 27,
+      "completed_seconds": 93.964339,
+      "command": "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related --settings=test_sqlite --parallel=1 --verbosity=2'",
+      "exit_code": 0,
+      "unittest_reported_counts": [
+        116
+      ],
+      "targeted_regression_results": [
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_foreignkey_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_forward",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_m2m_reverse",
+          "ok"
+        ],
+        [
+          "prefetch_related.tests.PrefetchLimitTests.test_reverse_ordering",
+          "ok"
+        ]
+      ],
+      "skill_content_observed": false,
+      "output_characters": 14778,
+      "skill_only": false
+    },
+    {
+      "ordinal": 11,
+      "line_number": 25,
+      "item_id": "item_13",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "category": "git/status/diff",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        },
+        {
+          "argv": [
+            "git",
+            "diff",
+            "--stat"
+          ],
+          "category": "git/status/diff",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";"
+        },
+        {
+          "argv": [
+            "rg",
+            "-n",
+            "black|ruff",
+            "pyproject.toml",
+            "setup.cfg"
+          ],
+          "category": "search",
+          "repository_search": true,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";",
+          "search_scope": [
+            "-n",
+            "black|ruff",
+            "pyproject.toml",
+            "setup.cfg"
+          ]
+        }
+      ],
+      "categories": [
+        "git/status/diff",
+        "search"
+      ],
+      "received_seconds": 93.806865,
+      "completed_line_number": 26,
+      "completed_seconds": 93.808504,
+      "command": "/bin/bash -lc \"git diff --check; git diff --stat; rg -n 'black|ruff' pyproject.toml setup.cfg\"",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 376,
+      "skill_only": false
+    },
+    {
+      "ordinal": 12,
+      "line_number": 28,
+      "item_id": "item_14",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "/opt/eval-003-venv/bin/python",
+            "-m",
+            "black",
+            "--check",
+            "django/db/models/fields/related_descriptors.py",
+            "django/db/models/query.py",
+            "tests/prefetch_related/tests.py"
+          ],
+          "category": "format validation",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null,
+          "validation_targets": [
+            "django/db/models/fields/related_descriptors.py",
+            "django/db/models/query.py",
+            "tests/prefetch_related/tests.py"
+          ]
+        }
+      ],
+      "categories": [
+        "format validation"
+      ],
+      "received_seconds": 100.145749,
+      "completed_line_number": 29,
+      "completed_seconds": 100.146805,
+      "command": "/bin/bash -lc '/opt/eval-003-venv/bin/python -m black --check django/db/models/fields/related_descriptors.py django/db/models/query.py tests/prefetch_related/tests.py'",
+      "exit_code": 1,
+      "skill_content_observed": false,
+      "output_characters": 53,
+      "skill_only": false
+    },
+    {
+      "ordinal": 13,
+      "line_number": 30,
+      "item_id": "item_15",
+      "type": "file_change",
+      "operations": [],
+      "categories": [
+        "editing"
+      ],
+      "received_seconds": 110.346926,
+      "completed_line_number": 31,
+      "completed_seconds": 110.356926,
+      "changed_paths": [
+        "django/db/models/fields/related_descriptors.py",
+        "docs/ref/models/querysets.txt",
+        "tests/prefetch_related/tests.py"
+      ],
+      "skill_only": false
+    },
+    {
+      "ordinal": 14,
+      "line_number": 32,
+      "item_id": "item_16",
+      "type": "command_execution",
+      "operations": [
+        {
+          "argv": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "category": "git/status/diff",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": null
+        },
+        {
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "category": "git/status/diff",
+          "repository_search": false,
+          "read_requests": [],
+          "coverage": "supported",
+          "separator": ";"
+        }
+      ],
+      "categories": [
+        "git/status/diff"
+      ],
+      "received_seconds": 110.522209,
+      "completed_line_number": 33,
+      "completed_seconds": 110.967323,
+      "command": "/bin/bash -lc 'git diff --check; git status --short'",
+      "exit_code": 0,
+      "skill_content_observed": false,
+      "output_characters": 147,
+      "skill_only": false
+    }
+  ],
+  "file_reads": [
+    {
+      "path": "/root/.agents/skills/efficient-coding/SKILL.md",
+      "range": null,
+      "scope": "skill",
+      "ordinal": 1,
+      "item_id": "item_1"
+    },
+    {
+      "path": "AGENTS.md",
+      "range": null,
+      "scope": "repository",
+      "ordinal": 3,
+      "item_id": "item_3"
+    },
+    {
+      "path": "django/db/models/fields/related_descriptors.py",
+      "range": [
+        55,
+        90
+      ],
+      "ranges": [
+        [
+          55,
+          90
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 4,
+      "item_id": "item_4"
+    },
+    {
+      "path": "django/db/models/fields/related_descriptors.py",
+      "range": [
+        680,
+        770
+      ],
+      "ranges": [
+        [
+          680,
+          770
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 4,
+      "item_id": "item_4"
+    },
+    {
+      "path": "django/db/models/fields/related_descriptors.py",
+      "range": [
+        1010,
+        1135
+      ],
+      "ranges": [
+        [
+          1010,
+          1135
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 4,
+      "item_id": "item_4"
+    },
+    {
+      "path": "tests/prefetch_related/tests.py",
+      "range": [
+        1910,
+        2005
+      ],
+      "ranges": [
+        [
+          1910,
+          2005
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 4,
+      "item_id": "item_4"
+    },
+    {
+      "path": "django/db/models/query.py",
+      "range": [
+        2480,
+        2555
+      ],
+      "ranges": [
+        [
+          2480,
+          2555
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 5,
+      "item_id": "item_5"
+    },
+    {
+      "path": "tests/prefetch_related/tests.py",
+      "range": [
+        1,
+        65
+      ],
+      "ranges": [
+        [
+          1,
+          65
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 5,
+      "item_id": "item_5"
+    },
+    {
+      "path": "django/db/models/sql/compiler.py",
+      "range": [
+        590,
+        655
+      ],
+      "ranges": [
+        [
+          590,
+          655
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 5,
+      "item_id": "item_5"
+    },
+    {
+      "path": "docs/ref/models/querysets.txt",
+      "range": [
+        3978,
+        4025
+      ],
+      "ranges": [
+        [
+          3978,
+          4025
+        ]
+      ],
+      "scope": "repository",
+      "ordinal": 5,
+      "item_id": "item_5"
+    }
+  ],
+  "repository_read_counts": {
+    "AGENTS.md": 1,
+    "django/db/models/fields/related_descriptors.py": 3,
+    "tests/prefetch_related/tests.py": 2,
+    "django/db/models/query.py": 1,
+    "django/db/models/sql/compiler.py": 1,
+    "docs/ref/models/querysets.txt": 1
+  },
+  "search_commands": [
+    [
+      "rg",
+      "--files",
+      "-g",
+      "AGENTS.md",
+      "-g",
+      "*related_descriptors*",
+      "-g",
+      "*prefetch*",
+      "-g",
+      "*test_sqlite*"
+    ],
+    [
+      "rg",
+      "-n",
+      "get_prefetch_queryset|Window|RowNumber",
+      "django/db/models/fields/related_descriptors.py"
+    ],
+    [
+      "rg",
+      "-n",
+      "PrefetchLimit|class .*Tests|slice|sliced",
+      "tests/prefetch_related/tests.py"
+    ],
+    [
+      "rg",
+      "-n",
+      "window|qualify|contains_over_clause",
+      "django/db/models/sql/query.py",
+      "django/db/models/sql/compiler.py"
+    ],
+    [
+      "rg",
+      "-n",
+      "slic|Prefetch\\(",
+      "docs/ref/models/querysets.txt"
+    ],
+    [
+      "rg",
+      "-n",
+      "class GreaterThan|class LessThanOrEqual",
+      "django/db/models/lookups.py"
+    ],
+    [
+      "rg",
+      "-n",
+      "black|ruff",
+      "pyproject.toml",
+      "setup.cfg"
+    ]
+  ],
+  "category_counts": {
+    "file inspection": 10,
+    "git/status/diff": 5,
+    "repository discovery": 2,
+    "search": 6,
+    "other": 2,
+    "editing": 3,
+    "test execution": 3,
+    "format validation": 1
+  },
+  "unclassified_operations": []
+}

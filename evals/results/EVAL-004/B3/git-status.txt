@@ -1,0 +1,4 @@
+ M django/db/models/fields/related_descriptors.py
+ M django/db/models/query.py
+ M docs/ref/models/querysets.txt
+ M tests/prefetch_related/tests.py

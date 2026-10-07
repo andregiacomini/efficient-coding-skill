@@ -1,27 +1,9 @@
 {
   "eval_id": "EVAL-004",
+  "analysis_schema_version": 5,
+  "analysis_revision": "5.0",
   "status": "COMPLETE",
-  "configuration": {
-    "codex_version": "codex-cli 0.160.0",
-    "model": "gpt-6.1-sol",
-    "reasoning_effort": "medium",
-    "sandbox": "danger-full-access",
-    "approval_policy": "never",
-    "web_search": "disabled",
-    "prompt_sha256": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
-    "agent_timeout_seconds": 1800
-  },
   "primary_comparison": "V1 -> V2",
-  "primary_metrics": [
-    "success_rate",
-    "total_tokens",
-    "tool_calls",
-    "duration_seconds",
-    "post_first_success_tool_calls",
-    "post_first_success_searches",
-    "post_first_success_file_reads",
-    "post_first_success_test_executions"
-  ],
   "conditions": {
     "B": {
       "runs": 3,
@@ -32,36 +14,6 @@
           "n_available": 3,
           "mean": 234989,
           "median": 245138
-        },
-        "tool_calls": {
-          "n_available": 3,
-          "mean": 14.333333333333334,
-          "median": 15
-        },
-        "duration_seconds": {
-          "n_available": 3,
-          "mean": 135.02933333333334,
-          "median": 133.114
-        },
-        "post_first_success_tool_calls": {
-          "n_available": 3,
-          "mean": 8,
-          "median": 7
-        },
-        "post_first_success_searches": {
-          "n_available": 3,
-          "mean": 1,
-          "median": 1
-        },
-        "post_first_success_file_reads": {
-          "n_available": 3,
-          "mean": 3,
-          "median": 3
-        },
-        "post_first_success_test_executions": {
-          "n_available": 3,
-          "mean": 1.6666666666666667,
-          "median": 2
         },
         "input_tokens": {
           "n_available": 3,
@@ -78,10 +30,15 @@
           "mean": 3715.3333333333335,
           "median": 3617
         },
-        "shell_commands": {
+        "duration_seconds": {
           "n_available": 3,
-          "mean": 10,
-          "median": 10
+          "mean": 135.02933333333334,
+          "median": 133.114
+        },
+        "tool_calls": {
+          "n_available": 3,
+          "mean": 14.333333333333334,
+          "median": 15
         },
         "repository_search_commands": {
           "n_available": 3,
@@ -123,20 +80,10 @@
           "mean": 0,
           "median": 0
         },
-        "tool_items_excluding_skill_loading": {
-          "n_available": 3,
-          "mean": 14.333333333333334,
-          "median": 15
-        },
         "time_until_first_edit_seconds": {
           "n_available": 3,
           "mean": 53.356752,
           "median": 54.288451
-        },
-        "time_until_first_test_seconds": {
-          "n_available": 3,
-          "mean": 47.355191,
-          "median": 49.681837
         },
         "time_until_first_targeted_success_seconds": {
           "n_available": 3,
@@ -153,25 +100,120 @@
           "mean": 7,
           "median": 7
         },
-        "unique_source_files_before_first_edit": {
-          "n_available": 3,
-          "mean": 3.3333333333333335,
-          "median": 3
-        },
         "tool_items_before_first_edit": {
           "n_available": 3,
           "mean": 4.333333333333333,
           "median": 4
         },
-        "time_until_first_repository_search_seconds": {
+        "post_first_success_tool_calls": {
           "n_available": 3,
-          "mean": 8.290852,
-          "median": 7.812438
+          "mean": 8,
+          "median": 7
         },
-        "time_until_first_file_read_seconds": {
+        "post_first_success_searches": {
           "n_available": 3,
-          "mean": 15.682862666666667,
-          "median": 16.781584
+          "mean": 1,
+          "median": 1
+        },
+        "post_first_success_file_reads": {
+          "n_available": 3,
+          "mean": 3,
+          "median": 3
+        },
+        "post_first_success_test_executions": {
+          "n_available": 3,
+          "mean": 1.6666666666666667,
+          "median": 2
+        },
+        "last_edit_time_seconds": {
+          "n_available": 3,
+          "mean": 116.16029666666667,
+          "median": 124.566997
+        },
+        "last_test_time_seconds": {
+          "n_available": 3,
+          "mean": 112.09340200000001,
+          "median": 109.2553
+        },
+        "last_validation_time_seconds": {
+          "n_available": 3,
+          "mean": 112.09340200000001,
+          "median": 109.2553
+        },
+        "edits_after_first_targeted_success": {
+          "n_available": 3,
+          "mean": 3.3333333333333335,
+          "median": 2
+        },
+        "edits_after_last_test_execution": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "edits_after_last_validation": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "tool_calls_between_first_success_and_final_edit": {
+          "n_available": 3,
+          "mean": 5,
+          "median": 5
+        },
+        "tool_calls_after_final_edit": {
+          "n_available": 3,
+          "mean": 2,
+          "median": 2
+        }
+      },
+      "indicators": {
+        "final_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "repository_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "production_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "test_edited_after_last_test": {
+          "true": 0,
+          "false": 3,
+          "unavailable": 0,
+          "rate_true": 0.0
+        },
+        "validation_after_final_production_edit": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "validation_after_final_test_file_edit": {
+          "true": 3,
+          "false": 0,
+          "unavailable": 0,
+          "rate_true": 1.0
+        },
+        "final_production_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "final_test_file_edit_revalidated": {
+          "true": 3,
+          "false": 0,
+          "unavailable": 0,
+          "rate_true": 1.0
         }
       }
     },
@@ -184,36 +226,6 @@
           "n_available": 3,
           "mean": 217943,
           "median": 215486
-        },
-        "tool_calls": {
-          "n_available": 3,
-          "mean": 15.333333333333334,
-          "median": 15
-        },
-        "duration_seconds": {
-          "n_available": 3,
-          "mean": 134.24466666666666,
-          "median": 129.039
-        },
-        "post_first_success_tool_calls": {
-          "n_available": 3,
-          "mean": 7.333333333333333,
-          "median": 7
-        },
-        "post_first_success_searches": {
-          "n_available": 3,
-          "mean": 1,
-          "median": 1
-        },
-        "post_first_success_file_reads": {
-          "n_available": 3,
-          "mean": 2,
-          "median": 1
-        },
-        "post_first_success_test_executions": {
-          "n_available": 3,
-          "mean": 2.6666666666666665,
-          "median": 3
         },
         "input_tokens": {
           "n_available": 3,
@@ -230,10 +242,15 @@
           "mean": 3866.6666666666665,
           "median": 3635
         },
-        "shell_commands": {
+        "duration_seconds": {
           "n_available": 3,
-          "mean": 12,
-          "median": 12
+          "mean": 134.24466666666666,
+          "median": 129.039
+        },
+        "tool_calls": {
+          "n_available": 3,
+          "mean": 15.333333333333334,
+          "median": 15
         },
         "repository_search_commands": {
           "n_available": 3,
@@ -275,20 +292,10 @@
           "mean": 1,
           "median": 1
         },
-        "tool_items_excluding_skill_loading": {
-          "n_available": 3,
-          "mean": 14.333333333333334,
-          "median": 14
-        },
         "time_until_first_edit_seconds": {
           "n_available": 3,
           "mean": 57.710669,
           "median": 60.660001
-        },
-        "time_until_first_test_seconds": {
-          "n_available": 3,
-          "mean": 39.60161866666667,
-          "median": 36.320178
         },
         "time_until_first_targeted_success_seconds": {
           "n_available": 3,
@@ -305,25 +312,120 @@
           "mean": 6.333333333333333,
           "median": 6
         },
-        "unique_source_files_before_first_edit": {
-          "n_available": 3,
-          "mean": 3.3333333333333335,
-          "median": 3
-        },
         "tool_items_before_first_edit": {
           "n_available": 3,
           "mean": 6,
           "median": 6
         },
-        "time_until_first_repository_search_seconds": {
+        "post_first_success_tool_calls": {
           "n_available": 3,
-          "mean": 8.251080333333332,
-          "median": 8.200679
+          "mean": 7.333333333333333,
+          "median": 7
         },
-        "time_until_first_file_read_seconds": {
+        "post_first_success_searches": {
           "n_available": 3,
-          "mean": 8.105719666666667,
-          "median": 8.043396
+          "mean": 1,
+          "median": 1
+        },
+        "post_first_success_file_reads": {
+          "n_available": 3,
+          "mean": 2,
+          "median": 1
+        },
+        "post_first_success_test_executions": {
+          "n_available": 3,
+          "mean": 2.6666666666666665,
+          "median": 3
+        },
+        "last_edit_time_seconds": {
+          "n_available": 3,
+          "mean": 124.43196333333333,
+          "median": 112.743394
+        },
+        "last_test_time_seconds": {
+          "n_available": 3,
+          "mean": 123.20445866666667,
+          "median": 124.186053
+        },
+        "last_validation_time_seconds": {
+          "n_available": 3,
+          "mean": 125.26528066666667,
+          "median": 124.186053
+        },
+        "edits_after_first_targeted_success": {
+          "n_available": 3,
+          "mean": 2.3333333333333335,
+          "median": 2
+        },
+        "edits_after_last_test_execution": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "edits_after_last_validation": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "tool_calls_between_first_success_and_final_edit": {
+          "n_available": 3,
+          "mean": 4.333333333333333,
+          "median": 5
+        },
+        "tool_calls_after_final_edit": {
+          "n_available": 3,
+          "mean": 2,
+          "median": 2
+        }
+      },
+      "indicators": {
+        "final_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "repository_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "production_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "test_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "validation_after_final_production_edit": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "validation_after_final_test_file_edit": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "final_production_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "final_test_file_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
         }
       }
     },
@@ -336,36 +438,6 @@
           "n_available": 3,
           "mean": 223581.66666666666,
           "median": 217248
-        },
-        "tool_calls": {
-          "n_available": 3,
-          "mean": 14.666666666666666,
-          "median": 14
-        },
-        "duration_seconds": {
-          "n_available": 3,
-          "mean": 134.89266666666666,
-          "median": 136.303
-        },
-        "post_first_success_tool_calls": {
-          "n_available": 3,
-          "mean": 7.333333333333333,
-          "median": 8
-        },
-        "post_first_success_searches": {
-          "n_available": 3,
-          "mean": 0.3333333333333333,
-          "median": 0
-        },
-        "post_first_success_file_reads": {
-          "n_available": 3,
-          "mean": 0.3333333333333333,
-          "median": 0
-        },
-        "post_first_success_test_executions": {
-          "n_available": 3,
-          "mean": 2.3333333333333335,
-          "median": 2
         },
         "input_tokens": {
           "n_available": 3,
@@ -382,10 +454,15 @@
           "mean": 3833.3333333333335,
           "median": 3515
         },
-        "shell_commands": {
+        "duration_seconds": {
           "n_available": 3,
-          "mean": 11.333333333333334,
-          "median": 11
+          "mean": 134.89266666666666,
+          "median": 136.303
+        },
+        "tool_calls": {
+          "n_available": 3,
+          "mean": 14.666666666666666,
+          "median": 14
         },
         "repository_search_commands": {
           "n_available": 3,
@@ -427,20 +504,10 @@
           "mean": 1,
           "median": 1
         },
-        "tool_items_excluding_skill_loading": {
-          "n_available": 3,
-          "mean": 13.666666666666666,
-          "median": 13
-        },
         "time_until_first_edit_seconds": {
           "n_available": 3,
           "mean": 53.82048366666667,
           "median": 54.346198
-        },
-        "time_until_first_test_seconds": {
-          "n_available": 3,
-          "mean": 36.86988866666667,
-          "median": 40.947011
         },
         "time_until_first_targeted_success_seconds": {
           "n_available": 3,
@@ -457,730 +524,240 @@
           "mean": 6,
           "median": 6
         },
-        "unique_source_files_before_first_edit": {
-          "n_available": 3,
-          "mean": 3,
-          "median": 3
-        },
         "tool_items_before_first_edit": {
           "n_available": 3,
           "mean": 5.333333333333333,
           "median": 6
         },
-        "time_until_first_repository_search_seconds": {
+        "post_first_success_tool_calls": {
           "n_available": 3,
-          "mean": 9.557284333333333,
-          "median": 9.283271
+          "mean": 7.333333333333333,
+          "median": 8
         },
-        "time_until_first_file_read_seconds": {
+        "post_first_success_searches": {
           "n_available": 3,
-          "mean": 9.397880333333333,
-          "median": 9.126044
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "post_first_success_file_reads": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "post_first_success_test_executions": {
+          "n_available": 3,
+          "mean": 2.3333333333333335,
+          "median": 2
+        },
+        "last_edit_time_seconds": {
+          "n_available": 3,
+          "mean": 121.09063566666667,
+          "median": 115.432408
+        },
+        "last_test_time_seconds": {
+          "n_available": 3,
+          "mean": 113.814534,
+          "median": 116.726496
+        },
+        "last_validation_time_seconds": {
+          "n_available": 3,
+          "mean": 116.48668866666667,
+          "median": 116.726496
+        },
+        "edits_after_first_targeted_success": {
+          "n_available": 3,
+          "mean": 2.3333333333333335,
+          "median": 2
+        },
+        "edits_after_last_test_execution": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "edits_after_last_validation": {
+          "n_available": 3,
+          "mean": 0.3333333333333333,
+          "median": 0
+        },
+        "tool_calls_between_first_success_and_final_edit": {
+          "n_available": 3,
+          "mean": 4.333333333333333,
+          "median": 4
+        },
+        "tool_calls_after_final_edit": {
+          "n_available": 3,
+          "mean": 2,
+          "median": 2
+        }
+      },
+      "indicators": {
+        "final_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "repository_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "production_edited_after_last_test": {
+          "true": 0,
+          "false": 3,
+          "unavailable": 0,
+          "rate_true": 0.0
+        },
+        "test_edited_after_last_test": {
+          "true": 1,
+          "false": 2,
+          "unavailable": 0,
+          "rate_true": 0.3333333333333333
+        },
+        "validation_after_final_production_edit": {
+          "true": 3,
+          "false": 0,
+          "unavailable": 0,
+          "rate_true": 1.0
+        },
+        "validation_after_final_test_file_edit": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
+        },
+        "final_production_edit_revalidated": {
+          "true": 3,
+          "false": 0,
+          "unavailable": 0,
+          "rate_true": 1.0
+        },
+        "final_test_file_edit_revalidated": {
+          "true": 2,
+          "false": 1,
+          "unavailable": 0,
+          "rate_true": 0.6666666666666666
         }
       }
     }
   },
-  "comparisons": [
-    {
-      "left": "V1",
-      "right": "V2",
-      "primary": true,
-      "paired": [
-        {
-          "repetition": 1,
-          "left": "V1-1",
-          "right": "V2-1",
-          "percentage_changes": {
-            "total_tokens": 8.473532599756224,
-            "tool_calls": 0.0,
-            "duration_seconds": -6.486179118622662,
-            "post_first_success_tool_calls": 0.0,
-            "post_first_success_searches": -50.0,
-            "post_first_success_file_reads": -100.0,
-            "post_first_success_test_executions": 0.0,
-            "input_tokens": 8.68637780883776,
-            "cached_input_tokens": 24.400564174894217,
-            "output_tokens": -2.3372651813018788,
-            "shell_commands": 0.0,
-            "repository_search_commands": -27.27272727272727,
-            "total_file_reads": -33.33333333333333,
-            "repository_file_reads": -35.714285714285715,
-            "unique_files_inspected": -25.0,
-            "repeated_file_reads": -50.0,
-            "test_runs": 0.0,
-            "files_modified": 0.0,
-            "skill_loading_events": 0.0,
-            "tool_items_excluding_skill_loading": 0.0,
-            "time_until_first_edit_seconds": -10.408511203288638,
-            "time_until_first_test_seconds": -17.981315476877118,
-            "time_until_first_targeted_success_seconds": -9.816284716288056,
-            "searches_before_first_edit": -22.22222222222222,
-            "unique_repository_files_before_first_edit": 0.0,
-            "unique_source_files_before_first_edit": 0.0,
-            "tool_items_before_first_edit": 0.0,
-            "time_until_first_repository_search_seconds": 7.656092718610975,
-            "time_until_first_file_read_seconds": 7.3357377708594145
-          }
-        },
-        {
-          "repetition": 2,
-          "left": "V1-2",
-          "right": "V2-2",
-          "percentage_changes": {
-            "total_tokens": -2.453289604452395,
-            "tool_calls": 0.0,
-            "duration_seconds": 4.285219199445502,
-            "post_first_success_tool_calls": 14.285714285714285,
-            "post_first_success_searches": -100.0,
-            "post_first_success_file_reads": null,
-            "post_first_success_test_executions": 0.0,
-            "input_tokens": -2.5599814003325703,
-            "cached_input_tokens": -14.657039711191336,
-            "output_tokens": 3.7791555949217597,
-            "shell_commands": 0.0,
-            "repository_search_commands": -14.285714285714285,
-            "total_file_reads": 10.0,
-            "repository_file_reads": 11.11111111111111,
-            "unique_files_inspected": 0.0,
-            "repeated_file_reads": 33.33333333333333,
-            "test_runs": 0.0,
-            "files_modified": 0.0,
-            "skill_loading_events": 0.0,
-            "tool_items_excluding_skill_loading": 0.0,
-            "time_until_first_edit_seconds": -13.901561346110586,
-            "time_until_first_test_seconds": -13.78812869620021,
-            "time_until_first_targeted_success_seconds": -13.228376052677552,
-            "searches_before_first_edit": 0.0,
-            "unique_repository_files_before_first_edit": 0.0,
-            "unique_source_files_before_first_edit": 0.0,
-            "tool_items_before_first_edit": -20.0,
-            "time_until_first_repository_search_seconds": 0.8796034848177938,
-            "time_until_first_file_read_seconds": 0.8715257993768979
-          }
-        },
-        {
-          "repetition": 3,
-          "left": "V1-3",
-          "right": "V2-3",
-          "percentage_changes": {
-            "total_tokens": 0.8176865318396555,
-            "tool_calls": -13.333333333333334,
-            "duration_seconds": 5.629305868768365,
-            "post_first_success_tool_calls": -16.666666666666664,
-            "post_first_success_searches": null,
-            "post_first_success_file_reads": -100.0,
-            "post_first_success_test_executions": -33.33333333333333,
-            "input_tokens": 0.8888322453044828,
-            "cached_input_tokens": 1.173222912353347,
-            "output_tokens": -3.3287482806052267,
-            "shell_commands": -16.666666666666664,
-            "repository_search_commands": -25.0,
-            "total_file_reads": 0.0,
-            "repository_file_reads": 0.0,
-            "unique_files_inspected": -25.0,
-            "repeated_file_reads": 50.0,
-            "test_runs": -20.0,
-            "files_modified": 0.0,
-            "skill_loading_events": 0.0,
-            "tool_items_excluding_skill_loading": -14.285714285714285,
-            "time_until_first_edit_seconds": 1.9826461687387102,
-            "time_until_first_test_seconds": 12.739015210773486,
-            "time_until_first_targeted_success_seconds": 2.1179302551358457,
-            "searches_before_first_edit": -25.0,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": -25.0,
-            "tool_items_before_first_edit": -14.285714285714285,
-            "time_until_first_repository_search_seconds": 38.88303639247435,
-            "time_until_first_file_read_seconds": 39.598236864130534
-          }
+  "paired_comparisons": {
+    "V1 -> V2": [
+      {
+        "left": "V1-1",
+        "right": "V2-1",
+        "percentage_changes": {
+          "total_tokens": 8.473532599756224,
+          "duration_seconds": -6.486179118622662,
+          "post_first_success_tool_calls": 0.0,
+          "post_first_success_searches": -50.0,
+          "post_first_success_file_reads": -100.0,
+          "post_first_success_test_executions": 0.0
         }
-      ],
-      "aggregate_percentage_changes": {
-        "total_tokens": {
-          "mean": 2.5872208176755653,
-          "median": 0.8176865318396555
-        },
-        "tool_calls": {
-          "mean": -4.3478260869565295,
-          "median": -6.666666666666667
-        },
-        "duration_seconds": {
-          "mean": 0.48270074043909594,
-          "median": 5.629305868768365
-        },
-        "post_first_success_tool_calls": {
-          "mean": 0.0,
-          "median": 14.285714285714285
-        },
-        "post_first_success_searches": {
-          "mean": -66.66666666666667,
-          "median": -100.0
-        },
-        "post_first_success_file_reads": {
-          "mean": -83.33333333333334,
-          "median": -100.0
-        },
-        "post_first_success_test_executions": {
-          "mean": -12.49999999999999,
-          "median": -33.33333333333333
-        },
-        "input_tokens": {
-          "mean": 2.6495222109247636,
-          "median": 0.8888322453044828
-        },
-        "cached_input_tokens": {
-          "mean": 3.7629350893697193,
-          "median": 3.385049365303244
-        },
-        "output_tokens": {
-          "mean": -0.8620689655172336,
-          "median": -3.3012379642365883
-        },
-        "shell_commands": {
-          "mean": -5.55555555555555,
-          "median": -8.333333333333332
-        },
-        "repository_search_commands": {
-          "mean": -23.076923076923066,
-          "median": -25.0
-        },
-        "total_file_reads": {
-          "mean": -10.526315789473676,
-          "median": -15.384615384615385
-        },
-        "repository_file_reads": {
-          "mean": -11.428571428571418,
-          "median": -16.666666666666664
-        },
-        "unique_files_inspected": {
-          "mean": -18.18181818181818,
-          "median": -25.0
-        },
-        "repeated_file_reads": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "test_runs": {
-          "mean": -7.692307692307685,
-          "median": -20.0
-        },
-        "files_modified": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "skill_loading_events": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "tool_items_excluding_skill_loading": {
-          "mean": -4.651162790697683,
-          "median": -7.142857142857142
-        },
-        "time_until_first_edit_seconds": {
-          "mean": -6.740842552584748,
-          "median": -10.408511203288638
-        },
-        "time_until_first_test_seconds": {
-          "mean": -6.8980261210871685,
-          "median": 12.739015210773486
-        },
-        "time_until_first_targeted_success_seconds": {
-          "mean": -6.31162531233361,
-          "median": -9.816284716288056
-        },
-        "searches_before_first_edit": {
-          "mean": -17.391304347826093,
-          "median": -25.0
-        },
-        "unique_repository_files_before_first_edit": {
-          "mean": -5.263157894736838,
-          "median": 0.0
-        },
-        "unique_source_files_before_first_edit": {
-          "mean": -10.000000000000004,
-          "median": 0.0
-        },
-        "tool_items_before_first_edit": {
-          "mean": -11.111111111111116,
-          "median": 0.0
-        },
-        "time_until_first_repository_search_seconds": {
-          "mean": 15.830702735047922,
-          "median": 13.20124833565611
-        },
-        "time_until_first_file_read_seconds": {
-          "mean": 15.941344134814422,
-          "median": 13.460085764769019
+      },
+      {
+        "left": "V1-2",
+        "right": "V2-2",
+        "percentage_changes": {
+          "total_tokens": -2.453289604452395,
+          "duration_seconds": 4.285219199445502,
+          "post_first_success_tool_calls": 14.285714285714285,
+          "post_first_success_searches": -100.0,
+          "post_first_success_file_reads": null,
+          "post_first_success_test_executions": 0.0
+        }
+      },
+      {
+        "left": "V1-3",
+        "right": "V2-3",
+        "percentage_changes": {
+          "total_tokens": 0.8176865318396555,
+          "duration_seconds": 5.629305868768365,
+          "post_first_success_tool_calls": -16.666666666666664,
+          "post_first_success_searches": null,
+          "post_first_success_file_reads": -100.0,
+          "post_first_success_test_executions": -33.33333333333333
         }
       }
-    },
-    {
-      "left": "B",
-      "right": "V1",
-      "primary": false,
-      "paired": [
-        {
-          "repetition": 1,
-          "left": "B1",
-          "right": "V1-1",
-          "percentage_changes": {
-            "total_tokens": -3.27774559635797,
-            "tool_calls": -5.555555555555555,
-            "duration_seconds": 11.121642304505952,
-            "post_first_success_tool_calls": -30.76923076923077,
-            "post_first_success_searches": 100.0,
-            "post_first_success_file_reads": 150.0,
-            "post_first_success_test_executions": 50.0,
-            "input_tokens": -3.597399689886485,
-            "cached_input_tokens": -15.595238095238095,
-            "output_tokens": 16.3109756097561,
-            "shell_commands": 30.0,
-            "repository_search_commands": 83.33333333333334,
-            "total_file_reads": 25.0,
-            "repository_file_reads": 16.666666666666664,
-            "unique_files_inspected": 0.0,
-            "repeated_file_reads": 50.0,
-            "test_runs": 66.66666666666666,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": -11.11111111111111,
-            "time_until_first_edit_seconds": 22.538302309218714,
-            "time_until_first_test_seconds": -30.448678860244232,
-            "time_until_first_targeted_success_seconds": 20.717571228719763,
-            "searches_before_first_edit": 80.0,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": -25.0,
-            "tool_items_before_first_edit": 100.0,
-            "time_until_first_repository_search_seconds": -8.44290247428026,
-            "time_until_first_file_read_seconds": -51.22637150777772
-          }
-        },
-        {
-          "repetition": 2,
-          "left": "B2",
-          "right": "V1-2",
-          "percentage_changes": {
-            "total_tokens": -21.97247866495547,
-            "tool_calls": -6.666666666666667,
-            "duration_seconds": -13.292365941974548,
-            "post_first_success_tool_calls": 0.0,
-            "post_first_success_searches": 0.0,
-            "post_first_success_file_reads": -100.0,
-            "post_first_success_test_executions": 0.0,
-            "input_tokens": -22.194563729885328,
-            "cached_input_tokens": -18.911007025761123,
-            "output_tokens": -6.358860934476085,
-            "shell_commands": -8.333333333333332,
-            "repository_search_commands": 40.0,
-            "total_file_reads": -33.33333333333333,
-            "repository_file_reads": -40.0,
-            "unique_files_inspected": -25.0,
-            "repeated_file_reads": -57.14285714285714,
-            "test_runs": -25.0,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": -13.333333333333334,
-            "time_until_first_edit_seconds": -15.132734879483719,
-            "time_until_first_test_seconds": 26.369271448727638,
-            "time_until_first_targeted_success_seconds": -15.008682554773934,
-            "searches_before_first_edit": 50.0,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": 0.0,
-            "tool_items_before_first_edit": -16.666666666666664,
-            "time_until_first_repository_search_seconds": 1.4981750895175094,
-            "time_until_first_file_read_seconds": -39.45017774379369
-          }
-        },
-        {
-          "repetition": 3,
-          "left": "B3",
-          "right": "V1-3",
-          "percentage_changes": {
-            "total_tokens": 6.718502377179081,
-            "tool_calls": 50.0,
-            "duration_seconds": -0.3867531264474331,
-            "post_first_success_tool_calls": 50.0,
-            "post_first_success_searches": -100.0,
-            "post_first_success_file_reads": -75.0,
-            "post_first_success_test_executions": 200.0,
-            "input_tokens": 6.819041280309792,
-            "cached_input_tokens": 20.149253731343283,
-            "output_tokens": 1.168939604787086,
-            "shell_commands": 50.0,
-            "repository_search_commands": -20.0,
-            "total_file_reads": -7.142857142857142,
-            "repository_file_reads": -14.285714285714285,
-            "unique_files_inspected": -11.11111111111111,
-            "repeated_file_reads": -20.0,
-            "test_runs": 150.0,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": 40.0,
-            "time_until_first_edit_seconds": 19.195940956208165,
-            "time_until_first_test_seconds": -33.302364627097134,
-            "time_until_first_targeted_success_seconds": 18.713168199054653,
-            "searches_before_first_edit": -11.11111111111111,
-            "unique_repository_files_before_first_edit": 0.0,
-            "unique_source_files_before_first_edit": 33.33333333333333,
-            "tool_items_before_first_edit": 75.0,
-            "time_until_first_repository_search_seconds": 7.31254835207744,
-            "time_until_first_file_read_seconds": -52.0701025600444
-          }
+    ],
+    "B -> V1": [
+      {
+        "left": "B1",
+        "right": "V1-1",
+        "percentage_changes": {
+          "total_tokens": -3.27774559635797,
+          "duration_seconds": 11.121642304505952,
+          "post_first_success_tool_calls": -30.76923076923077,
+          "post_first_success_searches": 100.0,
+          "post_first_success_file_reads": 150.0,
+          "post_first_success_test_executions": 50.0
         }
-      ],
-      "aggregate_percentage_changes": {
-        "total_tokens": {
-          "mean": -7.253956568179786,
-          "median": -12.096043861008901
-        },
-        "tool_calls": {
-          "mean": 6.976744186046512,
-          "median": 0.0
-        },
-        "duration_seconds": {
-          "mean": -0.5811083023935644,
-          "median": -3.0612858151659608
-        },
-        "post_first_success_tool_calls": {
-          "mean": -8.333333333333337,
-          "median": 0.0
-        },
-        "post_first_success_searches": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "post_first_success_file_reads": {
-          "mean": -33.33333333333333,
-          "median": -66.66666666666666
-        },
-        "post_first_success_test_executions": {
-          "mean": 59.999999999999986,
-          "median": 50.0
-        },
-        "input_tokens": {
-          "mean": -7.435923674838314,
-          "median": -12.168638734338852
-        },
-        "cached_input_tokens": {
-          "mean": -7.4444928167174576,
-          "median": -15.595238095238095
-        },
-        "output_tokens": {
-          "mean": 4.073210120222493,
-          "median": 0.4976499861763893
-        },
-        "shell_commands": {
-          "mean": 20.0,
-          "median": 20.0
-        },
-        "repository_search_commands": {
-          "mean": 23.8095238095238,
-          "median": 33.33333333333333
-        },
-        "total_file_reads": {
-          "mean": -7.3170731707317085,
-          "median": -7.142857142857142
-        },
-        "repository_file_reads": {
-          "mean": -14.634146341463417,
-          "median": -14.285714285714285
-        },
-        "unique_files_inspected": {
-          "mean": -12.000000000000009,
-          "median": 0.0
-        },
-        "repeated_file_reads": {
-          "mean": -18.75,
-          "median": -20.0
-        },
-        "test_runs": {
-          "mean": 44.444444444444436,
-          "median": 66.66666666666666
-        },
-        "files_modified": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "skill_loading_events": {
-          "mean": null,
-          "median": null
-        },
-        "tool_items_excluding_skill_loading": {
-          "mean": 0.0,
-          "median": -6.666666666666667
-        },
-        "time_until_first_edit_seconds": {
-          "mean": 8.160011314032014,
-          "median": 11.736474116750907
-        },
-        "time_until_first_test_seconds": {
-          "mean": -16.373225763852016,
-          "median": -26.89445440594317
-        },
-        "time_until_first_targeted_success_seconds": {
-          "mean": 7.519511198700685,
-          "median": 11.458336721972875
-        },
-        "searches_before_first_edit": {
-          "mean": 27.777777777777786,
-          "median": 60.0
-        },
-        "unique_repository_files_before_first_edit": {
-          "mean": -9.523809523809527,
-          "median": -14.285714285714285
-        },
-        "unique_source_files_before_first_edit": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "tool_items_before_first_edit": {
-          "mean": 38.46153846153847,
-          "median": 50.0
-        },
-        "time_until_first_repository_search_seconds": {
-          "mean": -0.47970542311775394,
-          "median": 4.9695242381443405
-        },
-        "time_until_first_file_read_seconds": {
-          "mean": -48.31479533455924,
-          "median": -52.0701025600444
+      },
+      {
+        "left": "B2",
+        "right": "V1-2",
+        "percentage_changes": {
+          "total_tokens": -21.97247866495547,
+          "duration_seconds": -13.292365941974548,
+          "post_first_success_tool_calls": 0.0,
+          "post_first_success_searches": 0.0,
+          "post_first_success_file_reads": -100.0,
+          "post_first_success_test_executions": 0.0
+        }
+      },
+      {
+        "left": "B3",
+        "right": "V1-3",
+        "percentage_changes": {
+          "total_tokens": 6.718502377179081,
+          "duration_seconds": -0.3867531264474331,
+          "post_first_success_tool_calls": 50.0,
+          "post_first_success_searches": -100.0,
+          "post_first_success_file_reads": -75.0,
+          "post_first_success_test_executions": 200.0
         }
       }
-    },
-    {
-      "left": "B",
-      "right": "V2",
-      "primary": false,
-      "paired": [
-        {
-          "repetition": 1,
-          "left": "B1",
-          "right": "V2-1",
-          "percentage_changes": {
-            "total_tokens": 4.918046161753788,
-            "tool_calls": -5.555555555555555,
-            "duration_seconds": 3.9140935450805205,
-            "post_first_success_tool_calls": -30.76923076923077,
-            "post_first_success_searches": 0.0,
-            "post_first_success_file_reads": -100.0,
-            "post_first_success_test_executions": 50.0,
-            "input_tokens": 4.776494390593776,
-            "cached_input_tokens": 5.0,
-            "output_tokens": 13.592479674796747,
-            "shell_commands": 30.0,
-            "repository_search_commands": 33.33333333333333,
-            "total_file_reads": -16.666666666666664,
-            "repository_file_reads": -25.0,
-            "unique_files_inspected": -25.0,
-            "repeated_file_reads": -25.0,
-            "test_runs": 66.66666666666666,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": -11.11111111111111,
-            "time_until_first_edit_seconds": 9.783889385043985,
-            "time_until_first_test_seconds": -42.95492133271965,
-            "time_until_first_targeted_success_seconds": 8.867590734320794,
-            "searches_before_first_edit": 40.0,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": -25.0,
-            "tool_items_before_first_edit": 100.0,
-            "time_until_first_repository_search_seconds": -1.43320619724208,
-            "time_until_first_file_read_seconds": -47.64846602025512
-          }
-        },
-        {
-          "repetition": 2,
-          "left": "B2",
-          "right": "V2-2",
-          "percentage_changes": {
-            "total_tokens": -23.886719734479993,
-            "tool_calls": -6.666666666666667,
-            "duration_seconds": -9.576753759935096,
-            "post_first_success_tool_calls": 14.285714285714285,
-            "post_first_success_searches": -100.0,
-            "post_first_success_file_reads": -66.66666666666666,
-            "post_first_success_test_executions": 0.0,
-            "input_tokens": -24.186368426847878,
-            "cached_input_tokens": -30.79625292740047,
-            "output_tokens": -2.8200165883328725,
-            "shell_commands": -8.333333333333332,
-            "repository_search_commands": 20.0,
-            "total_file_reads": -26.666666666666668,
-            "repository_file_reads": -33.33333333333333,
-            "unique_files_inspected": -25.0,
-            "repeated_file_reads": -42.857142857142854,
-            "test_runs": -25.0,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": -13.333333333333334,
-            "time_until_first_edit_seconds": -26.9306098029786,
-            "time_until_first_test_seconds": 8.945313668926481,
-            "time_until_first_targeted_success_seconds": -26.251653638553375,
-            "searches_before_first_edit": 50.0,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": 0.0,
-            "tool_items_before_first_edit": -33.33333333333333,
-            "time_until_first_repository_search_seconds": 2.3909565746313715,
-            "time_until_first_file_read_seconds": -38.922470421354
-          }
-        },
-        {
-          "repetition": 3,
-          "left": "B3",
-          "right": "V2-3",
-          "percentage_changes": {
-            "total_tokens": 7.591125198098257,
-            "tool_calls": 30.0,
-            "duration_seconds": 5.220781225876181,
-            "post_first_success_tool_calls": 25.0,
-            "post_first_success_searches": -100.0,
-            "post_first_success_file_reads": -100.0,
-            "post_first_success_test_executions": 100.0,
-            "input_tokens": 7.768483363334291,
-            "cached_input_tokens": 21.558872305140962,
-            "output_tokens": -2.1987197328138044,
-            "shell_commands": 25.0,
-            "repository_search_commands": -40.0,
-            "total_file_reads": -7.142857142857142,
-            "repository_file_reads": -14.285714285714285,
-            "unique_files_inspected": -33.33333333333333,
-            "repeated_file_reads": 20.0,
-            "test_runs": 100.0,
-            "files_modified": 0.0,
-            "skill_loading_events": null,
-            "tool_items_excluding_skill_loading": 20.0,
-            "time_until_first_edit_seconds": 21.559174712868483,
-            "time_until_first_test_seconds": -24.8057427117168,
-            "time_until_first_targeted_success_seconds": 21.22743030517274,
-            "searches_before_first_edit": -33.33333333333333,
-            "unique_repository_files_before_first_edit": -14.285714285714285,
-            "unique_source_files_before_first_edit": 0.0,
-            "tool_items_before_first_edit": 50.0,
-            "time_until_first_repository_search_seconds": 49.03892558150735,
-            "time_until_first_file_read_seconds": -33.090708243035934
-          }
+    ],
+    "B -> V2": [
+      {
+        "left": "B1",
+        "right": "V2-1",
+        "percentage_changes": {
+          "total_tokens": 4.918046161753788,
+          "duration_seconds": 3.9140935450805205,
+          "post_first_success_tool_calls": -30.76923076923077,
+          "post_first_success_searches": 0.0,
+          "post_first_success_file_reads": -100.0,
+          "post_first_success_test_executions": 50.0
         }
-      ],
-      "aggregate_percentage_changes": {
-        "total_tokens": {
-          "mean": -4.854411624941314,
-          "median": -11.377265050706132
-        },
-        "tool_calls": {
-          "mean": 2.325581395348829,
-          "median": -6.666666666666667
-        },
-        "duration_seconds": {
-          "mean": -0.10121257603287517,
-          "median": 2.3956909115494933
-        },
-        "post_first_success_tool_calls": {
-          "mean": -8.333333333333337,
-          "median": 14.285714285714285
-        },
-        "post_first_success_searches": {
-          "mean": -66.66666666666667,
-          "median": -100.0
-        },
-        "post_first_success_file_reads": {
-          "mean": -88.88888888888889,
-          "median": -100.0
-        },
-        "post_first_success_test_executions": {
-          "mean": 40.0,
-          "median": 0.0
-        },
-        "input_tokens": {
-          "mean": -4.983417913265805,
-          "median": -11.387965273919786
-        },
-        "cached_input_tokens": {
-          "mean": -3.961689159773608,
-          "median": -12.738095238095237
-        },
-        "output_tokens": {
-          "mean": 3.1760272743585145,
-          "median": -2.8200165883328725
-        },
-        "shell_commands": {
-          "mean": 13.33333333333334,
-          "median": 10.0
-        },
-        "repository_search_commands": {
-          "mean": -4.761904761904757,
-          "median": 0.0
-        },
-        "total_file_reads": {
-          "mean": -17.07317073170731,
-          "median": -21.428571428571427
-        },
-        "repository_file_reads": {
-          "mean": -24.390243902439014,
-          "median": -28.57142857142857
-        },
-        "unique_files_inspected": {
-          "mean": -28.000000000000004,
-          "median": -25.0
-        },
-        "repeated_file_reads": {
-          "mean": -18.75,
-          "median": -20.0
-        },
-        "test_runs": {
-          "mean": 33.33333333333333,
-          "median": 33.33333333333333
-        },
-        "files_modified": {
-          "mean": 0.0,
-          "median": 0.0
-        },
-        "skill_loading_events": {
-          "mean": null,
-          "median": null
-        },
-        "tool_items_excluding_skill_loading": {
-          "mean": -4.651162790697683,
-          "median": -13.333333333333334
-        },
-        "time_until_first_edit_seconds": {
-          "mean": 0.8691152464952661,
-          "median": 0.10637069014917944
-        },
-        "time_until_first_test_seconds": {
-          "mean": -22.141822494884096,
-          "median": -17.581527832797324
-        },
-        "time_until_first_targeted_success_seconds": {
-          "mean": 0.733282514186122,
-          "median": 0.5172690493049737
-        },
-        "searches_before_first_edit": {
-          "mean": 5.55555555555555,
-          "median": 20.0
-        },
-        "unique_repository_files_before_first_edit": {
-          "mean": -14.285714285714285,
-          "median": -14.285714285714285
-        },
-        "unique_source_files_before_first_edit": {
-          "mean": -10.000000000000004,
-          "median": 0.0
-        },
-        "tool_items_before_first_edit": {
-          "mean": 23.076923076923077,
-          "median": 50.0
-        },
-        "time_until_first_repository_search_seconds": {
-          "mean": 15.275056572392492,
-          "median": 18.826811809578505
-        },
-        "time_until_first_file_read_seconds": {
-          "mean": -40.075478992058166,
-          "median": -45.618697257660536
+      },
+      {
+        "left": "B2",
+        "right": "V2-2",
+        "percentage_changes": {
+          "total_tokens": -23.886719734479993,
+          "duration_seconds": -9.576753759935096,
+          "post_first_success_tool_calls": 14.285714285714285,
+          "post_first_success_searches": -100.0,
+          "post_first_success_file_reads": -66.66666666666666,
+          "post_first_success_test_executions": 0.0
+        }
+      },
+      {
+        "left": "B3",
+        "right": "V2-3",
+        "percentage_changes": {
+          "total_tokens": 7.591125198098257,
+          "duration_seconds": 5.220781225876181,
+          "post_first_success_tool_calls": 25.0,
+          "post_first_success_searches": -100.0,
+          "post_first_success_file_reads": -100.0,
+          "post_first_success_test_executions": 100.0
         }
       }
-    }
-  ],
+    ]
+  },
   "runs": [
     {
       "run_id": "B1",

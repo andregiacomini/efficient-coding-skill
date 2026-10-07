@@ -1,0 +1,207 @@
+{
+  "run_id": "V1-1",
+  "condition": "V1",
+  "configuration": {
+    "codex_version": "codex-cli 0.160.0",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "web_search": "disabled",
+    "prompt_sha256": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
+    "agent_timeout_seconds": 1800
+  },
+  "commit": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+  "runner_image": "sha256:d307634c1cc808d6f98d111060e5bef40a5f5c4cfeb80d05263fa9fc3decfb3c",
+  "workspace": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V1",
+  "prompt_path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/evals/EVAL-004-task.md",
+  "skill_invocation": true,
+  "skill_version": "0.1",
+  "skill_sha256": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+  "started_at": "2026-10-07T12:33:40.123585+00:00",
+  "instrumentation_revision_sha256": null,
+  "workspace_state_before": {
+    "B": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-B",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    },
+    "V1": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V1",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    },
+    "V2": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V2",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    }
+  },
+  "workspace_fingerprint": {
+    "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+    "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+    "tracked_file_count": 6648,
+    "support_files": {
+      "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+    },
+    "git_status_porcelain": "",
+    "unexpected_ignored_files": []
+  },
+  "codex_command": [
+    "docker",
+    "exec",
+    "-i",
+    "efficient-coding-eval-004-v1-1",
+    "codex",
+    "--no-daemon",
+    "-a",
+    "never",
+    "exec",
+    "--ignore-user-config",
+    "--json",
+    "--color",
+    "never",
+    "-C",
+    "/workspace",
+    "-m",
+    "gpt-6.1-sol",
+    "-s",
+    "danger-full-access",
+    "-c",
+    "model_reasoning_effort=\"medium\"",
+    "-c",
+    "web_search=\"disabled\"",
+    "-c",
+    "features.multi_agent=false",
+    "-c",
+    "developer_instructions=\"Use the $efficient-coding Skill v0.1 for this task.\"",
+    "-"
+  ],
+  "task_prompt_sha256": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
+  "codex_exit_code": 0,
+  "trace_completed": true,
+  "trace_errors": [],
+  "unknown_item_types": [],
+  "reported_turn_usage": [
+    {
+      "input_tokens": 232525,
+      "cached_input_tokens": 181504,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4578,
+      "reasoning_output_tokens": 860
+    }
+  ],
+  "commands": [
+    "/bin/bash -lc 'cat /root/.agents/skills/efficient-coding/SKILL.md'",
+    "/bin/bash -lc \"pwd; rg --files -g 'AGENTS.md' -g '*related_descriptors*' -g '*prefetch*' -g 'test*.py' | head -60\"",
+    "/bin/bash -lc \"git status --short; cat AGENTS.md; rg -n 'get_prefetch_queryset|queryset.filter|queryset._next_is_sticky' django/db/models/fields/related_descriptors.py; rg -n 'PrefetchLimit|class .*Tests|Window|RowNumber' tests/prefetch_related/tests.py; rg -n 'qualify|window|contains_over_clause' django/db/models/sql/compiler.py\"",
+    "/bin/bash -lc \"sed -n '1,85p' django/db/models/fields/related_descriptors.py; sed -n '695,752p' django/db/models/fields/related_descriptors.py; sed -n '1040,1105p' django/db/models/fields/related_descriptors.py; sed -n '1,70p' tests/prefetch_related/tests.py; sed -n '1900,2040p' tests/prefetch_related/tests.py; sed -n '1,160p' tests/prefetch_related/models.py; rg -n 'is_sliced|to_attr|_apply_rel_filters' django/db/models/query.py; rg -n 'get_order_by' django/db/models/sql/compiler.py\"",
+    "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related.tests.PrefetchLimitTests --settings=test_sqlite --parallel=1 --verbosity=2'",
+    "/bin/bash -lc \"sed -n '2510,2545p' django/db/models/query.py; sed -n '420,465p' django/db/models/sql/compiler.py; rg -n 'class Window|filterable|class GreaterThan|class LessThanOrEqual' django/db/models/expressions.py django/db/models/lookups.py; rg -n 'sliced|Prefetch\\\\(' docs/ref/models/querysets.txt | tail -15; rg -n 'Window\\\\(|GreaterThan\\\\(' django/db/models/fields tests/prefetch_related tests/expressions_window/tests.py | head -15\"",
+    "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related.tests.PrefetchLimitTests --settings=test_sqlite --parallel=1 --verbosity=2'",
+    "/bin/bash -lc \"sed -n '1250,1325p' docs/ref/models/querysets.txt; sed -n '3980,4018p' docs/ref/models/querysets.txt; sed -n '1628,1675p' django/db/models/expressions.py; sed -n '635,681p' django/db/models/fields/related_descriptors.py; sed -n '1020,1057p' django/db/models/fields/related_descriptors.py; rg -n 'def set_limits' django/db/models/sql/query.py; rg -n 'supports_over_clause|skipUnlessDBFeature|NotSupportedError' tests/prefetch_related/tests.py\"",
+    "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related.tests.PrefetchLimitTests prefetch_related.tests.PrefetchLimitNotSupportedTests --settings=test_sqlite --parallel=1 --verbosity=2'",
+    "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related --settings=test_sqlite --parallel=1 --verbosity=2'",
+    "/bin/bash -lc 'git diff --check; git diff --stat; git diff -- django/db/models/fields/related_descriptors.py django/db/models/query.py'",
+    "/bin/bash -lc '/opt/eval-003-venv/bin/python tests/runtests.py prefetch_related --settings=test_sqlite --parallel=1 --verbosity=2'",
+    "/bin/bash -lc 'git diff --check; git status --short'"
+  ],
+  "metric_limitations": [
+    "Explicit read/search/test command counts describe observable supported operations; physical reads and opaque programs remain unknown.",
+    "tool_calls counts unique structured tool items, not hidden calls or shell subcommands; unknown item types produce null.",
+    "shell_commands counts command_execution items, including compound command strings as one execution.",
+    "total_tokens = reported input_tokens + output_tokens; cached input is already included, not added twice."
+  ],
+  "benchmark_exit_code": 0,
+  "post_agent_harness_test_runs": 1,
+  "finished_at": "2026-10-07T12:36:42.233093+00:00",
+  "workspace_state_after": {
+    "B": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-B",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    },
+    "V1": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V1",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    },
+    "V2": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V2",
+      "exists": true,
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "git_status_short": "",
+      "clean": true,
+      "fingerprint": {
+        "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+        "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+        "tracked_file_count": 6648,
+        "support_files": {
+          "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+        },
+        "git_status_porcelain": "",
+        "unexpected_ignored_files": []
+      }
+    }
+  }
+}

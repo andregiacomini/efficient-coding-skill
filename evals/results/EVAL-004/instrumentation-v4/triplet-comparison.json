@@ -1,0 +1,111 @@
+{
+  "eval_id": "EVAL-004",
+  "status": "PARTIAL",
+  "run_ids": [
+    "B1",
+    "V1-1",
+    "V2-1"
+  ],
+  "primary_comparison": [
+    "V1-1",
+    "V2-1"
+  ],
+  "single_triplet_no_efficacy_conclusion": true,
+  "metrics": {
+    "B1": {
+      "success": true,
+      "benchmark_test_passed": true,
+      "total_tokens": 245138,
+      "input_tokens": 241202,
+      "cached_input_tokens": 215040,
+      "output_tokens": 3936,
+      "duration_seconds": 142.434,
+      "tool_calls": 18,
+      "repository_search_commands": null,
+      "total_file_reads": 12,
+      "unique_files_inspected": 8,
+      "repeated_file_reads": 4,
+      "test_runs": null,
+      "files_modified": 4,
+      "time_until_first_edit_seconds": 49.50289,
+      "time_until_first_targeted_success_seconds": 51.08789,
+      "searches_before_first_edit": null,
+      "unique_repository_files_before_first_edit": null,
+      "tool_items_before_first_edit": 3,
+      "post_first_success_tool_calls": 13,
+      "post_first_success_searches": null,
+      "post_first_success_file_reads": null,
+      "post_first_success_test_executions": null
+    },
+    "V1-1": {
+      "success": true,
+      "benchmark_test_passed": true,
+      "total_tokens": 237103,
+      "input_tokens": 232525,
+      "cached_input_tokens": 181504,
+      "output_tokens": 4578,
+      "duration_seconds": 158.275,
+      "tool_calls": 17,
+      "repository_search_commands": 11,
+      "total_file_reads": 15,
+      "unique_files_inspected": 8,
+      "repeated_file_reads": 6,
+      "test_runs": 5,
+      "files_modified": 4,
+      "time_until_first_edit_seconds": 60.660001,
+      "time_until_first_targeted_success_seconds": 61.67206,
+      "searches_before_first_edit": 9,
+      "unique_repository_files_before_first_edit": 6,
+      "tool_items_before_first_edit": 6,
+      "post_first_success_tool_calls": 9,
+      "post_first_success_searches": 2,
+      "post_first_success_file_reads": 5,
+      "post_first_success_test_executions": 3
+    },
+    "V2-1": {
+      "success": true,
+      "benchmark_test_passed": true,
+      "total_tokens": 257194,
+      "input_tokens": 252723,
+      "cached_input_tokens": 225792,
+      "output_tokens": 4471,
+      "duration_seconds": 148.009,
+      "tool_calls": 17,
+      "repository_search_commands": null,
+      "total_file_reads": 10,
+      "unique_files_inspected": 6,
+      "repeated_file_reads": 3,
+      "test_runs": null,
+      "files_modified": 4,
+      "time_until_first_edit_seconds": 54.346198,
+      "time_until_first_targeted_success_seconds": 55.618155,
+      "searches_before_first_edit": null,
+      "unique_repository_files_before_first_edit": null,
+      "tool_items_before_first_edit": 6,
+      "post_first_success_tool_calls": 9,
+      "post_first_success_searches": 1,
+      "post_first_success_file_reads": 0,
+      "post_first_success_test_executions": 3
+    }
+  },
+  "percentage_changes": {
+    "V1-1 -> V2-1": {
+      "total_tokens": 8.47353259975623,
+      "duration_seconds": -6.486179118622659,
+      "tool_calls": 0.0,
+      "post_first_success_tool_calls": 0.0
+    },
+    "B1 -> V1-1": {
+      "total_tokens": -3.2777455963579727,
+      "duration_seconds": 11.121642304505963,
+      "tool_calls": -5.555555555555558,
+      "post_first_success_tool_calls": -30.76923076923077
+    },
+    "B1 -> V2-1": {
+      "total_tokens": 4.918046161753797,
+      "duration_seconds": 3.9140935450805214,
+      "tool_calls": -5.555555555555558,
+      "post_first_success_tool_calls": -30.76923076923077
+    }
+  }
+}

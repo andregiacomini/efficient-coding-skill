@@ -1,3 +1,42 @@
+# Local benchmark checkouts, seeds, fixtures and captured workspace copies.
 /experiments/
+/evals/results/**/integrity-quarantine/
 
-/evals/__pycache__/
+# Python environments and caches.
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.tox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local credentials and agent configuration.
+.env
+.env.*
+!.env.example
+!.env.template
+/.codex/
+/.agents/
+/.aws/
+/.ssh/
+/auth.json
+/credentials.json
+
+# Runtime locks/sockets; keep recorded experiment logs and archives.
+**/.runner*.lock
+*.pid
+*.sock
+
+# OS and editor files.
+.DS_Store
+._*
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

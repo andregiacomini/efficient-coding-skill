@@ -1,0 +1,6 @@
+[
+  "django/db/models/fields/related_descriptors.py",
+  "django/db/models/query.py",
+  "docs/ref/models/querysets.txt",
+  "tests/prefetch_related/tests.py"
+]
