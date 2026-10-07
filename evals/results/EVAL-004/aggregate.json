@@ -1,0 +1,1186 @@
+{
+  "eval_id": "EVAL-004",
+  "status": "PREPARED",
+  "configuration": {
+    "codex_version": "codex-cli 0.160.0",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "web_search": "disabled",
+    "prompt_sha256": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
+    "agent_timeout_seconds": 1800
+  },
+  "primary_comparison": "V1 -> V2",
+  "primary_metrics": [
+    "success_rate",
+    "total_tokens",
+    "tool_calls",
+    "duration_seconds",
+    "post_first_success_tool_calls",
+    "post_first_success_searches",
+    "post_first_success_file_reads",
+    "post_first_success_test_executions"
+  ],
+  "conditions": {
+    "B": {
+      "runs": 0,
+      "successful_runs": 0,
+      "success_rate": null,
+      "metrics": {
+        "total_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        }
+      }
+    },
+    "V1": {
+      "runs": 0,
+      "successful_runs": 0,
+      "success_rate": null,
+      "metrics": {
+        "total_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        }
+      }
+    },
+    "V2": {
+      "runs": 0,
+      "successful_runs": 0,
+      "success_rate": null,
+      "metrics": {
+        "total_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "n_available": 0,
+          "mean": null,
+          "median": null
+        }
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "left": "V1",
+      "right": "V2",
+      "primary": true,
+      "paired": [
+        {
+          "repetition": 1,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 2,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 3,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        }
+      ],
+      "aggregate_percentage_changes": {
+        "total_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "mean": null,
+          "median": null
+        }
+      }
+    },
+    {
+      "left": "B",
+      "right": "V1",
+      "primary": false,
+      "paired": [
+        {
+          "repetition": 1,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 2,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 3,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        }
+      ],
+      "aggregate_percentage_changes": {
+        "total_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "mean": null,
+          "median": null
+        }
+      }
+    },
+    {
+      "left": "B",
+      "right": "V2",
+      "primary": false,
+      "paired": [
+        {
+          "repetition": 1,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 2,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        },
+        {
+          "repetition": 3,
+          "left": null,
+          "right": null,
+          "percentage_changes": {
+            "total_tokens": null,
+            "tool_calls": null,
+            "duration_seconds": null,
+            "post_first_success_tool_calls": null,
+            "post_first_success_searches": null,
+            "post_first_success_file_reads": null,
+            "post_first_success_test_executions": null,
+            "input_tokens": null,
+            "cached_input_tokens": null,
+            "output_tokens": null,
+            "shell_commands": null,
+            "repository_search_commands": null,
+            "total_file_reads": null,
+            "repository_file_reads": null,
+            "unique_files_inspected": null,
+            "repeated_file_reads": null,
+            "test_runs": null,
+            "files_modified": null,
+            "skill_loading_events": null,
+            "tool_items_excluding_skill_loading": null,
+            "time_until_first_edit_seconds": null,
+            "time_until_first_test_seconds": null,
+            "time_until_first_targeted_success_seconds": null,
+            "searches_before_first_edit": null,
+            "unique_repository_files_before_first_edit": null,
+            "unique_source_files_before_first_edit": null,
+            "tool_items_before_first_edit": null,
+            "time_until_first_repository_search_seconds": null,
+            "time_until_first_file_read_seconds": null
+          }
+        }
+      ],
+      "aggregate_percentage_changes": {
+        "total_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "duration_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_tool_calls": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_searches": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "post_first_success_test_executions": {
+          "mean": null,
+          "median": null
+        },
+        "input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "cached_input_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "output_tokens": {
+          "mean": null,
+          "median": null
+        },
+        "shell_commands": {
+          "mean": null,
+          "median": null
+        },
+        "repository_search_commands": {
+          "mean": null,
+          "median": null
+        },
+        "total_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "repository_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "unique_files_inspected": {
+          "mean": null,
+          "median": null
+        },
+        "repeated_file_reads": {
+          "mean": null,
+          "median": null
+        },
+        "test_runs": {
+          "mean": null,
+          "median": null
+        },
+        "files_modified": {
+          "mean": null,
+          "median": null
+        },
+        "skill_loading_events": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_excluding_skill_loading": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_edit_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_test_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_targeted_success_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "searches_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_repository_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "unique_source_files_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "tool_items_before_first_edit": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_repository_search_seconds": {
+          "mean": null,
+          "median": null
+        },
+        "time_until_first_file_read_seconds": {
+          "mean": null,
+          "median": null
+        }
+      }
+    }
+  ],
+  "runs": [],
+  "statistical_significance_claimed": false
+}

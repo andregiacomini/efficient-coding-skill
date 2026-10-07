@@ -1,0 +1,51 @@
+{
+  "eval_id": "EVAL-004",
+  "status": "PREPARED_AND_VERIFIED",
+  "solving_runs": 0,
+  "model_requests": 0,
+  "synthetic_tests_passed": 48,
+  "frozen_inputs_verified": true,
+  "historical_protected_files_verified": 167,
+  "historical_git_diff_empty": true,
+  "all_three_repository_archives_identical_to_eval_003": true,
+  "workspace_fingerprints": {
+    "B": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "V1": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "V2": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    }
+  },
+  "skill_visibility_verified": true,
+  "root_identity_preserved_after_report": true,
+  "runtime_and_model_controls_unchanged": true,
+  "trace_parser_unchanged": true,
+  "run_directories_absent": true,
+  "report_sha256": "4ea43eeb67fdba8b78b9c8060457e4c7be328c334cd069778624141742add56f",
+  "aggregate_sha256": "db5b340a069ad144623e0426cf206cc3f70c06594629d59685b7d394ef2947c6",
+  "frozen_manifest_sha256": "12a1a79a54b5c08777d15aa4de0d24b46c3661208b30fe0080fd78efc6d181a0"
+}

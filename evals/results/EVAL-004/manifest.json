@@ -1,0 +1,190 @@
+{
+  "eval_id": "EVAL-004",
+  "status": "PREPARED",
+  "prepared_at": "2026-10-07T11:50:57.254149+00:00",
+  "task_id": "django__django-15957",
+  "reuses_frozen_eval": "eval-003",
+  "eval_003_freeze_commit": "7ded60fa21159c4c381a517e13a9144e6ff03742",
+  "workspace_commit": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+  "sanitized_archive_sha256": "ea494d2f69cfe6a2409c5c714e2257e9b423800f80d25791652d696bcc1367d9",
+  "workspace_fingerprint": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+  "workspace_fingerprints": {
+    "B": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "V1": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    },
+    "V2": {
+      "sha256": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8",
+      "head": "7e9cb01fe632404d84e1da569ebd6fafa4e0aa9d",
+      "tracked_file_count": 6648,
+      "support_files": {
+        "AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036"
+      },
+      "git_status_porcelain": "",
+      "unexpected_ignored_files": []
+    }
+  },
+  "workspace_registration": {
+    "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-B": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-B",
+      "device": 16777234,
+      "inode": 302292581,
+      "fingerprint": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8"
+    },
+    "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V1": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V1",
+      "device": 16777234,
+      "inode": 302302570,
+      "fingerprint": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8"
+    },
+    "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V2": {
+      "path": "/Users/andregiacomini/Documents/GitHub/efficient-coding-skill/experiments/EVAL-004-V2",
+      "device": 16777234,
+      "inode": 302312496,
+      "fingerprint": "1c8165dad3aa453b8131bcd9478691f120ff3b220998dd976381d35d056911f8"
+    }
+  },
+  "configuration": {
+    "codex_version": "codex-cli 0.160.0",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "medium",
+    "sandbox": "danger-full-access",
+    "approval_policy": "never",
+    "web_search": "disabled",
+    "prompt_sha256": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
+    "agent_timeout_seconds": 1800
+  },
+  "conditions": {
+    "B": {
+      "skill_version": null,
+      "skill_path": null,
+      "skill_sha256": null,
+      "run_ids": [
+        "B1",
+        "B2",
+        "B3"
+      ]
+    },
+    "V1": {
+      "skill_version": "0.1",
+      "skill_path": "versions/v0.1/efficient-coding/SKILL.md",
+      "skill_sha256": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+      "run_ids": [
+        "V1-1",
+        "V1-2",
+        "V1-3"
+      ]
+    },
+    "V2": {
+      "skill_version": "0.2",
+      "skill_path": "versions/v0.2/efficient-coding/SKILL.md",
+      "skill_sha256": "736a6610b7f2d59b50dd99e4e62f42a87a9a0bf76a0e4484517d79f109178776",
+      "run_ids": [
+        "V2-1",
+        "V2-2",
+        "V2-3"
+      ]
+    }
+  },
+  "runner_image": "sha256:d307634c1cc808d6f98d111060e5bef40a5f5c4cfeb80d05263fa9fc3decfb3c",
+  "python_version": "3.10.16",
+  "test_command": [
+    "/opt/eval-003-venv/bin/python",
+    "tests/runtests.py",
+    "prefetch_related",
+    "--settings=test_sqlite",
+    "--parallel=1",
+    "--verbosity=2"
+  ],
+  "expected_test_count": 113,
+  "initial_result": {
+    "passing_tests": 109,
+    "expected_errors": 4,
+    "skipped_tests": 0,
+    "failure": "TypeError: Cannot filter a query once a slice has been taken."
+  },
+  "instrumentation_schema_version": 4,
+  "instrumentation_revision": "4.1",
+  "trace_parser_unchanged_from_eval_003": true,
+  "primary_comparison": "V1 -> V2",
+  "run_order": [
+    "B1",
+    "V1-1",
+    "V2-1",
+    "B2",
+    "V1-2",
+    "V2-2",
+    "B3",
+    "V1-3",
+    "V2-3"
+  ],
+  "primary_metrics": [
+    "success_rate",
+    "total_tokens",
+    "tool_calls",
+    "duration_seconds",
+    "post_first_success_tool_calls",
+    "post_first_success_searches",
+    "post_first_success_file_reads",
+    "post_first_success_test_executions"
+  ],
+  "first_success_definition": "Identical to EVAL-003 schema 4/revision 4.1: earliest completed structured test execution with a unittest count report and exactly one unambiguous ok for each of the four original regression IDs. Post-success items must start after its completion event; missing/unsupported evidence remains unavailable.",
+  "solver_mounts": "One own workspace; one condition Skill copied outside the repository, or none; no evaluator files, sibling repositories, traces or patches.",
+  "agent_runs": [],
+  "model_requests_during_preparation": 0,
+  "result": null,
+  "input_sha256": {
+    "evals/EVAL-004-config.json": "508d467c4c6cb65ebb13443efdc582ccff55d014fb0946409f0651d846d2a70b",
+    "evals/EVAL-004-task.md": "9c4b3148539451ca326ee780612d3d4a4297e3b49204fd100c8af60e80312097",
+    "versions/manifest.json": "24f99de41eb6224a509675281d82b474a7a2fa5b1e21b7f19d5c88e2d40f2e9c",
+    "evals/run-eval.py": "c183d58d2aae9e3123bac28a66e8a8ba9f4b69815385c27b4fd617712bba6649",
+    "evals/trace_analysis.py": "fede821d2947f999c5f5ed7fd126eca412f4a72cb8c98d83564b744ab3b62b2f",
+    "evals/INSTRUMENTATION.md": "300c2d4fbe4d91f212bae0655b183aa0f1c1303c2f4be7f787fc3fff7ae0f225",
+    "evals/setup-EVAL-003.py": "f87a06c5c26fc72ab276da6c9e7d44c62004b072ce54ea9831007fced8ebd800",
+    "evals/EVAL-003-runtime/Dockerfile": "97b6acb8b7bd3170b5fa830c234bd201775c68c60d648330026e576c6b02c46b",
+    "evals/EVAL-003-runtime/requirements.txt": "4e7f75027cdaf2a6a33fecc1c7eb301f21ed42a4fc70514f62998296f97288e0",
+    "evals/EVAL-003-runtime/AGENTS.md": "05aed1c3b021f4d4adeece148ebbd911bee01807620d2ff4e314ddd082157036",
+    "evals/preparation/EVAL-003/task-metadata.json": "2ca835bf4fe9e30d4d0fffcd2f45d71fdc0878a5a2e1f3d4172df74ea3866391",
+    "evals/preparation/EVAL-003/test.patch": "f76861bbba77def35d4bbaea7365c934e93b265ba60df10d0cd522cc0541b028",
+    "evals/preparation/EVAL-003/test-inventory.json": "059407bca01f0f56f848e5aef55db2f90bb8e0f2661420de80db1db159aeb794",
+    "evals/setup-EVAL-004.py": "d50750588df4c638785b1d7626db12a877280ae09a8ddc23bfbbcb50a6ffb7f8",
+    "evals/test_eval004.py": "46ad49f1916b981048e6492b3eaae2809f54c4bf8b46f9c8a703d91108512fcb",
+    "evals/test_run_eval.py": "60f2571f19c05af9562ba060f9a646377f38ea0a2224b444a66975756b4d884a",
+    "versions/v0.1/efficient-coding/SKILL.md": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+    "versions/v0.2/efficient-coding/SKILL.md": "736a6610b7f2d59b50dd99e4e62f42a87a9a0bf76a0e4484517d79f109178776"
+  },
+  "preparation_output_sha256": {
+    "evals/preparation/EVAL-004/workspace-registration.json": "99be24e320e8b21c8850fe235dc3bb6b4efe9d1702f88020eeee3844781c4faa",
+    "evals/preparation/EVAL-004/B-isolation.json": "50853d1c6f8d85ec6a155c94d1b5179ea687ddb91c0be9752b5354c754e1e3b3",
+    "evals/preparation/EVAL-004/V1-isolation.json": "7f02274b5a8018a2318b985c27a0577d408a250d5649cbc11e7875bd07b027ea",
+    "evals/preparation/EVAL-004/B-failure.txt": "8ab7fcff0ea46056703e09d224f18ae6bea940289af4d8437fbfd455af4d0a00",
+    "evals/preparation/EVAL-004/V2-isolation.json": "02ece95d3b5feea038797298a8e70e29a7c861c05eb5a9026a35bf88bc6a1889",
+    "evals/preparation/EVAL-004/workspace-fingerprints.json": "592af973bfab0a7aca9cf6f18f16898c8f1ba66ec1b5e17794555eb84b857b26",
+    "evals/preparation/EVAL-004/V2-failure.txt": "cad75685008e79cb7d09e677ae23711d02f62477ed6f6d4db4c77f0244f5a2a9",
+    "evals/preparation/EVAL-004/V1-failure.txt": "60e3ccc1b16894c3264c67b01112580e8e1ea4b8d8e4daffdb2378dcc7e7554c"
+  },
+  "limitations": [
+    "Local strict 113-test adapter, not full official SWE-bench Docker harness.",
+    "No statistical significance claim from three repetitions per condition.",
+    "Network is not air-gapped; known-solution access is prohibited; web search is disabled.",
+    "Lifecycle checkpoints detect state changes, not every transient external interference.",
+    "Post-success work is measured, not automatically classified as unnecessary.",
+    "Cross-evaluation full fingerprints differ because they also hash evaluator configuration; repository archives are identical."
+  ]
+}

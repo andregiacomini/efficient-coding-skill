@@ -46,6 +46,7 @@ EXPECTED_TEST_COUNT = 1
 SUPPORT_FILES = {}
 TEST_HASHES = {}
 OBJECT_INVENTORY_HASH = None
+CONDITIONS = None
 
 
 def frozen(eval_id):
@@ -58,6 +59,7 @@ def configure(eval_id):
     global EVAL_ID, RESULTS, SEED, FIXTURES, COMMIT, IMAGE, PROMPT, TEST_COMMAND
     global CONFIG, BENCHMARK_CONFIG, TEST_ROOTS, EXPECTED_HISTORY, EXPECTED_FAILURE
     global RESULT_MODE, EXPECTED_TEST_COUNT, SUPPORT_FILES, TEST_HASHES, OBJECT_INVENTORY_HASH
+    global CONDITIONS, ORDER
     if eval_id == 'EVAL-001':
         return
     if frozen(eval_id):
@@ -82,6 +84,10 @@ def configure(eval_id):
     SUPPORT_FILES = data['support_files']
     TEST_HASHES = data['transplanted_test_sha256']
     OBJECT_INVENTORY_HASH = data['git_object_inventory_sha256']
+    CONDITIONS = data.get('conditions')
+    ORDER = data.get('run_order', ['B1', 'S1', 'B2', 'S2', 'B3', 'S3'])
+    if eval_id == 'EVAL-004':
+        validate_conditions(CONDITIONS, ORDER)
 
 
 class InfrastructureError(RuntimeError):
@@ -127,6 +133,65 @@ def workspace_for(condition):
     return REPO / f'experiments/{EVAL_ID}-{condition}'
 
 
+def conditions():
+    return tuple(CONDITIONS) if EVAL_ID == 'EVAL-004' else ('baseline', 'skill')
+
+
+def validate_conditions(specs, order):
+    expected = {'B': None, 'V1': '0.1', 'V2': '0.2'}
+    if not isinstance(specs, dict) or tuple(specs) != tuple(expected):
+        raise InfrastructureError('Expected exactly B, V1 and V2 conditions')
+    wanted_order = [run for i in range(1, 4) for run in (f'B{i}', f'V1-{i}', f'V2-{i}')]
+    if order != wanted_order:
+        raise InfrastructureError('Unexpected three-condition run order')
+    for arm, version in expected.items():
+        spec = specs[arm]
+        if spec['skill_version'] != version:
+            raise InfrastructureError('Unexpected condition Skill version')
+        expected_path = f'versions/v{version}/efficient-coding/SKILL.md' if version else None
+        expected_runs = [f'B{i}' if arm == 'B' else f'{arm}-{i}' for i in range(1, 4)]
+        if spec['skill_path'] != expected_path or spec['run_ids'] != expected_runs:
+            raise InfrastructureError('Unexpected condition Skill path or run IDs')
+        if version is None and spec['skill_sha256'] is not None:
+            raise InfrastructureError('Baseline must have no Skill')
+        if version is not None and (not isinstance(spec['skill_sha256'], str) or len(spec['skill_sha256']) != 64):
+            raise InfrastructureError('Condition Skill hash missing')
+
+
+def condition_for_run(run_id):
+    if run_id not in ORDER:
+        raise InfrastructureError('Run ID is not part of the configured experiment')
+    if EVAL_ID == 'EVAL-004':
+        return next(arm for arm, spec in CONDITIONS.items() if run_id in spec['run_ids'])
+    return 'baseline' if run_id.startswith('B') else 'skill'
+
+
+def skill_spec(condition):
+    if condition not in conditions():
+        raise InfrastructureError('Unexpected condition')
+    if EVAL_ID == 'EVAL-004':
+        return CONDITIONS[condition]
+    return {'skill_path': str(SKILL) if condition == 'skill' else None,
+            'skill_version': CONFIG.get('skill_version') if condition == 'skill' else None,
+            'skill_sha256': CONFIG.get('skill_sha256') if condition == 'skill' else None}
+
+
+def skill_instructions(condition):
+    version = skill_spec(condition)['skill_version']
+    return f'Use the $efficient-coding Skill v{version} for this task.' if version else ''
+
+
+def planned_runs(run_id=None, all_runs=False, condition=None):
+    if condition is not None:
+        if EVAL_ID != 'EVAL-004' or condition not in conditions():
+            raise InfrastructureError('--condition is available only for EVAL-004: B, V1, V2')
+        return CONDITIONS[condition]['run_ids'][:]
+    if all_runs:
+        return ORDER[:]
+    condition_for_run(run_id)
+    return [run_id]
+
+
 def object_inventory_hash(repository, bare=False):
     prefix = ['git', '--git-dir', repository] if bare else ['git', '-C', repository]
     output = command(prefix + ['cat-file', '--batch-all-objects',
@@ -135,6 +200,12 @@ def object_inventory_hash(repository, bare=False):
 
 
 def verify_clean(workspace):
+    if EVAL_ID == 'EVAL-004':
+        store = workspace / '.git'
+        common = git(workspace, 'rev-parse', '--git-common-dir').decode().strip()
+        common_path = Path(common) if Path(common).is_absolute() else workspace / common
+        if not store.is_dir() or store.is_symlink() or common_path.resolve() != store.resolve():
+            raise InfrastructureError('Workspace must own its Git storage')
     if git(workspace, 'rev-parse', 'HEAD').decode().strip() != COMMIT:
         raise InfrastructureError('Unexpected workspace commit')
     if git(workspace, 'status', '--short'):
@@ -193,7 +264,7 @@ def registration_path():
 
 
 def safe_workspace(workspace):
-    if workspace not in [workspace_for('baseline'), workspace_for('skill')]:
+    if workspace not in [workspace_for(arm) for arm in conditions()]:
         raise InfrastructureError('Unsafe workspace target')
     if workspace.is_symlink() or workspace.parent.is_symlink():
         raise InfrastructureError('Workspace paths must not be symlinks')
@@ -221,7 +292,7 @@ def verify_identity(workspace):
 def workspace_checkpoint(stage):
     """Read workspace state only; write observations outside solver mounts."""
     states, failures = {}, []
-    for condition in ('baseline', 'skill'):
+    for condition in conditions():
         workspace = workspace_for(condition)
         state = {'path': str(workspace), 'exists': workspace.is_dir(),
                  'head': None, 'git_status_short': None, 'clean': None, 'fingerprint': None}
@@ -248,13 +319,13 @@ def prepare_workspaces():
     if registration_path().exists():
         workspace_checkpoint('preparation-existing')
         return
-    for condition in ('baseline', 'skill'):
+    for condition in conditions():
         workspace = workspace_for(condition)
         safe_workspace(workspace)
         if workspace.exists():
             raise InfrastructureError(f'Unregistered workspace retained for review: {workspace}')
     records = {}
-    for condition in ('baseline', 'skill'):
+    for condition in conditions():
         workspace = workspace_for(condition)
         lifecycle_log('create-workspace', workspace, 'explicit experiment preparation')
         command(['git', 'clone', '--no-local', SEED, workspace])
@@ -339,10 +410,25 @@ def verify_harness_inputs():
 
 
 def preflight(prepare=False):
-    for path, key in [(PROMPT, 'prompt_sha256'), (SKILL, 'skill_sha256')]:
-        if digest(path) != CONFIG[key]:
+    inputs = [(PROMPT, CONFIG['prompt_sha256'])]
+    if EVAL_ID == 'EVAL-004':
+        inputs += [(REPO / spec['skill_path'], spec['skill_sha256'])
+                   for spec in CONDITIONS.values() if spec['skill_path']]
+    else:
+        inputs.append((SKILL, CONFIG['skill_sha256']))
+    for path, expected in inputs:
+        if digest(path) != expected:
             raise InfrastructureError(f'Frozen input changed: {path}')
     verify_harness_inputs()
+    if EVAL_ID == 'EVAL-004':
+        if SEED.is_symlink() or (SEED/'objects/info/alternates').exists():
+            raise InfrastructureError('Seed must have independent storage')
+        if command(['git', '--git-dir', SEED, 'remote']).stdout:
+            raise InfrastructureError('Seed must have no remotes')
+        expected = json.loads(BENCHMARK_CONFIG.read_text())['sanitized_archive_sha256']
+        archive = command(['git', '--git-dir', SEED, 'archive', '--format=tar', COMMIT]).stdout
+        if hashlib.sha256(archive).hexdigest() != expected:
+            raise InfrastructureError('Sanitized repository snapshot changed')
     command(['docker', 'image', 'inspect', IMAGE])
     head = command(['git', '--git-dir', SEED, 'rev-parse', 'HEAD']).stdout.decode().strip()
     count = command(['git', '--git-dir', SEED, 'rev-list', '--count', 'HEAD']).stdout.decode().strip()
@@ -405,9 +491,17 @@ def make_container(name, workspace, condition, grader=False):
     version = command(['docker', 'exec', name, 'codex', '--version']).stdout.decode().strip()
     if version != CONFIG['codex_version']:
         raise InfrastructureError(f'Unexpected Codex version: {version}')
-    if condition == 'skill':
+    spec = skill_spec(condition)
+    if EVAL_ID == 'EVAL-004':
+        command(['docker', 'exec', name, 'bash', '-c',
+                 'test ! -e /root/.agents/skills && test ! -e /root/.codex/skills'])
+    if spec['skill_path']:
         command(['docker', 'exec', name, 'mkdir', '-p', '/root/.agents/skills/efficient-coding'])
-        command(['docker', 'cp', SKILL, f'{name}:/root/.agents/skills/efficient-coding/SKILL.md'])
+        command(['docker', 'cp', REPO / spec['skill_path'], f'{name}:/root/.agents/skills/efficient-coding/SKILL.md'])
+        if EVAL_ID == 'EVAL-004':
+            text = command(['docker', 'exec', name, 'cat', '/root/.agents/skills/efficient-coding/SKILL.md']).stdout
+            if hashlib.sha256(text).hexdigest() != spec['skill_sha256']:
+                raise InfrastructureError('Mounted condition Skill does not match frozen text')
     else:
         command(['docker', 'exec', name, 'bash', '-c',
                  'test ! -e /root/.agents/skills/efficient-coding'])
@@ -650,7 +744,109 @@ def capture(workspace, directory):
     return paths
 
 
+def report_three_conditions():
+    """Same instrumentation, three-arm summaries and preregistered comparisons."""
+    workspace_checkpoint('report-before')
+    verify_harness_inputs()
+    rows = []
+    for run in ORDER:
+        path = RESULTS / run / 'summary.json'
+        if not path.exists():
+            continue
+        row = json.loads(path.read_text())
+        arm = condition_for_run(run)
+        spec = skill_spec(arm)
+        if (row.get('run_id') != run or row.get('condition') != arm
+                or row.get('configuration') != CONFIG
+                or row.get('skill_version') != spec['skill_version']
+                or row.get('skill_sha256') != spec['skill_sha256']):
+            raise InfrastructureError('Refusing to aggregate changed run configuration or Skill')
+        rows.append(row)
+    primary = ['total_tokens', 'tool_calls', 'duration_seconds',
+               'post_first_success_tool_calls', 'post_first_success_searches',
+               'post_first_success_file_reads', 'post_first_success_test_executions']
+    secondary = ['input_tokens', 'cached_input_tokens', 'output_tokens',
+                 'shell_commands', 'repository_search_commands', 'total_file_reads',
+                 'repository_file_reads', 'unique_files_inspected', 'repeated_file_reads',
+                 'test_runs', 'files_modified', 'skill_loading_events',
+                 'tool_items_excluding_skill_loading', 'time_until_first_edit_seconds',
+                 'time_until_first_test_seconds', 'time_until_first_targeted_success_seconds',
+                 'searches_before_first_edit', 'unique_repository_files_before_first_edit',
+                 'unique_source_files_before_first_edit', 'tool_items_before_first_edit',
+                 'time_until_first_repository_search_seconds', 'time_until_first_file_read_seconds']
+    metrics = primary + secondary
+    groups, aggregates = {}, {}
+    for arm in conditions():
+        group = [r for r in rows if r['condition'] == arm and r.get('infrastructure_failure') is None]
+        groups[arm] = group
+        aggregate = {'runs': len(group), 'successful_runs': sum(r.get('success') is True for r in group),
+                     'success_rate': sum(r.get('success') is True for r in group)/len(group) if group else None,
+                     'metrics': {}}
+        for key in metrics:
+            values = [r[key] for r in group if isinstance(r.get(key), (int, float)) and not isinstance(r[key], bool)]
+            aggregate['metrics'][key] = {'n_available': len(values),
+                                        'mean': statistics.mean(values) if values else None,
+                                        'median': statistics.median(values) if values else None}
+        aggregates[arm] = aggregate
+    comparisons = []
+    for left, right in [('V1', 'V2'), ('B', 'V1'), ('B', 'V2')]:
+        paired = []
+        for i in range(1, 4):
+            a = next((r for r in groups[left] if r['run_id'].endswith(str(i))), None)
+            b = next((r for r in groups[right] if r['run_id'].endswith(str(i))), None)
+            differences = {}
+            for key in metrics:
+                x, y = a.get(key) if a else None, b.get(key) if b else None
+                differences[key] = (y-x)/x*100 if isinstance(x, (int, float)) and x > 0 and isinstance(y, (int, float)) else None
+            paired.append({'repetition': i, 'left': a['run_id'] if a else None,
+                           'right': b['run_id'] if b else None, 'percentage_changes': differences})
+        aggregate_changes = {}
+        for key in metrics:
+            aggregate_changes[key] = {}
+            for stat in ('mean', 'median'):
+                x = aggregates[left]['metrics'][key][stat]
+                y = aggregates[right]['metrics'][key][stat]
+                aggregate_changes[key][stat] = (y-x)/x*100 if x is not None and x > 0 and y is not None else None
+        comparisons.append({'left': left, 'right': right, 'primary': left == 'V1',
+                            'paired': paired, 'aggregate_percentage_changes': aggregate_changes})
+    aggregate = {'eval_id': EVAL_ID, 'status': 'COMPLETE' if len(rows) == 9 and all(r.get('infrastructure_failure') is None for r in rows) else 'PARTIAL' if rows else 'PREPARED',
+                 'configuration': CONFIG, 'primary_comparison': 'V1 -> V2',
+                 'primary_metrics': ['success_rate', *primary], 'conditions': aggregates,
+                 'comparisons': comparisons, 'runs': rows, 'statistical_significance_claimed': False}
+    def show(value):
+        return 'N/D' if value is None else (f'{value:.3f}' if isinstance(value, float) else str(value))
+    lines = [f'# {EVAL_ID} — {aggregate["status"]}', '',
+             'Primary comparison: v0.1 → v0.2. Baseline comparisons are secondary.',
+             'No statistical significance is claimed from three repetitions per condition.', '',
+             '| Run | Condition | Success | Total tokens | Duration (s) | Tool calls |',
+             '| --- | --- | --- | ---: | ---: | ---: |']
+    for row in rows:
+        lines.append('| ' + ' | '.join(show(row.get(k)) for k in ('run_id','condition','success','total_tokens','duration_seconds','tool_calls')) + ' |')
+    if not rows:
+        lines += ['', 'No solving-agent run has been executed. Result fields are unavailable.']
+    lines += ['', '| Aggregate | B | V1 | V2 |', '| --- | ---: | ---: | ---: |']
+    for key in ('runs', 'successful_runs', 'success_rate'):
+        lines.append('| '+key+' | '+' | '.join(show(aggregates[a][key]) for a in conditions())+' |')
+    for key in metrics:
+        for stat in ('mean', 'median'):
+            lines.append('| '+stat+' '+key+' | '+' | '.join(show(aggregates[a]['metrics'][key][stat]) for a in conditions())+' |')
+    for comparison in comparisons:
+        lines += ['', '## '+comparison['left']+' → '+comparison['right']+(' (primary)' if comparison['primary'] else ''), '',
+                  '| Repetition | Left run | Right run | Total tokens change (%) |', '| --- | --- | --- | ---: |']
+        for pair in comparison['paired']:
+            lines.append('| '+' | '.join(show(v) for v in (pair['repetition'],pair['left'],pair['right'],pair['percentage_changes']['total_tokens']))+' |')
+    lines += ['', 'First success and post-success counts retain EVAL-003 definitions. Missing values remain N/D;',
+              'available-value counts are recorded in aggregate.json. Unknown operations are never inferred from prose.',
+              'Infrastructure failures are excluded from aggregates; unsuccessful benchmark runs remain included.',
+              'Additional validation after targeted success is not automatically unnecessary work.', '']
+    save_json(RESULTS / 'aggregate.json', aggregate)
+    save(RESULTS / 'report.md', '\n'.join(lines))
+    workspace_checkpoint('report-after')
+
+
 def report():
+    if EVAL_ID == 'EVAL-004':
+        return report_three_conditions()
     workspace_checkpoint('report-before')
     RESULTS.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -714,7 +910,8 @@ def report():
 
 
 def run_one(run_id):
-    condition = 'baseline' if run_id.startswith('B') else 'skill'
+    condition = condition_for_run(run_id)
+    spec = skill_spec(condition)
     workspace = workspace_for(condition)
     directory = RESULTS / run_id
     directory.mkdir(parents=True, exist_ok=True)
@@ -723,7 +920,8 @@ def run_one(run_id):
     name = f'efficient-coding-{EVAL_ID.lower()}-{run_id.lower()}'
     metadata = {'run_id': run_id, 'condition': condition, 'configuration': CONFIG,
                 'commit': COMMIT, 'runner_image': IMAGE, 'workspace': str(workspace),
-                'prompt_path': str(PROMPT), 'skill_invocation': condition == 'skill',
+                'prompt_path': str(PROMPT), 'skill_invocation': bool(spec['skill_path']),
+                'skill_version': spec['skill_version'], 'skill_sha256': spec['skill_sha256'],
                 'started_at': datetime.now(timezone.utc).isoformat(),
                 'instrumentation_revision_sha256': digest(REPO / f'evals/{EVAL_ID}-instrumentation-v4.json') if (REPO / f'evals/{EVAL_ID}-instrumentation-v4.json').exists() else None}
     summary = {'run_id': run_id, 'condition': condition, 'model': CONFIG['model'],
@@ -732,7 +930,8 @@ def run_one(run_id):
                'duration_seconds': None, 'tool_calls': None, 'shell_commands': None,
                'files_inspected': None, 'files_modified': None, 'test_runs': None,
                'infrastructure_failure': None, 'configuration': CONFIG,
-               'skill_invocation_requested': condition == 'skill'}
+               'skill_invocation_requested': bool(spec['skill_path']),
+               'skill_version': spec['skill_version'], 'skill_sha256': spec['skill_sha256']}
     prepared, saved = False, False
     save_json(directory / 'metadata.json', metadata)
     try:
@@ -751,8 +950,7 @@ def run_one(run_id):
         verify_clean(workspace)
         workspace_checkpoint('agent-before:' + run_id)
         metadata['workspace_fingerprint'] = workspace_fingerprint(workspace)
-        instructions = ('Use the $efficient-coding Skill v0.1 for this task.'
-                        if condition == 'skill' else '')
+        instructions = skill_instructions(condition)
         args = ['docker', 'exec', '-i', name, 'codex', '--no-daemon', '-a', CONFIG['approval_policy'],
                 'exec', '--ignore-user-config', '--json', '--color', 'never',
                 '-C', '/workspace', '-m', CONFIG['model'], '-s', CONFIG['sandbox'],
@@ -843,7 +1041,7 @@ def check_only():
     workspace_checkpoint('check-before')
     preflight()
     fingerprints = {}
-    for condition in ('baseline', 'skill'):
+    for condition in conditions():
         workspace = workspace_for(condition)
         name = f'efficient-coding-{EVAL_ID.lower()}-check-{condition}'
         remove_container(f'{EVAL_ID}-{condition}')
@@ -858,6 +1056,24 @@ def check_only():
             verify_initial_failure(output)
             verify_clean(workspace)
             fingerprints[condition] = workspace_fingerprint(workspace)
+            if EVAL_ID == 'EVAL-004':
+                spec = skill_spec(condition)
+                runtime = command(['docker', 'exec', name, 'python', '-c',
+                                   'import platform; print(platform.python_version())']).stdout.decode().strip()
+                if runtime != json.loads(BENCHMARK_CONFIG.read_text())['python_version']:
+                    raise InfrastructureError('Unexpected Python runtime')
+                mounts = json.loads(command(['docker', 'inspect', name]).stdout)[0]['Mounts']
+                skill_files = command(['docker', 'exec', name, 'bash', '-c',
+                    'if test -d /root/.agents/skills; then find /root/.agents/skills -type f; fi']).stdout.decode().splitlines()
+                expected_skills = ['/root/.agents/skills/efficient-coding/SKILL.md'] if spec['skill_path'] else []
+                if skill_files != expected_skills:
+                    raise InfrastructureError('Unexpected Skill visibility in condition container')
+                save_json(REPO / f'evals/preparation/{EVAL_ID}/{condition}-isolation.json',
+                          {'condition': condition, 'mounts': mounts, 'visible_skill_files': skill_files,
+                           'skill_version': spec['skill_version'], 'skill_sha256': spec['skill_sha256'],
+                           'developer_instructions': skill_instructions(condition),
+                           'codex_version': CONFIG['codex_version'], 'python_version': runtime,
+                           'model_requests': 0, 'workspace_fingerprint': fingerprints[condition]['sha256']})
             if EVAL_ID != 'EVAL-001':
                 directory = REPO / f'evals/preparation/{EVAL_ID}'
                 failure_path = directory / f'{condition}-failure.txt'
@@ -869,27 +1085,28 @@ def check_only():
         finally:
             remove_container(name)
             workspace_checkpoint('check-condition-after:' + condition)
-    if fingerprints['baseline']['sha256'] != fingerprints['skill']['sha256']:
+    if len({entry['sha256'] for entry in fingerprints.values()}) != 1:
         raise InfrastructureError('Baseline/treatment starting fingerprints differ')
     if EVAL_ID != 'EVAL-001':
         save_json(REPO / f'evals/preparation/{EVAL_ID}/workspace-fingerprints.json', fingerprints)
-    print('Equivalent starting fingerprint: ' + fingerprints['baseline']['sha256'])
+    print('Equivalent starting fingerprint: ' + next(iter(fingerprints.values()))['sha256'])
     workspace_checkpoint('check-after')
     print('Infrastructure check complete. No Codex task or model request was made.')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--eval', default='EVAL-001', choices=['EVAL-001', 'EVAL-002', 'EVAL-003'])
-    parser.add_argument('run_id', nargs='?', choices=ORDER)
+    parser.add_argument('--eval', default='EVAL-001', choices=['EVAL-001', 'EVAL-002', 'EVAL-003', 'EVAL-004'])
+    parser.add_argument('run_id', nargs='?')
+    parser.add_argument('--condition', choices=['B', 'V1', 'V2'], help='Run one complete EVAL-004 condition')
     parser.add_argument('--prepare', action='store_true', help='Explicitly create/register workspaces without an agent request')
     parser.add_argument('--all', action='store_true')
-    parser.add_argument('--check', action='store_true', help='Reset/verify both arms without starting an agent')
+    parser.add_argument('--check', action='store_true', help='Verify prepared arms without starting an agent')
     parser.add_argument('--reanalyze', action='store_true', help='Reparse existing raw traces; no agent execution')
     parser.add_argument('--report', action='store_true', help='Regenerate report from saved summaries only')
     args = parser.parse_args()
-    if sum([bool(args.run_id), args.all, args.check, args.report, args.reanalyze, args.prepare]) != 1:
-        parser.error('Choose one run ID, --all, --check, --report, --prepare, or --reanalyze')
+    if sum([bool(args.run_id), args.all, args.check, args.report, args.reanalyze, args.prepare, bool(args.condition)]) != 1:
+        parser.error('Choose one run ID, --all, --check, --report, --prepare, --condition, or --reanalyze')
     if frozen(args.eval):
         if args.report:
             print((REPO / f'evals/results/{args.eval}/report.md').read_text(), end='')
@@ -897,6 +1114,7 @@ def main():
         parser.error(f'{args.eval} is frozen. Historical workspaces/artifacts cannot be changed. Use its tag in a separate checkout.')
     try:
         configure(args.eval)
+        order = planned_runs(args.run_id, args.all, args.condition) if (args.run_id or args.all or args.condition) else []
     except (OSError, KeyError, ValueError, InfrastructureError) as error:
         parser.error(str(error))
     RESULTS.mkdir(parents=True, exist_ok=True)
@@ -918,10 +1136,10 @@ def main():
         elif args.check:
             check_only()
         else:
-            order = ORDER if args.all else [args.run_id]
             print(json.dumps({'codex_version': CONFIG['codex_version'], 'model': CONFIG['model'],
                               'reasoning_effort': CONFIG['reasoning_effort'], 'commit': COMMIT,
-                              'prompt_path': str(PROMPT), 'skill_version': CONFIG['skill_version'],
+                              'prompt_path': str(PROMPT),
+                              'skill_versions': {arm: skill_spec(arm)['skill_version'] for arm in conditions()},
                               'run_order': order}, indent=2), flush=True)
             for run_id in order:
                 if not run_one(run_id):

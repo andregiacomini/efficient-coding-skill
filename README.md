@@ -27,6 +27,7 @@ The Skill is in [SKILL.md](SKILL.md). Record the first comparison in
 | [EVAL-001](evals/EVAL-001.md) | Localized debugging | v0.1 | 6 | Inconclusive |
 | [EVAL-002](evals/EVAL-002.md) | Broader debugging / retry-history behavior | v0.1 | 6 | Positive signal, inconclusive |
 | [EVAL-003](evals/EVAL-003.md) | Repository navigation / sliced relationship prefetch | v0.1 | 6 | NEGATIVE EFFICIENCY RESULT FOR v0.1 |
+| [EVAL-004](evals/EVAL-004.md) | Same frozen EVAL-003 task; completion checkpoint | baseline / v0.1 / v0.2 | 0 (9 planned) | Prepared; not run |
 
 EVAL-001 is frozen. All six runs passed its benchmark test, but no reliable
 resource-efficiency improvement was demonstrated. See its documentation for
@@ -38,7 +39,7 @@ searches were lower in every Skill pair; mean and median tokens were lower by
 localized observed trajectory, narrower treatment validation and an environment
 persistence issue prevent causal or general efficiency claims. See the
 [report](evals/results/EVAL-002/report.md) and
-[frozen manifest](evals/results/EVAL-002/manifest.json). The Skill remains v0.1.
+[frozen manifest](evals/results/EVAL-002/manifest.json). The frozen runs used v0.1.
 
 EVAL-003 is complete and frozen at `eval-003`: both conditions passed 3/3 on the Django task spanning
 relationship prefetching, query limits and ordering. Treatment tokens were higher
@@ -50,3 +51,10 @@ roots and frozen state. Mean tokens increased **52.98%**, median **52.79%**;
 paired increases were **110.61%, 38.94%, 18.00%**. Correctness was preserved.
 The [frozen manifest](evals/results/EVAL-003/manifest.json) records hashes.
 Additional validation is not automatically unnecessary work.
+
+The current Skill is experimental **v0.2**: only a concise completion checkpoint
+was added. It preserves necessary validation and stops after sufficient evidence
+for the task's success criteria. See the [exact diff and hypothesis](versions/v0.2/README.md).
+[Frozen version copies/hashes](versions/manifest.json) and Git tags preserve v0.1.
+EVAL-004 prepares fresh baseline/v0.1/v0.2 comparisons on the same Django snapshot,
+with identical controls and instrumentation; no new solving-agent runs have been made.
