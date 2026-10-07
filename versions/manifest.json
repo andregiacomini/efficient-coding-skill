@@ -1,0 +1,16 @@
+{
+  "v0.1": {
+    "path": "versions/v0.1/efficient-coding/SKILL.md",
+    "sha256": "f149e53c49360da6eebcd78c35b6450032d4ea9beba450a2955a5ea91925d8c2",
+    "bytes": 1776,
+    "words": 246,
+    "git_tag": "v0.1"
+  },
+  "v0.2": {
+    "path": "versions/v0.2/efficient-coding/SKILL.md",
+    "sha256": "736a6610b7f2d59b50dd99e4e62f42a87a9a0bf76a0e4484517d79f109178776",
+    "bytes": 2143,
+    "words": 294,
+    "git_tag": "v0.2"
+  }
+}

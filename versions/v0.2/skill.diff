@@ -1,0 +1,14 @@
+--- v0.1/SKILL.md
++++ v0.2/SKILL.md
+@@ -46,3 +46,11 @@
+ Never skip necessary investigation, implementation, or validation merely to reduce tokens or tool calls.
+ 
+ Efficiency means eliminating unnecessary work, not incomplete work.
++
++## 7. Check completion
++
++After the focused change passes targeted validation, identify remaining correctness
++risks. Validate risks materially affected by the change and complete required
++repository checks, including necessary integration tests. Ensure later edits have
++not invalidated passing evidence. Stop when the task's success criteria have
++sufficient evidence.
