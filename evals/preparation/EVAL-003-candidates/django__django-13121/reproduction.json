@@ -1,0 +1,34 @@
+{
+  "instance_id": "django__django-13121",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "eval003-candidate-13121",
+    "-v",
+    "/private/tmp/efficient-coding-EVAL-003-preparation/django__django-13121:/workspace",
+    "-w",
+    "/workspace",
+    "-e",
+    "PYTHONPATH=/workspace:/workspace/tests",
+    "-e",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "-e",
+    "PYTHONHASHSEED=0",
+    "sha256:d307634c1cc808d6f98d111060e5bef40a5f5c4cfeb80d05263fa9fc3decfb3c",
+    "/opt/eval-003-venv/bin/python",
+    "tests/runtests.py",
+    "expressions",
+    "backends.base.test_operations",
+    "--settings=test_sqlite",
+    "--parallel=1",
+    "--verbosity=2"
+  ],
+  "exit_code": 1,
+  "duration_seconds": 1.801,
+  "test_summaries": [
+    "Ran 179 tests in 0.179s",
+    "FAILED (errors=1, skipped=4)"
+  ]
+}

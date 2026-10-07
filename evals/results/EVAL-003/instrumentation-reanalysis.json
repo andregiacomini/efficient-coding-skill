@@ -1,0 +1,93 @@
+{
+  "schema_version": 4,
+  "tests_passed": 40,
+  "runs": {
+    "B1": {
+      "changes": {
+        "unique_repository_files_before_first_edit": {
+          "v3": null,
+          "v4": 5
+        },
+        "time_until_first_targeted_success_seconds": {
+          "v3": null,
+          "v4": 45.610037
+        },
+        "post_first_success_tool_calls": {
+          "v3": null,
+          "v4": 6
+        },
+        "post_first_success_searches": {
+          "v3": null,
+          "v4": 2
+        },
+        "post_first_success_file_reads": {
+          "v3": null,
+          "v4": 2
+        },
+        "post_first_success_test_executions": {
+          "v3": null,
+          "v4": 1
+        }
+      },
+      "native_outcome_unchanged": true,
+      "raw_artifacts_unchanged": true
+    },
+    "S1": {
+      "changes": {
+        "repository_search_commands": {
+          "v3": null,
+          "v4": 8
+        },
+        "test_runs": {
+          "v3": null,
+          "v4": 7
+        },
+        "total_file_reads": {
+          "v3": 15,
+          "v4": 17
+        },
+        "repeated_file_reads": {
+          "v3": 5,
+          "v4": 7
+        },
+        "searches_before_first_edit": {
+          "v3": null,
+          "v4": 6
+        },
+        "unique_source_files_before_first_edit": {
+          "v3": null,
+          "v4": 3
+        },
+        "unique_repository_files_before_first_edit": {
+          "v3": null,
+          "v4": 7
+        },
+        "time_until_first_targeted_success_seconds": {
+          "v3": null,
+          "v4": 35.392084
+        },
+        "post_first_success_tool_calls": {
+          "v3": null,
+          "v4": 12
+        },
+        "post_first_success_searches": {
+          "v3": null,
+          "v4": 2
+        },
+        "post_first_success_file_reads": {
+          "v3": null,
+          "v4": 6
+        },
+        "post_first_success_test_executions": {
+          "v3": null,
+          "v4": 5
+        }
+      },
+      "native_outcome_unchanged": true,
+      "raw_artifacts_unchanged": true
+    }
+  },
+  "interpretation": "S1 earlier initial edit/test/targeted pass and more subsequent tool/read/test activity remains descriptive; post-targeted-success search counts are equal in this pair (2 each). One pair does not establish Skill effectiveness.",
+  "test_count_scope": "Recognized invocation attempts; S1 has five direct test commands and two inline Python attempts, one failing before test cases ran.",
+  "first_success_is_not_task_completion": true
+}

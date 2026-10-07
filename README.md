@@ -26,6 +26,7 @@ The Skill is in [SKILL.md](SKILL.md). Record the first comparison in
 | --- | --- | --- | --- | --- |
 | [EVAL-001](evals/EVAL-001.md) | Localized debugging | v0.1 | 6 | Inconclusive |
 | [EVAL-002](evals/EVAL-002.md) | Broader debugging / retry-history behavior | v0.1 | 6 | Positive signal, inconclusive |
+| [EVAL-003](evals/EVAL-003.md) | Repository navigation / sliced relationship prefetch | v0.1 | 6 | NEGATIVE EFFICIENCY RESULT FOR v0.1 |
 
 EVAL-001 is frozen. All six runs passed its benchmark test, but no reliable
 resource-efficiency improvement was demonstrated. See its documentation for
@@ -38,3 +39,14 @@ localized observed trajectory, narrower treatment validation and an environment
 persistence issue prevent causal or general efficiency claims. See the
 [report](evals/results/EVAL-002/report.md) and
 [frozen manifest](evals/results/EVAL-002/manifest.json). The Skill remains v0.1.
+
+EVAL-003 is complete and frozen at `eval-003`: both conditions passed 3/3 on the Django task spanning
+relationship prefetching, query limits and ordering. Treatment tokens were higher
+in all pairs; the earlier successful convergence seen in S1 did not repeat in
+S2/S3. These task-specific observations do not establish general effectiveness.
+See the [complete analysis](evals/results/EVAL-003/analysis.md) and
+[lifecycle protections](evals/WORKSPACE-LIFECYCLE.md). Workspaces retain their
+roots and frozen state. Mean tokens increased **52.98%**, median **52.79%**;
+paired increases were **110.61%, 38.94%, 18.00%**. Correctness was preserved.
+The [frozen manifest](evals/results/EVAL-003/manifest.json) records hashes.
+Additional validation is not automatically unnecessary work.

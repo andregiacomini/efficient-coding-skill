@@ -321,28 +321,15 @@ def remove_container(name):
         command(['docker', 'rm', '-f', name])
 
 
-def verify_harness_inputs():
-    if BENCHMARK_CONFIG:
-        data = json.loads(BENCHMARK_CONFIG.read_text())
-        overlay_path=REPO / f'evals/{EVAL_ID}-instrumentation-v4.json'
-        overlay=json.loads(overlay_path.read_text()) if overlay_path.exists() else None
-        allowed={'evals/run-eval.py','evals/trace_analysis.py','evals/INSTRUMENTATION.md'}
-        if overlay:
-            if (overlay.get('base_config_sha256')!=digest(BENCHMARK_CONFIG)
-                    or set(overlay.get('instrumentation_sha256',{}))!=allowed
-                    or overlay.get('frozen_original_sha256')!={n:data['harness_input_sha256'][n] for n in allowed}):
-                raise InfrastructureError('Invalid instrumentation-only revision overlay')
-        for name, expected in data.get('harness_input_sha256', {}).items():
-            revision=overlay['instrumentation_sha256'].get(name,expected) if overlay else expected
-            if digest(REPO / name) != revision:
-                raise InfrastructureError(f'Frozen harness input changed: {name}')
-
-
 def preflight(prepare=False):
     for path, key in [(PROMPT, 'prompt_sha256'), (SKILL, 'skill_sha256')]:
         if digest(path) != CONFIG[key]:
             raise InfrastructureError(f'Frozen input changed: {path}')
-    verify_harness_inputs()
+    if BENCHMARK_CONFIG:
+        data = json.loads(BENCHMARK_CONFIG.read_text())
+        for name, expected in data.get('harness_input_sha256', {}).items():
+            if digest(REPO / name) != expected:
+                raise InfrastructureError(f'Frozen harness input changed: {name}')
     command(['docker', 'image', 'inspect', IMAGE])
     head = command(['git', '--git-dir', SEED, 'rev-parse', 'HEAD']).stdout.decode().strip()
     count = command(['git', '--git-dir', SEED, 'rev-list', '--count', 'HEAD']).stdout.decode().strip()
@@ -505,7 +492,7 @@ def parse_trace(path):
             errors.append(f'Invalid JSONL line {number}')
     turns = [e for e in events if e.get('type') == 'turn.completed']
     ended = bool(turns) and not any(e.get('type') in ('error', 'turn.failed') for e in events)
-    first_lines, completion_by_id = {}, {}
+    first_lines = {}
     for line_number, e in zip(event_lines, events):
         if e.get('type') in ('item.started', 'item.updated', 'item.completed'):
             item = e.get('item', {})
@@ -514,7 +501,6 @@ def parse_trace(path):
             else:
                 first_lines.setdefault(item['id'], line_number)
                 items[item['id']] = item
-                if e.get('type')=='item.completed': completion_by_id[item['id']]=line_number
     commands = [i for i in items.values() if i.get('type') == 'command_execution']
     known_tools = {'command_execution', 'file_change', 'mcp_tool_call', 'web_search',
                    'collab_tool_call', 'image_view', 'todo_list', 'file_read', 'read_file'}
@@ -548,17 +534,10 @@ def parse_trace(path):
     observable_items = [(first_lines[key], item) for key, item in items.items()
                         if item.get('type') in known_tools or item.get('type') in unknown]
     analysis_config = json.loads(BENCHMARK_CONFIG.read_text()) if BENCHMARK_CONFIG else {}
-    import re
-    regression_ids=[]
-    for target in analysis_config.get('official_FAIL_TO_PASS',[]):
-        match=re.fullmatch(r'(test\w+) \(([\w.]+)\)',target)
-        if match: regression_ids.append(match[2]+'.'+match[1])
     action_metrics, trajectory = analyze_actions(observable_items, timing_by_line,
-        source_roots=analysis_config.get('source_roots'), test_entrypoints=analysis_config.get('test_entrypoints'),
-        regression_test_ids=regression_ids,completion_by_id=completion_by_id)
+        source_roots=analysis_config.get('source_roots'), test_entrypoints=analysis_config.get('test_entrypoints'))
     metrics.update({key: value if complete else None for key, value in action_metrics.items()})
     metrics['total_tool_calls'] = metrics['tool_calls']
-    metrics['analysis_schema_version'] = trajectory['schema_version']
     # Comprehensive filesystem reads remain unknown; explicit requests are separately scoped.
     metrics['files_inspected'] = None
     return metrics, {
@@ -724,8 +703,7 @@ def run_one(run_id):
     metadata = {'run_id': run_id, 'condition': condition, 'configuration': CONFIG,
                 'commit': COMMIT, 'runner_image': IMAGE, 'workspace': str(workspace),
                 'prompt_path': str(PROMPT), 'skill_invocation': condition == 'skill',
-                'started_at': datetime.now(timezone.utc).isoformat(),
-                'instrumentation_revision_sha256': digest(REPO / f'evals/{EVAL_ID}-instrumentation-v4.json') if (REPO / f'evals/{EVAL_ID}-instrumentation-v4.json').exists() else None}
+                'started_at': datetime.now(timezone.utc).isoformat()}
     summary = {'run_id': run_id, 'condition': condition, 'model': CONFIG['model'],
                'commit': COMMIT, 'success': None, 'benchmark_test_passed': None,
                'input_tokens': None, 'output_tokens': None, 'total_tokens': None,

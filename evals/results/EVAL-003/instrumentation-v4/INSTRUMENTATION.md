@@ -190,13 +190,3 @@ opaque operations in that phase make complete operation metrics null while
 recognized observations remain separately available. Missing reliable success
 leaves all post-success metrics null. This boundary uses observable ordering,
 not an assertion that the whole task was solved at that moment.
-
-
-Schema v4 analysis revision 4.1 adds literal `python -m black --check` as
-format validation: it is not a test, repository search or explicit source
-inspection request. This whitelist extension was prompted by the sole opaque
-command in S2/S3 after execution; all six traces are reprocessed uniformly.
-This is a post-run measurement revision, not a change to any agent input.
-The original runtime v4 parser/overlay is preserved in
-`results/EVAL-003/instrumentation-v4/`; future/preflight pins use revision 4.1.
-Runtime import/source reads by validators remain outside explicit-read scope.

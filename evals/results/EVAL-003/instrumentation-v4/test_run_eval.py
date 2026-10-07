@@ -227,13 +227,6 @@ class ExtendedInstrumentationTests(unittest.TestCase):
                 (root/allowed[0]).write_text('unexpected revision')
                 with self.assertRaises(harness.InfrastructureError):harness.verify_harness_inputs()
 
-    def test_black_check_is_validation_not_test_search_or_explicit_inspection(self):
-        ops,unknown=self.classify('python -m black --check django/a.py django/b.py')
-        self.assertFalse(unknown)
-        self.assertEqual(ops[0]['category'],'format validation')
-        self.assertFalse(ops[0]['repository_search'])
-        self.assertEqual(ops[0]['read_requests'],[])
-
     def test_multi_range_sed_is_one_read_per_operand(self):
         ops, unknown=self.classify("sed -n '1,5p;12p;20,30p' src/a.py src/b.py")
         self.assertFalse(unknown)

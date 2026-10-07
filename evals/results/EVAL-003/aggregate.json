@@ -1,0 +1,241 @@
+{
+  "analysis_schema_version": 4,
+  "analysis_revision": "4.1",
+  "runs": [
+    "B1",
+    "S1",
+    "B2",
+    "S2",
+    "B3",
+    "S3"
+  ],
+  "pairs": {
+    "1": {
+      "baseline": "B1",
+      "skill": "S1",
+      "total_token_difference_percent": 110.61028288094774
+    },
+    "2": {
+      "baseline": "B2",
+      "skill": "S2",
+      "total_token_difference_percent": 38.94215765402207
+    },
+    "3": {
+      "baseline": "B3",
+      "skill": "S3",
+      "total_token_difference_percent": 18.003997559077266
+    }
+  },
+  "aggregates": {
+    "B": {
+      "total_tokens": {
+        "mean": 223626,
+        "median": 211361
+      },
+      "input_tokens": {
+        "mean": 220449.33333333334,
+        "median": 208098
+      },
+      "cached_input_tokens": {
+        "mean": 196522.66666666666,
+        "median": 183040
+      },
+      "output_tokens": {
+        "mean": 3176.6666666666665,
+        "median": 3185
+      },
+      "duration_seconds": {
+        "mean": 81.812,
+        "median": 78.361
+      },
+      "tool_calls": {
+        "mean": 13.666666666666666,
+        "median": 13
+      },
+      "repository_search_commands": {
+        "mean": 6.666666666666667,
+        "median": 7
+      },
+      "total_file_reads": {
+        "mean": 12,
+        "median": 11
+      },
+      "repository_file_reads": {
+        "mean": 12,
+        "median": 11
+      },
+      "unique_files_inspected": {
+        "mean": 7,
+        "median": 6
+      },
+      "repeated_file_reads": {
+        "mean": 5,
+        "median": 5
+      },
+      "test_runs": {
+        "mean": 2.6666666666666665,
+        "median": 3
+      },
+      "files_modified": {
+        "mean": 4,
+        "median": 4
+      },
+      "skill_loading_events": {
+        "mean": 0,
+        "median": 0
+      },
+      "time_until_first_edit_seconds": {
+        "mean": 37.733486,
+        "median": 35.199995
+      },
+      "time_until_first_test_seconds": {
+        "mean": 37.89494966666667,
+        "median": 35.358895
+      },
+      "time_until_first_targeted_success_seconds": {
+        "mean": 38.73032766666667,
+        "median": 36.212324
+      },
+      "tool_items_before_first_edit": {
+        "mean": 4.333333333333333,
+        "median": 4
+      },
+      "searches_before_first_edit": {
+        "mean": 6,
+        "median": 5
+      },
+      "unique_repository_files_before_first_edit": {
+        "mean": 6.333333333333333,
+        "median": 6
+      },
+      "unique_source_files_before_first_edit": {
+        "mean": 3.3333333333333335,
+        "median": 3
+      },
+      "post_first_success_tool_calls": {
+        "mean": 7.333333333333333,
+        "median": 6
+      },
+      "post_first_success_searches": {
+        "mean": 0.6666666666666666,
+        "median": 0
+      },
+      "post_first_success_file_reads": {
+        "mean": 1,
+        "median": 1
+      },
+      "post_first_success_test_executions": {
+        "mean": 1.6666666666666667,
+        "median": 2
+      }
+    },
+    "S": {
+      "total_tokens": {
+        "mean": 342103.3333333333,
+        "median": 322938
+      },
+      "input_tokens": {
+        "mean": 337729,
+        "median": 319064
+      },
+      "cached_input_tokens": {
+        "mean": 309034.6666666667,
+        "median": 292096
+      },
+      "output_tokens": {
+        "mean": 4374.333333333333,
+        "median": 3874
+      },
+      "duration_seconds": {
+        "mean": 108.19333333333333,
+        "median": 95.105
+      },
+      "tool_calls": {
+        "mean": 18.666666666666668,
+        "median": 20
+      },
+      "repository_search_commands": {
+        "mean": 8,
+        "median": 8
+      },
+      "total_file_reads": {
+        "mean": 14.666666666666666,
+        "median": 14
+      },
+      "repository_file_reads": {
+        "mean": 13.666666666666666,
+        "median": 13
+      },
+      "unique_files_inspected": {
+        "mean": 8,
+        "median": 8
+      },
+      "repeated_file_reads": {
+        "mean": 5.666666666666667,
+        "median": 5
+      },
+      "test_runs": {
+        "mean": 5.333333333333333,
+        "median": 5
+      },
+      "files_modified": {
+        "mean": 4,
+        "median": 4
+      },
+      "skill_loading_events": {
+        "mean": 1,
+        "median": 1
+      },
+      "time_until_first_edit_seconds": {
+        "mean": 37.52057666666667,
+        "median": 39.046968
+      },
+      "time_until_first_test_seconds": {
+        "mean": 21.099027333333332,
+        "median": 20.780765
+      },
+      "time_until_first_targeted_success_seconds": {
+        "mean": 39.479077,
+        "median": 40.00603
+      },
+      "tool_items_before_first_edit": {
+        "mean": 6.666666666666667,
+        "median": 7
+      },
+      "searches_before_first_edit": {
+        "mean": 6.666666666666667,
+        "median": 7
+      },
+      "unique_repository_files_before_first_edit": {
+        "mean": 7,
+        "median": 7
+      },
+      "unique_source_files_before_first_edit": {
+        "mean": 3.6666666666666665,
+        "median": 3
+      },
+      "post_first_success_tool_calls": {
+        "mean": 10,
+        "median": 11
+      },
+      "post_first_success_searches": {
+        "mean": 1.3333333333333333,
+        "median": 1
+      },
+      "post_first_success_file_reads": {
+        "mean": 2.3333333333333335,
+        "median": 1
+      },
+      "post_first_success_test_executions": {
+        "mean": 3.3333333333333335,
+        "median": 3
+      }
+    }
+  },
+  "mean_total_token_difference_percent": 52.98012455319745,
+  "median_total_token_difference_percent": 52.789776732699025,
+  "success": {
+    "baseline": "3/3",
+    "skill": "3/3"
+  }
+}

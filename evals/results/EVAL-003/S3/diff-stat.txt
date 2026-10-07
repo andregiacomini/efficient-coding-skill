@@ -1,0 +1,5 @@
+ django/db/models/fields/related_descriptors.py | 37 +++++++++++++---
+ django/db/models/query.py                      |  9 +++-
+ docs/ref/models/querysets.txt                  |  6 +++
+ tests/prefetch_related/tests.py                | 58 +++++++++++++++++++++++++-
+ 4 files changed, 101 insertions(+), 9 deletions(-)

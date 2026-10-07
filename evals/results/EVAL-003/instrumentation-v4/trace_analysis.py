@@ -224,9 +224,6 @@ def shell_operations(command, test_entrypoints=None):
             operation['category'] = 'test execution'
         elif re.fullmatch(r'python(?:\d(?:\.\d+)?)?', exe) and len(argv) > 1 and literal(argv[1]) and normalized(argv[1], cwd) in (test_entrypoints or []):
             operation['category'] = 'test execution'
-        elif re.fullmatch(r'python(?:\d(?:\.\d+)?)?',exe) and argv[1:3]==['-m','black'] and '--check' in argv[3:]:
-            operation['category']='format validation'
-            operation['validation_targets']=[normalized(x,cwd) for x in argv[3:] if not x.startswith('-') and literal(x)]
         elif exe == 'cat':
             operands = [x for x in argv[1:] if not x.startswith('-')]
             allowed = all(not x.startswith('-') or x in ('-n', '-b', '-s', '-A', '-v', '-E', '-T', '--') for x in argv[1:])

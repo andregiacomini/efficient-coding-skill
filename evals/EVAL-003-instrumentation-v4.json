@@ -1,0 +1,23 @@
+{
+  "analysis_schema_version": 4,
+  "created_at": "2026-10-07T01:44:16.525829+00:00",
+  "reason": "User-authorized instrumentation-only revision and uniform six-trace reanalysis; benchmark/config/start state unchanged",
+  "base_config_sha256": "bb559fb7e7cfb443a154dde2476b211532171ce971aa9f5918a9274dab9831cf",
+  "frozen_original_sha256": {
+    "evals/run-eval.py": "e848a9b1d91a923795fd372181b74235b616102772e8e4b57c05857dca77b43a",
+    "evals/trace_analysis.py": "62e998b97a43651d7f75a573764016b41620a7fac1da0bba2e480943a174ddb4",
+    "evals/INSTRUMENTATION.md": "25df47997f783c3f60392cfa0cbc0e40342476b68725493af7c48c82f0acb842"
+  },
+  "instrumentation_sha256": {
+    "evals/run-eval.py": "ef69cd1e69ad9ebb58f4c3156f53b1864430b7196b0358e895c7f8c2bf44caed",
+    "evals/trace_analysis.py": "fede821d2947f999c5f5ed7fd126eca412f4a72cb8c98d83564b744ab3b62b2f",
+    "evals/INSTRUMENTATION.md": "300c2d4fbe4d91f212bae0655b183aa0f1c1303c2f4be7f787fc3fff7ae0f225"
+  },
+  "tests_passed": 41,
+  "first_success_rule": "Completed recognized test invocation with unittest case-count and verbose ok for each of the four original FAIL_TO_PASS IDs; post activity strictly after completion receipt.",
+  "analysis_revision": "4.1",
+  "updated_at": "2026-10-07T01:57:15.913132+00:00",
+  "runtime_overlay_sha256": "6b0b973b87f5a89e85ced6617806cebfed229ec3cffc046500aefd05bf6cf72e",
+  "runtime_instrumentation_archive": "evals/results/EVAL-003/instrumentation-v4",
+  "post_run_extension": "Black --check format validation recognized after S2/S3; all six traces analyzed uniformly; no model rerun or agent input change."
+}
